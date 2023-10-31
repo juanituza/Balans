@@ -22,17 +22,39 @@ export default class MailingService {
     });
   };
 
-  sendMail = async (emails, template, payload) => {
-    const mailInfo = DMailInfo[template];
-    const html = await generateMailTemplate(template, payload);
-    // Utiliza la función processEmailTemplate para procesar la plantilla antes de enviar el correo.
-    const processedHtml = this.processEmailTemplate(html, payload);
-    const result = await this.mailer.sendMail({
-      from: "Gimnasio MK <juanituza85@gmail.com>",
-      to: emails,
-      html: processedHtml,
-      ...mailInfo,
-    });
-    return result;
-  };
+  // sendMail = async (emails, template, payload) => {
+  //   const mailInfo = DMailInfo[template];
+  //   const html = await generateMailTemplate(template, payload);
+  //   // Utiliza la función processEmailTemplate para procesar la plantilla antes de enviar el correo.
+  //   const processedHtml = this.processEmailTemplate(html, payload);
+  //   const result = await this.mailer.sendMail({
+  //     from: "Gimnasio MK <juanituza85@gmail.com>",
+  //     to: emails,
+  //     html: processedHtml,
+  //     ...mailInfo,
+  //   });
+  //   return result;
+  // };
+
+  sendMail = async (template, payload) => {
+  const mailInfo = DMailInfo[template];
+  const html = await generateMailTemplate(template, payload);
+
+  // Utiliza la función processEmailTemplate para procesar la plantilla antes de enviar el correo.
+  const processedHtml = this.processEmailTemplate(html, payload);
+
+  // Cambia la dirección de destino al correo del dueño de la API.
+  const to = "juanituza85@gmail.com"; // Cambia "dueno@api.com" a la dirección de correo del dueño.
+
+  const result = await this.mailer.sendMail({
+    from: "Your App - <noreply@api.com>", // Cambia el remitente según tus necesidades.
+    to: to,
+    html: processedHtml,
+    ...mailInfo,
+  });
+
+  return result;
+};
 }
+
+

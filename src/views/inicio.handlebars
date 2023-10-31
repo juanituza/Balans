@@ -15,29 +15,29 @@
                     al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en
                     estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a
                     propósito (por ejemplo insertándole humor y cosas por el estilo). </p>
-                    <form>
+                    <form id="consultaForm">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Nombre">
+                                    <input type="text" class="form-control" name="nombre" id="name" placeholder="nombre">
                                     <label for="name">Nombre</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="apellido" placeholder="apellido">
+                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido">
                                     <label for="Apellido">Apellido</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+                                    <input type="text" class="form-control" id="telefono"  name="telefono"  placeholder="Teléfono">
                                     <label for="Telefono">Teléfono</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" id="email" name="email"  placeholder="Your Email">
                                     <label for="email">Email</label>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message"
+                                    <textarea class="form-control"  name="mensaje" placeholder="Leave a message here" id="message"
                                         style="height: 150px"></textarea>
                                     <label for="message">Mensage</label>
                                 </div>
@@ -70,3 +70,5 @@
     </div>
 </div>
 <!-- Contact End -->
+
+<script src="/js/consulta.js"></script>
