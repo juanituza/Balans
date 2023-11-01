@@ -3,10 +3,15 @@
 
 const contactoView = async (req, res) => {
 
-  res.render("inicio");
+  res.render("contacto");
+};
+const nosotrosView = async (req, res) => {
+
+  res.render("nosotros");
 };
 
 
 export default {
   contactoView,
+  nosotrosView,
 };

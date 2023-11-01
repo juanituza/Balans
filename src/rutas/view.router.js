@@ -6,7 +6,13 @@ import viewController from "../controladores/views.controller.js";
 
 export default class ViewsRouter extends BaseRouter {
   init() {
-    this.get("/", ["PUBLIC"], passportCall("jwt", { strategyType: "jwt" }),viewController.contactoView);
+    this.get("/contacto", ["PUBLIC"], passportCall("jwt", { strategyType: "jwt" }),viewController.contactoView);
+    this.get(
+      "/nosotros",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.nosotrosView
+    );
     
   
   
