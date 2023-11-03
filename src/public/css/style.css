@@ -4,6 +4,7 @@
     --secondary: #8F12FD;
     --light: #F0F6FF;
     --dark: #262B47;
+    --loginPrimary:#0751c0;
 }
 
 
@@ -62,6 +63,9 @@ h6,
 .bg-secondary-gradient {
     background: linear-gradient(to bottom right, var(--secondary), var(--primary));
 }
+.bg--login-gradient {
+    background: linear-gradient(to bottom right, var(--light), var(--secondary));
+}
 
 
 /*** Button ***/
@@ -69,7 +73,7 @@ h6,
     transition: .5s;
 }
 
-.btn.btn-primary-gradient,
+.btn.btn-primary-gradient,.btn-login-gradient,
 .btn.btn-secondary-gradient {
     position: relative;
     overflow: hidden;
@@ -77,10 +81,14 @@ h6,
     color: #FFFFFF;
     z-index: 1;
 }
+.btn-light{color:var(--secondary);}
+.btn.btn-light:hover{color: var(--primary);}
 
 
 
-.btn.btn-primary-gradient::after,
+
+
+.btn.btn-primary-gradient::after,.btn-login-gradient::after
 .btn.btn-secondary-gradient::after {
     position: absolute;
     content: "";
@@ -91,19 +99,26 @@ h6,
     transition: .5s;
     z-index: -1;
     opacity: 0;
+   
 }
 
 .btn.btn-primary-gradient,
 .btn.btn-secondary-gradient::after {
     background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+    
+}
+
+.btn-login-gradient{
+    background: linear-gradient(to bottom right, var(--loginPrimary), var(--primary));
 }
 
 .btn.btn-secondary-gradient,
 .btn.btn-primary-gradient::after {
     background: linear-gradient(to bottom right, var(--secondary), var(--primary));
 }
+.btn-login-gradient::after{background: linear-gradient(to bottom right, var(--secondary), var(--light));}
 
-.btn.btn-primary-gradient:hover::after,
+.btn.btn-primary-gradient:hover::after,.btn-login-gradient:hover::after,
 .btn.btn-secondary-gradient:hover::after {
     opacity: 1;
 }
@@ -149,7 +164,7 @@ h6,
 .navbar-light .navbar-nav .nav-link {
     position: relative;
     margin-right: 25px;
-    padding: 45px 0;
+    padding: 45px 0 0 0;
     font-family: 'Jost', sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -192,6 +207,25 @@ h6,
 
 .sticky-top.navbar-light .navbar-brand img {
     max-height: 45px;
+}
+
+/* Estilos personalizados para el menú desplegable */
+.dropdown-menu {
+  background-color: #fff; /* Color de fondo */
+  border: 1px solid #ccc; /* Borde */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.dropdown-item {
+  color: #333; /* Color del texto */
+  padding: 10px 5px; /* Espaciado interior */
+  transition: background-color 0.3s; /* Transición de color al pasar el cursor */
+  font-family: 'Jost', sans-serif;
+  text-align: center;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el cursor */
 }
 
 @media (max-width: 991.98px) {
@@ -260,8 +294,8 @@ h6,
 
 /*** Hero Header ***/
 .hero-header {
-    margin-bottom: 6rem;
-    padding: 16rem 0 0 0;
+    margin-bottom: 0rem;
+    padding: 16rem 3rem 5rem 10rem;
     background:
         url(../imagenes/bg-circle.png),
         url(../imagenes/bg-triangle.png),
@@ -269,7 +303,7 @@ h6,
         linear-gradient(to bottom right, var(--primary), var(--secondary));
     background-position:
         left 0px top 0px,
-        right 0px top 50%,
+        right 10px top 40%,
         center bottom;
     background-repeat: no-repeat;
 }

@@ -24,9 +24,6 @@ const consultaSchema = new mongoose.Schema(
     timestamps: {
       createdAt: "fecha_creacion",
       updatedAt: "fecha_modificacion",
-      // // currentTime: () => new Date().toISOString().slice(0, 10),
-      // currentTime: () =>
-      //   moment().tz("America/Argentina/Buenos_Aires").format('DD-MM-YYYY HH:mm'),
     },
   }
 );

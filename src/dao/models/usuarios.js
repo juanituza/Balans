@@ -10,12 +10,8 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    edad: Number,
+    edad: Date,
     password: String,
-    /*  cart: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Carts",
-    }, */
     role: {
       type: String,
       default: "alumno",
@@ -37,13 +33,28 @@ const usuarioSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+  {
+    timestamps: {
+      createdAt: "fecha_creacion",
+      updatedAt: "fecha_modificacion",
+    },
+  }
 );
 
-// Método para verificar si el usuario tiene el rol "premium"
-// userSchema.methods.isPremium = function() {
-//   return this.role === "premium";
-// };
+// Personaliza la representación de las fechas en el JSON
+usuarioSchema.set("toJSON", {
+  getters: true,
+  virtuals: false,
+  transform: (doc, ret) => {
+    ret.fecha_creacion = moment(doc.fecha_creacion)
+      .tz("America/Argentina/Buenos_Aires")
+      .format("DD-MM-YYYY HH:mm");
+    ret.fecha_modificacion = moment(doc.fecha_modificacion)
+      .tz("America/Argentina/Buenos_Aires")
+      .format("DD-MM-YYYY HH:mm");
+    return ret;
+  },
+});
 
 const usuarioModel = mongoose.model(collection, usuarioSchema);
 

@@ -28,7 +28,7 @@ form.addEventListener('submit',async (event)=>{
       })
       .then((result) => {
         if (result.isConfirmed) {
-          window.location.replace("/");
+          window.location.replace("/nosotros");
         }
       });
     } else {
