@@ -332,6 +332,16 @@ h6,
     box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .08);
 }
 
+/** login **/
+  .cascading-right {
+      margin-right: -50px;
+  }
+
+  @media (max-width: 991.98px) {
+      .cascading-right {
+          margin-right: 0;
+      }
+  }
 
 /*** Pricing ***/
 .pricing .nav {
@@ -422,7 +432,19 @@ h6,
 .screenshot-carousel .owl-dot.active {
     box-shadow: 0 0 10px var(--dark);
 }
+/** imagen icon **/
 
+
+.icon {
+        width: 20px;
+        /* Ajusta el ancho según tus necesidades */
+        margin-right: 10px;
+        /* Agrega un espacio entre la imagen y el texto del formulario */
+        vertical-align: middle;
+        /* Alinea verticalmente la imagen con el texto */
+        filter: grayscale(100%);
+       
+    }
 
 /*** Testimonial ***/
 .testimonial-carousel .owl-item .testimonial-item,

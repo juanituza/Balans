@@ -10,8 +10,9 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    edad: Date,
+    nacimiento: Date,
     password: String,
+    telefono: String,
     role: {
       type: String,
       default: "alumno",
