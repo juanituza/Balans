@@ -3,10 +3,7 @@ import config from "../src/config.js";
 import local from "passport-local";
 
 import GithubStrategy from "passport-github2";
-import {
- 
-  usuarioService,
-} from "../src/services/repositorios/index.js";
+import { usuarioService} from "../src/services/repositorios/index.js";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { cookieExtractor, createHash, validatePassword } from "../src/utils.js";
 
@@ -20,30 +17,22 @@ const initializePassportStrategies = () => {
   passport.use(
     "register",
     new LocalStrategy(
-      { passReqToCallback: true, usuarionameField: "email" },
+      { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { first_name, last_name,age, role } = req.body;
-          const exist = await usuarioService.obtenerUsuarios({ email });
-          // const exist = await usuarioModel.findOne({ email });
+          const { nombre, apellido, telefono } = req.body;
+          const exist = await usuarioService.obtenerUsuarioPor({ email });         
 
-          if (exist) return done(
-            null,
-            false,
-            { message: "Usuario existente" },
-            LoggerService.error("Usuario existente")
+          if (exist) return done(null,false,{ message: "Usuario existente" },LoggerService.error("Usuario existente")
           );
           // done(null, false, { message: "User exist" },LoggerService.error("Role not exist"));
           const hashedPassword = await createHash(password);
-          // const cart = await cartService.createCart();
           const usuario = {
-            first_name,
-            last_name,
-            age,
+            nombre,
+            apellido,
             email,
-            // cart: cart._id,
+            telefono,
             password: hashedPassword,
-            role,
           };
 
           // const result = await usuarioModel.create(usuario);
@@ -59,7 +48,7 @@ const initializePassportStrategies = () => {
   passport.use(
     "login",
     new LocalStrategy(
-      { usuarionameField: "email" },
+      { usernameField: "email" },
       async (email, password, done) => {
         //defino el admin
         if (email === config.admin.USER && password === config.admin.PASS) {
@@ -86,12 +75,11 @@ const initializePassportStrategies = () => {
         
         usuario = {
           _id: usuario._id,
-          first_name: usuario.first_name,
-          last_name: usuario.last_name,
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
           email: usuario.email,
-          cart: usuario.cart,
-          role: usuario.role,
-          status: usuario.status,
+          nacimiento: usuario.nacimiento,
+          telefono: usuario.telefono,
         };
         
      
@@ -119,7 +107,7 @@ const initializePassportStrategies = () => {
           if (!usuario) {
             //si no existe usuario lo creo
             const nuevoUsuario = {
-              first_name: name,
+              nombre: name,
               email,
               // cart: cart._id,
               password: "",

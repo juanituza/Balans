@@ -13,6 +13,7 @@ import initializePassportStrategies from "../config/passport.config.js";
 import ViewsRouter from "./rutas/view.router.js";
 import UsuarioRouter from "./rutas/usuario.router.js";
 import ConsultaRouter from "./rutas/consulta.Router.js";
+import SessionRouter from "./rutas/session.Router.js";
 import LoggerService from "./dao/managers/LoggerManager.js";
 
 
@@ -42,10 +43,12 @@ app.set("view engine", "handlebars");
 const usuarioRouter = new UsuarioRouter();
 const consultaRouter = new ConsultaRouter();
 const viewsRouter = new ViewsRouter();
+const sessionRouter = new SessionRouter();
 
 
 app.use("/", viewsRouter.getRouter());
 app.use("/api/usuarios", usuarioRouter.getRouter());
 app.use("/api/consulta", consultaRouter.getRouter());
+app.use("/api/session", sessionRouter.getRouter());
 
 // app.use("/", viewsRouter.getRouter());

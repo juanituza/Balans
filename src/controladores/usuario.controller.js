@@ -9,13 +9,15 @@ const obtenerUsuarios = async (req, res) => {
 
 const guardarUsuario = async (req, res) => {
   try {
-    const { first_name, last_name, email, password, role } = req.body;
-    if (!first_name || !last_name || !email || !password)
+    const { nombre, apellido, email, password, telefono } =
+      req.body;
+    if (!nombre || !apellido || !email || !password  || !telefono)
       return res
         .status(400)
         .send({ status: "error", payload: "Incomplete value" });
 
     const user = new usuariosDTO();
+    
 
     const result = await usersService.createUser(user);
     res.sendSuccessWithPayload({ result });
@@ -27,4 +29,5 @@ const guardarUsuario = async (req, res) => {
 
 export default {
   obtenerUsuarios,
+  guardarUsuario,
 };

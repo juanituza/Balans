@@ -10,29 +10,30 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    nacimiento: Date,
+    // nacimiento: Date,
     password: String,
     telefono: String,
-    role: {
-      type: String,
-      default: "alumno",
-      enum: ["alumno", "profesor", "admin"],
-    },
-    status: {
-      type: Boolean,
-      default: false,
-    },
-    documents: [
-      {
-        name: {
-          type: String,
-        },
-        reference: {
-          type: String,
-          enum: ["identification", "address", "count"],
-        },
-      },
-    ],
+    // role: {
+    //   type: String,
+    //   default: "alumno",
+    //   enum: ["alumno", "profesor", "admin"],
+    // },
+    // status: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // imagen: [],
+    // documents: [
+    //   {
+    //     image: {
+    //       type: String,
+    //     },
+    //     reference: {
+    //       type: String,
+    //       enum: ["identification", "address", "count"],
+    //     },
+    //   },
+    // ],
   },
   {
     timestamps: {

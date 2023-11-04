@@ -3,7 +3,7 @@ import BaseRouter from "./baseRouter.js";
 import usuarioController from "../controladores/usuario.controller.js";
 import {passportCall} from "../utils.js";
 // import upload from "../middlewares/uploader.js";
-// const router = Router();
+
 
 export default class ConsultaRouter extends BaseRouter {
   init() {
@@ -17,7 +17,7 @@ export default class ConsultaRouter extends BaseRouter {
       "/",
       ["USER", "ADMIN"],
       passportCall("jwt", { strategyType: "locals" }),
-      usuarioController.saveUsers
+      usuarioController.guardarUsuario
     );
   }
 }
