@@ -17,5 +17,11 @@ export default class SessionRouter extends BaseRouter {
       passportCall("login", { strategyType: "locals" }),
       sessionsController.login
     );
+    this.post(
+      "/cerrarSesion",
+      ["ALUMNO", "PROFESORES", "ADMIN"],
+      passportCall("jwt", { strategyType: "locals" }),
+      sessionsController.cerrarSesion
+    );
   }
 }

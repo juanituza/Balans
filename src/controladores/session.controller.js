@@ -34,13 +34,22 @@ const login = async (req, res) => {
   }
 };
 
+const cerrarSesion = async (req, res) => {
+  res.clearCookie("authToken"); // Eliminar la cookie "authToken"
+  res.send({
+    status: "success",
+    message: "Sesión cerrada correctamente",
+  });
+};
+
 
 export default {
   registro,
   login,
-//   registerGitHub,
-//   loginGitHub,
-//   logout,
-//   restoreRequest,
-//   restorePassword,
+  cerrarSesion,
+  //   registerGitHub,
+  //   loginGitHub,
+
+  //   restoreRequest,
+  //   restorePassword,
 };

@@ -10,19 +10,19 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    // nacimiento: Date,
+    nacimiento: Date,
     password: String,
     telefono: String,
-    // role: {
-    //   type: String,
-    //   default: "alumno",
-    //   enum: ["alumno", "profesor", "admin"],
-    // },
+    role: {
+      type: String,
+      default: "alumno",
+      enum: ["alumno", "profesor", "admin"],
+    },
     // status: {
     //   type: Boolean,
     //   default: false,
     // },
-    // imagen: [],
+    imagen: [],
     // documents: [
     //   {
     //     image: {
@@ -56,6 +56,17 @@ usuarioSchema.set("toJSON", {
       .format("DD-MM-YYYY HH:mm");
     return ret;
   },
+});
+
+// Define un setter para "nacimiento" para convertir la fecha al formato deseado
+usuarioSchema.path("nacimiento").set(function(value) {
+  // Aquí puedes realizar la conversión de la fecha, asumiendo que "value" está en formato "DD-MM-AAAA"
+  const parts = value.split("-");
+  if (parts.length === 3) {
+    const [day, month, year] = parts;
+    return `${day}-${month}-${year}`;
+  }
+  return value;
 });
 
 const usuarioModel = mongoose.model(collection, usuarioSchema);

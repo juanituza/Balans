@@ -19,5 +19,11 @@ export default class ConsultaRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "locals" }),
       usuarioController.guardarUsuario
     );
+    this.post(
+      "/",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "locals" }),
+      usuarioController.eliminarUsuario
+    );
   }
 }

@@ -5,5 +5,6 @@ export default class UserDTO {
     this._id = usuario._id;
     this.telefono = usuario.telefono;
     this.nacimiento = usuario.nacimiento;
+    this.role = usuario.role;
   }
 }

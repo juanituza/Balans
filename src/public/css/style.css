@@ -159,6 +159,34 @@ h6,
     background: linear-gradient(to bottom right, var(--primary), var(--secondary));
 }
 
+/** perfil foto **/ 
+
+.perfil {
+    display: flex;
+    align-items: center;
+}
+
+.foto-de-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* Hace que la imagen sea circular */
+    overflow: hidden;
+    /* Oculta las partes de la imagen fuera del círculo */
+}
+
+.foto-de-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajusta la imagen para que llene el círculo */
+}
+
+.informacion-de-perfil {
+    margin-left: 20px;
+}
+
+
 
 /*** Navbar ***/
 .navbar-light .navbar-nav .nav-link {

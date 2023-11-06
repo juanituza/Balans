@@ -20,7 +20,7 @@ const initializePassportStrategies = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { nombre, apellido, telefono } = req.body;
+          const { nombre, apellido,nacimiento, telefono,role } = req.body;
           const exist = await usuarioService.obtenerUsuarioPor({ email });         
 
           if (exist) return done(null,false,{ message: "Usuario existente" },LoggerService.error("Usuario existente")
@@ -31,6 +31,8 @@ const initializePassportStrategies = () => {
             nombre,
             apellido,
             email,
+            nacimiento,
+            role,
             telefono,
             password: hashedPassword,
           };
@@ -80,6 +82,7 @@ const initializePassportStrategies = () => {
           email: usuario.email,
           nacimiento: usuario.nacimiento,
           telefono: usuario.telefono,
+          role: usuario.role,
         };
         
      

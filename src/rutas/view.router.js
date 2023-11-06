@@ -13,12 +13,22 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.nosotrosView
     );
+    this.get(
+      "/perfil",
+      ["ALUMNO", "PROFESOR", "ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.perfilView
+    );
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
+    // this.get("/nosotros", ["USER"], (req, res) => {
+    //   res.render("nosotros");
+    // });
     this.get("/registro", ["NO_AUTH"], (req, res) => {
       res.render("registro");
     });
+    
     
   
   

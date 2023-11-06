@@ -9,7 +9,7 @@ const obtenerUsuarios = async (req, res) => {
 
 const guardarUsuario = async (req, res) => {
   try {
-    const { nombre, apellido, email, password, telefono } =
+    const { nombre, apellido, email, password,nacimiento, telefono } =
       req.body;
     if (!nombre || !apellido || !email || !password  || !telefono)
       return res
@@ -25,9 +25,14 @@ const guardarUsuario = async (req, res) => {
     res.sendInternalError("Internal error");
   }
 };
-
+const eliminarUsuario = async (req, res) => {
+  const userId = req.params.uid;
+  const result = await usersService.deleteUser({ _id: userId });
+  res.sendSuccess("User removed");
+};
 
 export default {
   obtenerUsuarios,
   guardarUsuario,
+  eliminarUsuario,
 };
