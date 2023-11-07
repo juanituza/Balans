@@ -12,6 +12,18 @@
                         <h2 class="fw-bold mb-5">Registro</h2>
                         <form id="registroForm">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
+                            {{!-- <img class="foto-de-perfil" src="#" alt="Mi Foto de Perfil"> --}}
+                        <div class="form-outline mb-4">
+                            <div class="image-upload">
+                                <label for="fileInput" class="image-label">
+                                    <i class="fa-solid fa-user updateImage" id="iconPreview"></i>
+                                    <img class="foto-de-perfil" id="imagePreview" src="#" alt="Mi Foto de Perfil" style="display: none;">
+                                </label>
+                                <input type="file" id="fileInput" name="imagen" class="file-input" multiple onchange="previewImage();" />
+                            </div>
+                        </div>
+
+
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
@@ -74,4 +86,5 @@
 <!-- scripts -->
 <script src="js/date.js"></script>
 <script src="/js/registro.js"></script>
+<script src="/js/imagePreview.js"></script>
 

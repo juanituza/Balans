@@ -45,8 +45,8 @@ logoutButton.addEventListener("click", async function () {
 
     
     Swal.fire({
-      title: "You have successfully logged out",
-      text: "We hope you visit us again soon",
+      title: "Se ha deslogueado correctamente",
+      text: "Esperamos que nos visite proximamente",
       icon: "success",
       showCancelButton: false,
       confirmButtonText: "OK",

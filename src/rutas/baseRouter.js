@@ -73,15 +73,13 @@ export default class BaseRouter {
     return (req, res, next) => {
       if (policies[0] === "PUBLIC") return next();
       //Usuario parseado desde jwt
-      const user = req.user;
-      console.log(user);
+      const user = req.user;  
       if (policies[0] === "NO_AUTH" && user)
         return res.status(401).send({ status: "error", error: "Unauthorized" });
       if (policies[0] === "NO_AUTH" && !user) return next();
       //Si existe un usuario.
       if (!user)
         return res.status(401).send({ status: "error", error: req.error });
-      console.log(user.role);
       if (!policies.includes(user.role.toUpperCase()))
         return res.status(401).send({ status: "error", error: "Unauthorized" });
       next();

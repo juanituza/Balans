@@ -15,6 +15,12 @@ const nosotrosView = async (req, res) => {
     user: userData,
   });
 };
+const pilatesView = async (req, res) => {
+  const userData = req.user;
+  res.render("pilates", {
+    user: userData,
+  });
+};
 
 const perfilView = async (req, res) => {
   const userData = req.user;
@@ -29,4 +35,5 @@ export default {
   contactoView,
   nosotrosView,
   perfilView,
+  pilatesView,
 };

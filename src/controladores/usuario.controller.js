@@ -9,15 +9,25 @@ const obtenerUsuarios = async (req, res) => {
 
 const guardarUsuario = async (req, res) => {
   try {
-    const { nombre, apellido, email, password,nacimiento, telefono } =
-      req.body;
-    if (!nombre || !apellido || !email || !password  || !telefono)
+    
+        // Get the paths of the uploaded files
+        const imagenRuta = req.files.map(
+          (file) => `/uploads/perfil/${file.filename}`
+        );
+    const {
+      nombre,
+      apellido,
+      email,
+      password,
+      nacimiento,
+      telefono,
+    } = req.body;
+    if (!nombre || !apellido || !email || !password || !telefono)
       return res
         .status(400)
         .send({ status: "error", payload: "Incomplete value" });
 
-    const user = new usuariosDTO();
-    
+    const user = { nombre, apellido, email, password, nacimiento,imagen : [imagenRuta], telefono };
 
     const result = await usersService.createUser(user);
     res.sendSuccessWithPayload({ result });
@@ -27,7 +37,7 @@ const guardarUsuario = async (req, res) => {
 };
 const eliminarUsuario = async (req, res) => {
   const userId = req.params.uid;
-  const result = await usersService.deleteUser({ _id: userId });
+  await usersService.deleteUser({ _id: userId });
   res.sendSuccess("User removed");
 };
 

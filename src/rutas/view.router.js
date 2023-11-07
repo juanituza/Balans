@@ -14,6 +14,12 @@ export default class ViewsRouter extends BaseRouter {
       viewController.nosotrosView
     );
     this.get(
+      "/pilates",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.pilatesView
+    );
+    this.get(
       "/perfil",
       ["ALUMNO", "PROFESOR", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
