@@ -20,12 +20,18 @@ const initializePassportStrategies = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { nombre, apellido,nacimiento, telefono,role } = req.body;
-          const exist = await usuarioService.obtenerUsuarioPor({ email });         
+          const { nombre, apellido, nacimiento, telefono, role } = req.body;
+          const exist = await usuarioService.obtenerUsuarioPor({ email });
+          if (exist)
+            return done(
+              null,
+              false,
+              { message: "Usuario existente" },
+              LoggerService.error("Usuario existente")
+            );
 
-          if (exist) return done(null,false,{ message: "Usuario existente" },LoggerService.error("Usuario existente")
-          );
-          // done(null, false, { message: "User exist" },LoggerService.error("Role not exist"));
+          // Accede a la información del archivo cargado
+         
           const hashedPassword = await createHash(password);
           const usuario = {
             nombre,
@@ -35,6 +41,7 @@ const initializePassportStrategies = () => {
             role,
             telefono,
             password: hashedPassword,
+          
           };
 
           // const result = await usuarioModel.create(usuario);

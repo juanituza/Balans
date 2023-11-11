@@ -102,9 +102,10 @@
           Iniciar sesión</a>
         {{/unless}}
         {{#if user}}
+
         <ul class="dropdown btn btn-light  rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
           <li>
-            <img class="foto-de-perfil-button" src="/imagenes/testimonial-3.jpg" alt="Mi Foto de Perfil">
+            <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
             <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
               {{!-- <i class="fa-solid fa-user"></i> --}}
               {{user.nombre}}
@@ -116,6 +117,8 @@
             </ul>
           </li>
         </ul>
+      
+
         {{/if}}
 
       </nav>

@@ -12,6 +12,7 @@ const usuarioSchema = new mongoose.Schema(
     },
     nacimiento: Date,
     password: String,
+    imagen: [],
     telefono: String,
     role: {
       type: String,
@@ -22,7 +23,7 @@ const usuarioSchema = new mongoose.Schema(
     //   type: Boolean,
     //   default: false,
     // },
-    imagen: [],
+
     // documents: [
     //   {
     //     image: {

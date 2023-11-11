@@ -1,8 +1,9 @@
 import BaseRouter from "./baseRouter.js";
 
+
 import usuarioController from "../controladores/usuario.controller.js";
 import {passportCall} from "../utils.js";
-// import upload from "../middlewares/uploader.js";
+import uploadImage from "../middlewares/uploaderImage.js";
 
 
 export default class ConsultaRouter extends BaseRouter {
@@ -13,11 +14,12 @@ export default class ConsultaRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "locals" }),
       usuarioController.obtenerUsuarios
     );
-    this.post(
-      "/",
-      ["USER", "ADMIN"],
+    this.put(
+      "/editarUsuario",
+      ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "locals" }),
-      usuarioController.guardarUsuario
+      uploadImage.array("imagen", 3),
+      usuarioController.editarImagen
     );
     this.post(
       "/",

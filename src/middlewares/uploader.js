@@ -19,8 +19,8 @@ const upload = multer({ storage: storage });
 // Función para determinar la carpeta según el campo del archivo
 const determineFolder = (fieldname) => {
   switch (fieldname) {
-    case "profileImage":
-      return "profile";
+    case "perfil":
+      return "perfil";
     case "products":
       return "products";
     case "documents":

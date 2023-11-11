@@ -5,7 +5,7 @@ import __dirname from "../utils.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Define la carpeta donde se guardarán los archivos (ajusta la ruta según tus necesidades)
-    cb(null, `${__dirname}/public/uploads/pefil`);
+    cb(null, `${__dirname}/public/uploads/perfil`);
   },
   filename: (req, file, cb) => {
     // Define el nombre de los archivos cargados (puedes personalizarlo según tus necesidades)
@@ -18,8 +18,5 @@ const storage = multer.diskStorage({
 
 // Configura Multer con la opción de almacenamiento
 const uploadImage = multer({ storage: storage });
-
-
-
 
 export default uploadImage;
