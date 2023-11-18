@@ -105,20 +105,36 @@
 
         <ul class="dropdown btn btn-light  rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
           <li>
-            <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
+            {{#unless imagen}}
+            <i class="fa-solid fa-user"></i>
             <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
               {{!-- <i class="fa-solid fa-user"></i> --}}
               {{user.nombre}}
               {{user.apellido}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item"  href="/perfil">Perfil</a></li>
-              <li id="loguotButton"><a class="dropdown-item"  href="#">Cerrar sesión</a></li>
+              <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+              <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
             </ul>
           </li>
         </ul>
-      
+        {{/unless}}
+        {{#if imagen}}
+        <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
+        <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
+          {{!-- <i class="fa-solid fa-user"></i> --}}
+          {{user.nombre}}
+          {{user.apellido}}
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+          <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        </ul>
+        </li>
+        </ul>
 
+
+        {{/if}}
         {{/if}}
 
       </nav>

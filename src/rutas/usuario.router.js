@@ -19,6 +19,13 @@ export default class ConsultaRouter extends BaseRouter {
       ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "locals" }),
       uploadImage.array("imagen", 3),
+      usuarioController.editarUsuario
+    );
+    this.put(
+      "/editarImagen",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "locals" }),
+      uploadImage.array("imagen", 3),
       usuarioController.editarImagen
     );
     this.post(
