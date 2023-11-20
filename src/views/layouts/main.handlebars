@@ -115,6 +115,9 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
               <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+              {{#ifRoleAdmin user.role}}
+              <li class="dropdown-item" href="/admin">Panel de administrador</p>
+                {{/ifRoleAdmin}}
             </ul>
           </li>
         </ul>
@@ -129,9 +132,12 @@
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
           <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+          {{#ifRoleAdmin user.role}}
+          <li class="dropdown-item" href="/admin">Panel de administrador</p>
+            {{/ifRoleAdmin}}
+         
         </ul>
-        </li>
-        </ul>
+
 
 
         {{/if}}

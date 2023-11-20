@@ -63,8 +63,9 @@ const initializePassportStrategies = () => {
         if (email === config.admin.USER && password === config.admin.PASS) {
           const Usuario = {
             id: 0,
-            name: `ADMIN`,
-            role: "ADMIN",
+            nombre: 'ADMIN',
+            apellido:'ADMIN',
+            role: 'ADMIN',
             email: config.admin.USER,
           };
           return done(null, Usuario);

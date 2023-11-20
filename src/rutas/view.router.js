@@ -5,8 +5,15 @@ import viewController from "../controladores/views.controller.js";
 /*-----------RENDER CON MONGO---------*/
 
 export default class ViewsRouter extends BaseRouter {
+  
+
   init() {
-    this.get("/contacto", ["PUBLIC"], passportCall("jwt", { strategyType: "jwt" }),viewController.contactoView);
+    this.get(
+      "/contacto",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.contactoView
+    );
     this.get(
       "/nosotros",
       ["PUBLIC"],
@@ -25,6 +32,12 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.perfilView
     );
+    this.get(
+      "/admin",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminView
+    );
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
@@ -34,16 +47,12 @@ export default class ViewsRouter extends BaseRouter {
     this.get("/registro", ["NO_AUTH"], (req, res) => {
       res.render("registro");
     });
-    
-    
-  
-  
+
     // this.get(
     //   "/products",
     //   ["PUBLIC"],
     //   passportCall("jwt", { strategyType: "jwt" }, { redirect: "/login" }),
     //   viewController.productsView
     // );
-
   }
 }

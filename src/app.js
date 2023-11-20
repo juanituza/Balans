@@ -8,7 +8,8 @@ import config from "./config.js";
 import MongoSingleton from "./mongoSingleton.js";
 import initializePassportStrategies from "../config/passport.config.js";
 
-//config/passport.config.js";
+import exphbs from "express-handlebars";
+import {ifRoleAdmin} from "./middlewares/handlebars-helpers.js";
 
 import ViewsRouter from "./rutas/view.router.js";
 import UsuarioRouter from "./rutas/usuario.router.js";
@@ -30,13 +31,34 @@ const server = app.listen(PORT, () =>
 
 initializePassportStrategies();
 
+const hbs = exphbs.create({
+  helpers: {
+    ifRoleAdmin,
+  },
+  layoutsDir: `${__dirname}/views/layouts`, // Ruta absoluta
+  defaultLayout: "main",
+  partialsDir: `${__dirname}/views/partials`, // Ruta absoluta
+  extname: "handlebars",
+});
+
+// Asigna el layout principal para las rutas que no sean de administrador
+app.use((req, res, next) => {
+    res.locals.layout = "main";
+    next();
+});
+
+app.use("/admin", (req, res, next) => {
+  res.locals.layout = "admin";
+  next();
+});
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
 
-app.engine("handlebars", handlebars.engine());
-// app.engine("handlebars", hbs.engine);
+// app.engine("handlebars", handlebars.engine());
+app.engine("handlebars", hbs.engine);
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "handlebars");
 

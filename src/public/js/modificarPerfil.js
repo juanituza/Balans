@@ -1,11 +1,9 @@
-const imagenForm = document.getElementById("inputForm");
-
-inputForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+// Función para enviar el formulario de texto
+async function enviarInputFormulario() {
+  const inputForm = document.getElementById("inputForm");
+  const formData = new FormData(inputForm);
 
   try {
-    const formData = new FormData(inputForm);
-
     const response = await fetch("/api/usuarios/editarUsuario", {
       method: "PUT",
       body: formData,
@@ -15,18 +13,18 @@ inputForm.addEventListener("submit", async (event) => {
 
     if (responseData.status === "success") {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Seguro que deseas editar la información?",
+
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, change my role!",
+        confirmButtonText: "Si! cambiar mi información",
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            "Changed!",
-            "Your role was successfully changed!",
+            "¡Cambio exitoso!",
+            "Tu información se editó con éxito! Debe volver a loguearse para ver los cambios",
             "success"
           ).then(() => {
             window.location.replace("/perfil");
@@ -41,49 +39,6 @@ inputForm.addEventListener("submit", async (event) => {
       });
     }
   } catch (error) {
-    console.error("Error submitting form:", error);
+    console.error("Error al enviar formulario de texto:", error);
   }
-});
-
-// const imagenForm = document.getElementById("imagenForm");
-
-// imagenForm.addEventListener("submit", async (event) => {
-//   event.preventDefault();
-
-//   const formData = new FormData(imagenForm);
-
-//   const response = await fetch("/api/usuarios/editarUsuario", {
-//     method: "PUT",
-//     body: formData,
-//   });
-
-//   const responseData = await response.json();
-
-//   if (responseData.status === "success") {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, change my role!",
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         Swal.fire(
-//           "Changed!",
-//           "Your role was successfully changed!",
-//           "success"
-//         ).then(() => {
-//           window.location.replace("/perfil");
-//         });
-//       }
-//     });
-//   } else {
-//     Swal.fire({
-//       icon: "error",
-//       title: "Oops...",
-//       text: responseData.error,
-//     });
-//   }
-// });
+}
