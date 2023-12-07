@@ -1,5 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import { join } from "path"; 
 import handlebars from "express-handlebars";
 
 
@@ -55,7 +56,11 @@ app.use("/admin", (req, res, next) => {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/public`));
+// Middleware para archivos estáticos en el layout "main"
+app.use("/", express.static(join(__dirname, "public")));
+
+// Middleware para archivos estáticos en el layout "admin"
+app.use("/admin", express.static(join(__dirname, "public")));
 
 // app.engine("handlebars", handlebars.engine());
 app.engine("handlebars", hbs.engine);

@@ -1,0 +1,68 @@
+<div class="m-5">
+
+
+<table id="miTabla" class="display " style="width:100% ">
+    <thead>
+        <tr>
+            <th>Nombre y apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Role</th>
+            <th>Fecha de nacimiento</th>
+            <th>Select new Role</th>
+            <th>Modify role</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each Usuarios}}
+        <tr>
+            <td>{{this.nombre}} {{this.apellido}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.telefono}}</td>
+            <td>{{this.role}}</td>
+            <td>{{this.fecha_creacion}}</td>
+            <td>
+                <!-- Agregar un formulario para cada usuario -->
+                <form class="col-lg-12 rolForm">
+                    <div class="form-outline mb-4">
+                        <select class="col-lg-12 form-select center my-2 roleSelect">
+                            <option value="premium" class="col-lg-12 center">
+                                Premium
+                            </option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <!-- Agregar el botón de actualización dentro del formulario -->
+                <button type="submit" class="col-lg-12 btn btn-info center my-2 changeRol" data-user-id="{{this._id}}">
+                    <i class="fa-regular fa-circle-up"></i> Update
+                </button>
+            </td>
+            <td>
+                {{! <a href=""> }}
+                    {{! </a> }}
+                <button class="col-lg-12 btn btn-danger center my-2 deleteUser" id="{{this._id}}">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+            </td>
+
+        </tr>
+        {{/each}}
+
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+</div>
+
+
+
+<script src="/js/dataTable.js"></script>
+
+{{!-- <script src="js/deleteUser.js"></script>
+<script src="js/changeRolAdmin.js"></script> --}}
+
+

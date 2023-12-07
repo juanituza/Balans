@@ -14713,7 +14713,7 @@ body {
   }
 }
 .buy-now .btn-buy-now {
-  position: fixed;
+  /* position: fixed; */
   bottom: 3rem;
   right: 1.625rem;
   z-index: 999999;
@@ -15741,10 +15741,15 @@ html:not(.layout-footer-fixed) .content-wrapper {
   width: 2.375rem;
   height: 2.375rem;
   cursor: pointer;
+  
+}
+.rounded-circle {
+  border-radius: 50%;
 }
 .avatar img {
   width: 100%;
   height: 100%;
+  
 }
 .avatar .avatar-initial {
   position: absolute;
@@ -15769,6 +15774,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   height: 8px;
   border-radius: 100%;
   box-shadow: 0 0 0 2px #fff;
+  
 }
 .avatar.avatar-online:after {
   background-color: #71dd37;

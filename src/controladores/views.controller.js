@@ -68,11 +68,11 @@ const pilatesView = async (req, res) => {
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
 
-      res.render("contacto", {
+      res.render("pilates", {
         user: userData,
       });
     } else {
-      res.render("nosotros");
+      res.render("pilates");
     }
   } catch (error) {
     res.sendInternalError({ status: "error", error });
@@ -84,6 +84,8 @@ const perfilView = async (req, res) => {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      
+      
       const fechaNacimiento = moment(userData.nacimiento).format("DD-MM-YYYY");
       res.render("perfil", {
         user: userData,
@@ -92,9 +94,12 @@ const perfilView = async (req, res) => {
       });
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
+  
+     
 
       res.render("perfil", {
         user: userData,
+        imagen: userData.imagen,
       });
     }
   } catch (error) {
@@ -104,8 +109,22 @@ const perfilView = async (req, res) => {
 
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
-  console.log(usuarios.imagen);
-  res.render("layouts/admin", { Usuarios: usuarios });
+  const userData = req.user;
+  
+  res.render("layouts/admin", { Usuarios: usuarios,
+  imagen: userData.imagen});
+};
+
+
+const adminUserView = async (req, res) => {
+  const usuarios = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
+ 
+  
+  res.render("adminUser", {
+    Usuarios: usuarios,
+    imagen: userData.imagen,
+  });
 };
 
 
@@ -115,4 +134,5 @@ export default {
   perfilView,
   pilatesView,
   adminView,
+  adminUserView,
 };

@@ -66,6 +66,7 @@ const initializePassportStrategies = () => {
             nombre: 'ADMIN',
             apellido:'ADMIN',
             role: 'ADMIN',
+            imagen: config.admin.IMG,
             email: config.admin.USER,
           };
           return done(null, Usuario);

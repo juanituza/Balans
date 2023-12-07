@@ -19,6 +19,7 @@ export default {
   admin: {
     USER: process.env.ADMIN_EMAIL,
     PASS: process.env.ADMIN_PWD,
+    IMG: process.env.ADMIN_IMG,
   },
   mailer: {
     USER: process.env.MAILER_USER,
