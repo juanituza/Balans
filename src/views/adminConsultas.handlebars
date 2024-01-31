@@ -1,5 +1,7 @@
+
+
 <div class="m-5">
-<h3>Usuarios:</h3>
+<h3>Consultas:</h3>
 
     <table id="miTabla" class="display " style="width:100% ">
         <thead>
@@ -15,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            {{#each Usuarios}}
+            {{#each consulta}}
             <tr>
                 <td>{{this.nombre}} {{this.apellido}}</td>
                 <td>{{this.email}}</td>
@@ -59,8 +61,6 @@
     </table>
 </div>
 
-<script src="/js/dataTable.js"></script>
 
-{{!--
-<script src="js/deleteUser.js"></script>
-<script src="js/changeRolAdmin.js"></script> --}}
+
+<script src="/js/dataTable.js"></script>

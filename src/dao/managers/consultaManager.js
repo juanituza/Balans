@@ -1,7 +1,7 @@
 import consultaModel from "../models/consultas.js";
 
 export default class ConsultaManager {
-  obtennerConsultas = async () => {
+  obtenerConsultas = async () => {
     return await consultaModel.find().lean();
   };
   obtenerConsultasPorId = (id) => {

@@ -15,7 +15,7 @@
   <link href="styles/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css" />
   <link href="styles/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
 
-  <link href="imagenes/pilates-img.jpeg" rel="icon" />
+  <link href="imagenes/BalansIMG.png" rel="icon" />
 
   <!-- Sweet Alert-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -41,6 +41,8 @@
 
   <!-- Customized Bootstrap Stylesheet -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Antura -->
+  <link href="https://fonts.cdnfonts.com/css/antura-script" rel="stylesheet">
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -50,6 +52,10 @@
   <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Geoname Incluye jQuery desde una CDN -->
+  {{!-- <script type="module" src="geonames.js"></script> --}}
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <title>{{title}}</title>
@@ -69,9 +75,11 @@
     <!-- Navbar & Hero Start -->
     <div class="position-relative " id="home">
       <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 ">
-        <a href="" class="navbar-brand p-0">
-          <h1 class="m-0">Balans</h1>
-
+        <a href="" class="navbar-brand   nav-link p-0">
+         <img src="imagenes/BalansIMG.png" alt="">
+          <p class="pt-1 balans">
+          Balans
+          </p>
         </a>
 
         <div class="mx-auto  navbar-expand-lg bg-body-tertiary">
@@ -82,7 +90,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle justify-content-between" href="#" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Formacion
+                Formación
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/pilates">Pilates</a></li>
@@ -90,6 +98,9 @@
                 <li><a class="dropdown-item" href="#">Curso 3</a></li>
                 <li><a class="dropdown-item" href="#">Curso 4</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/registro" class="nav-item nav-link">Inscripción</a>
             </li>
             <li class="nav-item">
               <a href="/contacto" class="nav-item nav-link">Contacto</a>
@@ -254,7 +265,7 @@
 
   <!-- Template Javascript -->
   <script src="js/main.js"></script>
-  <script src="js/cerrarSesion.js"></script>
+  {{!-- <script src="js/cerrarSesion.js"></script> --}}
 </body>
 
 </html>

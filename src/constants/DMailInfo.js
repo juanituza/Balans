@@ -6,14 +6,13 @@ export default {
     attachments: [
       {
         filename: "1_pilates-img.jpeg",
-        path: `${__dirname}/public/imagenes/1_pilates-img.jpeg`,
+        path: `${__dirname}/public/imagenes/BalansIMG.png`,
         cid: "pilates-img",
       },
       {
         filename: "Email-Illustration.png",
         path: `${__dirname}/public/imagenes/Email-Illustration.png`,
         cid: "Email-Illustration",
-
       },
     ],
   },

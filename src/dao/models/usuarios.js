@@ -7,18 +7,33 @@ const usuarioSchema = new mongoose.Schema(
   {
     nombre: String,
     apellido: String,
+    dni: {
+      type: String,
+      unique: true,
+    },
+    domicilio:String,
+    localidad:String,
+    cp:String,
+    provincia:String,
+    pais:String,
+    telefono: String,
     email: {
       type: String,
       unique: true,
     },
-    nacimiento: Date,
     password: String,
     imagen: [],
-    telefono: String,
+    formacion: String,
+    nacimiento: Date,
     role: {
       type: String,
       default: "alumno",
       enum: ["alumno", "profesor", "admin"],
+    },
+    curso: {
+      type: String,
+      ref: "Cursos",
+      required: true,
     },
     // status: {
     //   type: Boolean,
@@ -58,6 +73,13 @@ usuarioSchema.set("toJSON", {
       .format("DD-MM-YYYY HH:mm");
     return ret;
   },
+});
+
+usuarioSchema.virtual("CursosCreate", {
+  ref: "Cursos", //referencia a Users model
+  localField: "curso", // campo local "purchaser"
+  foreignField: "nombre", // campo que quiero traer de Users
+  justOne: true, // solo ese campo
 });
 
 // Define un setter para "nacimiento" para convertir la fecha al formato deseado

@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="imagenes/BalansIMG.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,6 +40,9 @@
   <link href="/styles/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css" />
   <link href="/styles/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- Font Antura -->
+    <link href="https://fonts.cdnfonts.com/css/antura-script" rel="stylesheet">
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -65,11 +68,16 @@
         <!-- Menu -->
   
         <aside  class="layout-menu menu-vertical menu bg-menu-theme">
+            <a href="/nosotros" class="navbar-brand p-0">
+              <img class="logo-img" src="imagenes/BalansIMG.png" alt="">
+            <p class="pt-1 balans">
+              Balans
+            </p>
+            </a>
+          
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              <span class="app-brand-logo demo">
-             
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Balans</span>
+            <a href="/admin/user" class="app-brand-link">
+             Alumnos
             </a>
   
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -77,8 +85,33 @@
             </a>
           </div>
   
-          <div class="menu-inner-shadow"></div>
+          <div class="app-brand demo">
+            <a href="/admin/consultas" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Consultas</span>
+            </a>
   
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+          <div class="app-brand demo">
+            <a href="/admin/cursos" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Pilates</span>
+            </a>
+  
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+  
+          <div class="menu-inner-shadow">
+            <span>user</span>
+          </div>
+
          
         </aside>
         <!-- / Menu -->
@@ -87,7 +120,7 @@
         <div class="layout-page">
           <!-- Navbar -->
   
-          <nav
+          {{!-- <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar-admin">
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -168,7 +201,7 @@
                 <!--/ User -->
               </ul>
             </div>
-          </nav>
+          </nav> --}}
   
           <!-- / Navbar -->
   
@@ -202,20 +235,13 @@
           </div>
            </body>
   
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-             
-            </footer>
-            <!-- / Footer -->
-  
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
+           
+          
         </div>
-        <!-- / Layout page -->
+       
       </div>
   
-      <!-- Overlay -->
+     
    
   
     <!-- Core JS -->

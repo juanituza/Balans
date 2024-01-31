@@ -84,6 +84,30 @@
 /*
 * Layout demo
 ******************************************************************************/
+.logo-img {
+  width: 100px;
+  /* Ajusta el tamaño según sea necesario */
+  height: 100px;
+  /* Ajusta el tamaño según sea necesario */
+  object-fit: cover;
+  /* Mantiene la relación de aspecto y recorta la imagen según sea necesario */
+  border-radius: 50%;
+  /* Hace que la imagen sea cuadrada mediante la aplicación de bordes redondeados */
+}
+.balans {
+  font-family: 'Antura Script', cursive;
+  font-weight: bold;
+  color: #693c8f;
+  font-size: 15px;
+}
+
+.navbar-brand {
+  text-align: center;
+  /* Centra horizontalmente */
+  line-height: 50px;
+  /* Ajusta según la altura de la imagen para centrar verticalmente */
+}
+
 
 .layout-demo-wrapper {
   display: -webkit-box;
