@@ -6,33 +6,34 @@
     <table id="miTabla" class="display " style="width:100% ">
         <thead>
             <tr>
-                <th>Nombre y apellido</th>
+                <th >Nombre y apellido</th>
                 <th>Email</th>
                 <th>Teléfono</th>
-                <th>Role</th>
-                <th>Fecha de nacimiento</th>
-                <th>Select new Role</th>
-                <th>Modify role</th>
+                <th>Curso</th>
+                <th>Mensaje</th>
+                <th>Estado</th>
+                <th>Modificar estado</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {{#each consulta}}
             <tr>
-                <td>{{this.nombre}} {{this.apellido}}</td>
+                <td class="no-wrap">{{this.nombre}} {{this.apellido}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.telefono}}</td>
-                <td>{{this.role}}</td>
-                <td>{{this.fecha_creacion}}</td>
+                <td>{{this.curso}}</td>
+                <td >{{this.mensaje}}</td>
                 <td>
                     <!-- Agregar un formulario para cada usuario -->
                     <form class="col-lg-12 rolForm">
                         <div class="form-outline mb-4">
                             <select class="col-lg-12 form-select center my-2 roleSelect">
                                 <option value="premium" class="col-lg-12 center">
-                                    Premium
+                                    No leido
                                 </option>
-                                <option value="user">User</option>
+                                <option value="user">Pendiente</option>
+                                <option value="user">Cerrado</option>
                             </select>
                         </div>
                     </form>
@@ -41,7 +42,7 @@
                     <!-- Agregar el botón de actualización dentro del formulario -->
                     <button type="submit" class="col-lg-12 btn btn-info center my-2 changeRol"
                         data-user-id="{{this._id}}">
-                        <i class="fa-regular fa-circle-up"></i> Update
+                        <i class="fa-regular fa-circle-up"></i> Modificar
                     </button>
                 </td>
                 <td>
@@ -64,3 +65,6 @@
 
 
 <script src="/js/dataTable.js"></script>
+<script>
+ 
+</script>

@@ -11,7 +11,7 @@ const consultaSchema = new mongoose.Schema(
     telefono: String,
     curso: {
       type: String,
-      enum: ["curso1", "curso2", "curso3"],
+      enum: ["pilates", "quiromasaje", "nutricion"],
     },
     mensaje: String,
     estado: {

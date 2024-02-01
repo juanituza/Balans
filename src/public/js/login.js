@@ -27,7 +27,7 @@ form.addEventListener('submit', async (event) => {
             confirmButtonText: 'OK',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.replace('/nosotros');
+                window.location.replace('/adminConsultas');
             }
         });
     }else{

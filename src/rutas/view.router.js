@@ -50,7 +50,7 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.adminConsultasView
     );
-    this.get("/login", ["NO_AUTH"], (req, res) => {
+    this.get("/adminLogin", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
     // this.get("/nosotros", ["USER"], (req, res) => {
