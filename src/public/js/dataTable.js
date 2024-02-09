@@ -28,67 +28,67 @@
   //   });
   // });
 
+$(document).ready(function () {
+  var table = $("#miTabla").DataTable({
+    stateSave: true,
+  });
 
+  // Agregar evento clic al icono para abrir modal de búsqueda
+  $("#miTabla thead tr th").append('<i class="fas fa-filter open-modal"></i>');
 
-  $(document).ready(function () {
-    var table = $("#miTabla").DataTable({
-      stateSave: true,
-    });
+  $(".open-modal").on("click", function (e) {
+    e.stopPropagation(); // Evitar que se propague el evento clic al encabezado
+    var columnIndex = $(this).closest("th").index();
+    $("#busquedaModal").data("columnIndex", columnIndex);
+    $("#busquedaModal").modal("show");
+  });
 
-    // Agregar filtrado de columnas con icono de búsqueda y botón de limpiar filtros
-    $("#miTabla thead tr th").each(function () {
-      var title = $(this).text();
-      var columnIndex = table.column($(this).index()).index();
+  // Evento clic al botón de búsqueda en el modal
+  $("#buscarBtn").on("click", function () {
+    var filterValue = $("#filtroInput").val();
+    var columnIndex = $("#busquedaModal").data("columnIndex");
 
-      // Agregar evento clic al icono para abrir modal de búsqueda
-      $(this).html('<div class="filter-container"><i class="fas fa-filter"></i>' + title + '<button class="open-modal btn btn-primary btn-sm">Buscar</button><button class="clear-filter btn btn-danger btn-sm">Limpiar</button></div>');
+    // Aplicar el filtrado de la columna seleccionada
+    if (filterValue.trim() !== "") {
+      table.column(columnIndex).search("^" + filterValue, true, false).draw();
+    }
 
-      // Agregar evento clic al botón para abrir modal de búsqueda
-      $(".open-modal", this).on("click", function (e) {
-        e.stopPropagation(); // Evitar que se propague el evento clic al encabezado
-        $("#busquedaModal").modal("show");
-      });
+    // Cerrar el modal
+    $("#busquedaModal").modal("hide");
+  });
 
-      // Agregar evento clic al botón para limpiar el filtro
-      $(".clear-filter", this).on("click", function (e) {
-        e.stopPropagation(); // Evitar que se propague el evento clic al encabezado
-        table.column(columnIndex).search('').draw();
-      });
-    });
+  // Evento clic al botón de limpiar en el modal
+  $("#limpiarBtn").on("click", function () {
+    $("#filtroInput").val(""); // Limpiar el campo de entrada
+    var columnIndex = $("#busquedaModal").data("columnIndex");
 
-    // Evento clic al botón de búsqueda en el modal
-    $("#buscarBtn").on("click", function () {
-      var filterValue = $("#filtroInput").val();
-      var columnIndex = $("#busquedaModal").data("columnIndex");
+    // Limpiar el filtrado de la columna seleccionada
+    table.column(columnIndex).search("").draw();
 
-      // Aplicar el filtrado de la columna seleccionada
-      if (filterValue.trim() !== "") {
-        table.column(columnIndex).search(filterValue).draw();
+    // Cerrar el modal
+    $("#busquedaModal").modal("hide");
+  });
+
+  // Aplicar el filtrado de columnas mediante input
+  table.columns().every(function () {
+    var that = this;
+
+    $("input", this.header()).on("keyup change", function () {
+      if (that.search() !== this.value) {
+        that.search(this.value).draw();
       }
-
-      // Cerrar el modal
-      $("#busquedaModal").modal("hide");
-    });
-
-    // Evento mostrado del modal para almacenar el índice de la columna
-    $("#busquedaModal").on("shown.bs.modal", function (e) {
-      var columnIndex = table.column($(e.relatedTarget).closest("th")).index();
-      $(this).data("columnIndex", columnIndex);
-      $("#filtroInput").val(""); // Limpiar el campo de entrada al mostrar el modal
-    });
-
-    // Aplicar el filtrado de columnas mediante input
-    table.columns().every(function () {
-      var that = this;
-
-      $("input", this.header()).on("keyup change", function () {
-        if (that.search() !== this.value) {
-          that.search(this.value).draw();
-        }
-      });
     });
   });
-</script>
+
+  $("#cerrarModalBtn").on("click", function () {
+    $("#busquedaModal").modal("hide");
+  });
+});
+
+
+   
+  
+
 
 
 

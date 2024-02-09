@@ -4,7 +4,7 @@ async function enviarInputFormulario() {
   const formData = new FormData(inputForm);
 
   try {
-    const response = await fetch("/api/usuarios/editarUsuario", {
+    const response = await fetch("/api/consulta/editarConsulta", {
       method: "PUT",
       body: formData,
     });
@@ -27,7 +27,7 @@ async function enviarInputFormulario() {
             "Tu información se editó con éxito! Debe volver a loguearse para ver los cambios",
             "success"
           ).then(() => {
-            window.location.replace("/perfil");
+            window.location.replace("/adminConsultas");
           });
         }
       });

@@ -5,8 +5,6 @@ import viewController from "../controladores/views.controller.js";
 /*-----------RENDER CON MONGO---------*/
 
 export default class ViewsRouter extends BaseRouter {
-  
-
   init() {
     this.get(
       "/contacto",
@@ -51,7 +49,7 @@ export default class ViewsRouter extends BaseRouter {
       viewController.adminConsultasView
     );
     this.get("/adminLogin", ["NO_AUTH"], (req, res) => {
-      res.render("login");
+      res.render("adminLogin");
     });
     // this.get("/nosotros", ["USER"], (req, res) => {
     //   res.render("nosotros");

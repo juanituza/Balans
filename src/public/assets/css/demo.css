@@ -18,7 +18,9 @@
   letter-spacing: -0.5px;
   text-transform: lowercase;
 }
-
+.estadoSeleccionado{
+    min-width: 150px;
+}
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
 /* Detached navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {

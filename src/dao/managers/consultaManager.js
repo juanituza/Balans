@@ -13,8 +13,8 @@ export default class ConsultaManager {
   crearConsulta = async (user) => {
     return await consultaModel.create(user);
   };
-  actualizarConsulta = async (email, password) => {
-    return await consultaModel.updateOne(email, { $set: password });
+  actualizarConsulta = async (id, consulta) => {
+    return await consultaModel.updateOne({ _id: id }, { $set: consulta });
   };
 
   eliminarConsulta = async (id) => {

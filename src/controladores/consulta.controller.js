@@ -18,7 +18,25 @@ const guardarConsulta = async (req, res) => {
 };
 
 
+const actualizarConsulta = async (req, res) => {
+  try {
+    const { cid } = req.params;
+    
+    const editarConsutla = req.body;
+  
+    const resultado = await consultaService.actualizarConsulta(cid,editarConsutla);
+    console.log(resultado);
+    res.sendSuccessWithPayload('Consulta editada con éxito', resultado);
+    
+  } catch (error) {
+    res.sendSuccessWithPayload(error);    
+  }
+
+
+};
+
 
 export default {
   guardarConsulta,
+  actualizarConsulta,
 };
