@@ -17,5 +17,11 @@ export default class ConsultaRouter extends BaseRouter {
       consultaController.guardarConsulta
     );
     this.put("/:cid", ["ADMIN"], passportCall("jwt", { strategyType: "locals" }),consultaController.actualizarConsulta);
+    this.delete(
+       "/:cid",
+       ["ADMIN"],
+       passportCall("jwt", { strategyType: "locals" }),
+       consultaController.eliminarConsulta
+     );
   }
 }

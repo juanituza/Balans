@@ -29,14 +29,29 @@ const actualizarConsulta = async (req, res) => {
     res.sendSuccessWithPayload('Consulta editada con éxito', resultado);
     
   } catch (error) {
-    res.sendSuccessWithPayload(error);    
+    res.sendInternalError(error);    
   }
 
 
 };
 
+const eliminarConsulta = async (req,res) => {
+  try {
+    const { cid } = req.params;
+    const result = await consultaService.eliminarConsulta({_id: cid});
+    res.sendSuccess("Consulta eliminada")  
+  
+  } catch (error) {
+    res.sendInternalError(error);   
+  }
+
+
+
+}
+
 
 export default {
   guardarConsulta,
   actualizarConsulta,
+  eliminarConsulta,
 };

@@ -407,8 +407,21 @@ color: #fff;
     color: #FFFFFF;
     font-size: 14px;
 }
-.imagenBalans{
+.imagenBalans {
     font-size: 15px;
+    /* display: none; */
+    right: 100px;
+    /* Ajusta la posición horizontal para evitar superposición */
+    bottom: 45px;
+    /* Ajusta la posición vertical según tus necesidades */
+    z-index: 99;
+    /* Transición suave para animar el cambio de tamaño */
+    transition: transform 0.3s ease-in-out;
+}
+
+.imagenBalans:hover {
+    /* Aumenta el tamaño al pasar el cursor por encima */
+    transform: scale(1.1);
 }
 .sticky-top.navbar-light .navbar-brand img {
     max-height: 50px;
