@@ -2,16 +2,15 @@ import dotenv from "dotenv";
 import { Command } from "commander";
 
 const program = new Command();
-program.option("-m, --mode <mode>", "Modo de ejecución", "dev");
-program.parse();
+// program.option("-m, --mode <mode>", "Modo de ejecución", "prod");
+// program.parse();
 
-dotenv.config({
-  path: program.opts().mode === "dev" ? "./.env.dev" : "./.env.prod",
-});
+dotenv.config({ path: "./.env" });
+
 
 export default {
   app: {
-    PORT: process.env.PORT || 8080,
+    PORT: process.env.PORT || 80,
   },
   mongo: {
     URL: process.env.MONGO_URL || "localhost:27017",
