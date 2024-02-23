@@ -1,66 +1,71 @@
-<div class="m-5">
-    <h3>Consultas:</h3>
+<section class="text-center text-lg-start p-1">
 
-    <table id="miTabla" class="display " style="width:100% ">
-        <thead>
-            <tr>
-                <th>Nombre y apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Curso</th>
-                <th>Mensaje</th>
-                <th>Estado</th>
-                <th>Modificar estado</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each consulta}}
-            <tr>
-                <td class="no-wrap">{{this.nombre}} {{this.apellido}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.telefono}}</td>
-                <td>{{this.curso}}</td>
-                <td>{{this.mensaje}}</td>
-                <td class="no-wrap">
-                    <!-- Agregar un formulario para cada estado -->
-                    <form class="col-lg-12 rolForm no-wrap">
-                        <div class="form-outline mb-4 no-wrap">
-                            <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
-                                <option value="{{this.estado}}">{{this.estado}}</option>
-                                <option value="no leido" class="col-lg-12 center">
-                                    No leido
-                                </option>
-                                <option value="pendiente">Pendiente</option>
-                                <option value="cerrado">Cerrado</option>
-                            </select>
-                        </div>
-                    </form>
-                </td>
-                <td>
-                    <!-- Agregar el botón de actualización dentro del formulario -->
-                    <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
-                        data-consulta-id="{{this._id}}">
-                        <i class="fa-regular fa-circle-up"></i> Modificar
-                    </button>
-                </td>
-                <td>
-                    {{! <a href=""> }}
-                        {{! </a> }}
-                    <button class="col-lg-12 btn btn-danger center my-2 eliminarConsulta" id="{{this._id}}">
-                        <i class="fa fa-trash"></i> Eliminar
-                    </button>
-                </td>
 
-            </tr>
-            {{/each}}
 
-        </tbody>
-        <tfoot>
-        </tfoot>
-    </table>
-</div>
+    <div class="m-5 table-responsive">
+        <h3>Consultas:</h3>
 
+        <table id="miTabla" class="display " style="width:100% ">
+            <thead>
+                <tr>
+                    <th>Nombre y apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Curso</th>
+                    <th>Mensaje</th>
+                    <th>Estado</th>
+                    <th>Modificar estado</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each consulta}}
+                <tr>
+                    <td class="no-wrap">{{this.nombre}} {{this.apellido}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.telefono}}</td>
+                    <td>{{this.curso}}</td>
+                    <td>{{this.mensaje}}</td>
+                    <td class="no-wrap">
+                        <!-- Agregar un formulario para cada estado -->
+                        <form class="col-lg-12 rolForm no-wrap">
+                            <div class="form-outline mb-4 no-wrap">
+                                <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
+                                    <option value="{{this.estado}}">{{this.estado}}</option>
+                                    <option value="no leido" class="col-lg-12 center">
+                                        No leido
+                                    </option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="cerrado">Cerrado</option>
+                                </select>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- Agregar el botón de actualización dentro del formulario -->
+                        <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
+                            data-consulta-id="{{this._id}}">
+                            <i class="fa-regular fa-circle-up"></i> Modificar
+                        </button>
+                    </td>
+                    <td>
+                        {{! <a href=""> }}
+                            {{! </a> }}
+                        <button class="col-lg-12 btn btn-danger center my-2 eliminarConsulta" id="{{this._id}}">
+                            <i class="fa fa-trash"></i> Eliminar
+                        </button>
+                    </td>
+
+                </tr>
+                {{/each}}
+
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+
+</section>
 <!-- Modal de Búsqueda -->
 <div class="modal" id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
     aria-hidden="true">

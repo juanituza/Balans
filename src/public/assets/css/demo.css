@@ -2,7 +2,15 @@
 * demo.css
 * File include item demo only specific css only
 ******************************************************************************/
+@media only screen and (max-width: 360px) {
 
+  /* Estilos para pantallas con ancho máximo de 360px */
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* Ajusta estilos adicionales según sea necesario */
+}
 .menu .app-brand.demo {
   height: 64px;
   margin-top: 12px;
