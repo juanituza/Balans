@@ -13,7 +13,7 @@ export default class ViewsRouter extends BaseRouter {
       viewController.contactoView
     );
     this.get(
-      "/nosotros",
+      "/",
       ["PUBLIC"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.nosotrosView
