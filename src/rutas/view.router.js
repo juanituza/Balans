@@ -60,6 +60,24 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.adminConsultasView
     );
+    this.get(
+      "/admin/pilates",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminPilatesView
+    );
+    this.get(
+      "/admin/quiromasaje",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminQuiromasajeView
+    );
+    this.get(
+      "/admin/nutricion",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminNutricionView
+    );
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
@@ -69,7 +87,7 @@ export default class ViewsRouter extends BaseRouter {
     this.get("/registro", ["NO_AUTH"], (req, res) => {
       res.render("registro");
     });
-    
+
     // this.get(
     //   "/products",
     //   ["PUBLIC"],

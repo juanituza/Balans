@@ -192,6 +192,42 @@ const adminConsultasView = async (req, res) => {
   });
 };
 
+const adminPilatesView = async (req, res) => {
+  const usuarios = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
+
+  const resultados = usuarios.filter((item) => item.curso === "pilates");
+
+  res.render("adminPilates", {
+    Usuarios: resultados,
+    imagen: userData.imagen,
+  });
+};
+const adminQuiromasajeView = async (req, res) => {
+  const usuarios = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
+
+  const resultados = usuarios.filter((item) => item.curso === "quiromasaje");
+  
+
+  res.render("adminQuiromasaje", {
+    Usuarios: resultados,
+    imagen: userData.imagen,
+  });
+};
+const adminNutricionView = async (req, res) => {
+  const usuarios = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
+
+  const resultados = usuarios.filter((item) => item.curso === "nutricion");
+  
+
+  res.render("adminNutricion", {
+    Usuarios: resultados,
+    imagen: userData.imagen,
+  });
+};
+
 export default {
   contactoView,
   nosotrosView,
@@ -202,4 +238,7 @@ export default {
   adminView,
   adminUserView,
   adminConsultasView,
+  adminPilatesView,
+  adminQuiromasajeView,
+  adminNutricionView,
 };

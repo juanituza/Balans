@@ -2,10 +2,46 @@
 * demo.css
 * File include item demo only specific css only
 ******************************************************************************/
-
+aside {
+background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+}
 .menu .app-brand.demo {
-  height: 64px;
-  margin-top: 12px;
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+  
+}
+.imgAdmin{
+  margin: 20px;
+}
+.menuUl{
+  margin: 0px;
+  padding: 0px;
+background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
+}
+.menuUl li{
+  margin: 0px;
+  padding: 0px;
+}
+.layout-container{
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+.menu .app-brand.demo:hover {
+  background-color: #DCD9D4;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.10) 0%, rgba(0, 0, 0, 0.50) 50%);
+    background-blend-mode: soft-light, screen;
+  
+  /* Cambia el color de fondo cuando se realiza hover */
+  color: #ffffff;
+  /* Cambia el color del texto */
+  /* border: 1px solid #ccc; */
+  /* Agrega un borde de 1 píxel con color gris claro */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  /* Agrega una sombra cuando se realiza hover */
+  
+  /* Aplica un aumento de escala al elemento */
+  transition: background-color 0.3s ease;
+  /* Agrega una transición suave al cambio de color de fondo */
 }
 
 .app-brand-logo.demo svg {
@@ -14,11 +50,42 @@
 }
 
 .app-brand-text.demo {
-  font-size: 1.75rem;
+  font-size: 1 rem;
   letter-spacing: -0.5px;
-  text-transform: lowercase;
+  
 }
 
+/* Estilos personalizados para el menú desplegable */
+.dropdown-menu {
+background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  /* Color de fondo */
+  border: 1px solid #ccc;
+  /* Borde */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  /* color: #333; */
+}
+
+.dropdown-item {
+  color: #333;
+  /* Color del texto */
+  padding: 10px 5px;
+  /* Espaciado interior */
+  transition: background-color 0.3s;
+  /* Transición de color al pasar el cursor */
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+color: #6f86d6;
+  /* Color de fondo al pasar el cursor */
+}
+.btnDrop {
+  padding: 0px !important;
+}
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
 /* Detached navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {
@@ -91,13 +158,13 @@
   /* Ajusta el tamaño según sea necesario */
   object-fit: cover;
   /* Mantiene la relación de aspecto y recorta la imagen según sea necesario */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /* Hace que la imagen sea cuadrada mediante la aplicación de bordes redondeados */
 }
 .balans {
   font-family: 'Antura Script', cursive;
   font-weight: bold;
-  color: #693c8f;
+  color: #ffffff;
   font-size: 15px;
 }
 
