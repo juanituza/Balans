@@ -58,7 +58,7 @@ const editarUsuario = async (req, res) => {
     const userId = req.user._id;
     const userUpdate = req.body;
     const usuarioActual = await usuarioService.obtenerUsuarioPorId(userId);
-    console.log(usuarioActual);
+ 
 
     // Verifica si el campo "nombre" está presente y no es igual al valor actual
     if (userUpdate.nombre && userUpdate.nombre !== usuarioActual.nombre) {

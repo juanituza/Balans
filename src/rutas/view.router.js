@@ -5,8 +5,6 @@ import viewController from "../controladores/views.controller.js";
 /*-----------RENDER CON MONGO---------*/
 
 export default class ViewsRouter extends BaseRouter {
-  
-
   init() {
     this.get(
       "/contacto",
@@ -25,6 +23,18 @@ export default class ViewsRouter extends BaseRouter {
       ["PUBLIC"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.pilatesView
+    );
+    this.get(
+      "/quiromasaje",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.quiromasajeView
+    );
+    this.get(
+      "/nutricion",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.nutricionView
     );
     this.get(
       "/perfil",

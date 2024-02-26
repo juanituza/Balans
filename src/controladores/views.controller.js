@@ -80,6 +80,52 @@ const pilatesView = async (req, res) => {
   }
 };
 
+const quiromasajeView = async (req, res) => {
+  try {
+    if (req.user && req.user.nombre !== "ADMIN") {
+      const userData = req.user;
+      const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      res.render("quiromasaje", {
+        user: userData,
+        imagen: usuario.imagen,
+      });
+    } else if (req.user && req.user.nombre === "ADMIN") {
+      const userData = req.user;
+
+      res.render("quiromasaje", {
+        user: userData,
+      });
+    } else {
+      res.render("quiromasaje");
+    }
+  } catch (error) {
+    res.sendInternalError({ status: "error", error });
+  }
+};
+
+const nutricionView = async (req, res) => {
+  try {
+    if (req.user && req.user.nombre !== "ADMIN") {
+      const userData = req.user;
+      const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      res.render("nutricion", {
+        user: userData,
+        imagen: usuario.imagen,
+      });
+    } else if (req.user && req.user.nombre === "ADMIN") {
+      const userData = req.user;
+
+      res.render("nutricion", {
+        user: userData,
+      });
+    } else {
+      res.render("nutricion");
+    }
+  } catch (error) {
+    res.sendInternalError({ status: "error", error });
+  }
+};
+
 const perfilView = async (req, res) => {
   try {
     if (req.user && req.user.nombre !== "ADMIN") {
@@ -135,6 +181,8 @@ export default {
   nosotrosView,
   perfilView,
   pilatesView,
+  quiromasajeView,
+  nutricionView,
   adminView,
   adminUserView,
   adminConsultasView,

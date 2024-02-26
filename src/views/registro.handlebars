@@ -10,93 +10,94 @@
             ">
                     <div class="card-body p-5 shadow-5 text-center">
                         <h2 class="fw-bold mb-5">Registro</h2>
-                        <form id="registroForm" enctype="multipart/form-data" >
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            {{!-- <img class="foto-de-perfil" src="#" alt="Mi Foto de Perfil"> --}}
-                        {{!-- <div class="form-outline mb-4">
-                            <div class="image-upload">
-                                <label for="fileInput" class="image-label">
-                                    <i class="fa-solid fa-user updateImage" id="iconPreview"></i>
-                                    <img class="foto-de-perfil" id="imagePreview" src="#" alt="Mi Foto de Perfil" style="display: none;">
-                                </label>
-                                <input type="file" id="fileInput" name="imagen" class="file-input" multiple onchange="previewImage();" />
-                            </div>
-                        </div> --}}
-                        {{!-- <div class="form-outline mb-4">
-                            <input type="file" name="imagen" class="form-control form-control-lg" placeholder="imagen" />
-                            <label class="form-label">imagen</label>
-                        </div> --}}
-
-
+                        <form id="registroForm" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="form3Example1" name="nombre" class="form-control" />
-                                        
-                                        <label class="form-label" for="nombre"><i class="fa-solid fa-id-card-clip me-3"></i></i>Nombre</label>
+
+                                        <label class="form-label" for="nombre"><i
+                                                class="fa-solid fa-id-card-clip me-3"></i></i>Nombre</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="form3Example2" name="apellido" class="form-control" />
-                                        <label class="form-label" for="apellido"><i class="fa-solid fa-signature me-3"></i>Apellido</label>
+                                        <label class="form-label" for="apellido"><i
+                                                class="fa-solid fa-signature me-3"></i>Apellido</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="form3Example2" name="dni" class="form-control" />
-                                        <label class="form-label" for="dni"><i class="fa-solid fa-signature me-3"></i>dni</label>
+                                        <label class="form-label" for="dni"><i class="fa-solid fa-id-card"></i>
+                                            dni</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="form3Example2" name="domicilio" class="form-control" />
-                                        <label class="form-label" for="domicilio"><i class="fa-solid fa-signature me-3"></i>Domicilio</label>
+                                        <label class="form-label" for="domicilio"><i class="fa-solid fa-house"></i>
+                                            Domicilio</label>
                                     </div>
                                 </div>
-                           
-                            
-                        <div class="col-md-6 mb-4">
-                            <label for="countrySelect">Selecciona el país:</label>
-                            <select name="pais" class="form-control" id="countrySelect">
-                                <!-- Opciones de países se cargarán aquí -->
-                            </select>
-                        </div>
-                        
-                        <div class="col-md-6 mb-4">
-                            <label for="stateSelect">Selecciona la provincia:</label>
-                            <select name="provincia" class="form-control"  id="item-details-stateValue">
-                                <!-- Opciones de provincias se cargarán aquí -->
-                            </select>
-                        </div>
-                            
+
+
+                                <div class="col-md-6 mb-4">
+                                    <select name="pais" class="form-control custom-select" id="countrySelect">
+                                        <!-- Opciones de países se cargarán aquí -->
+                                    </select>
+                                    <label for="countrySelect"> <i class="fa-solid fa-earth-americas"></i> Seleccionar
+                                        el
+                                        país</label>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <select name="provincia" class="form-control custom-select"
+                                        id="item-details-stateValue">
+
+                                    </select>
+                                    <label for="stateSelect"><i class="fa-solid fa-location-dot"></i> Seleccionar la
+                                        provincia</label>
+                                </div>
+
                                 {{!-- <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="date" id="nacimiento" class="form-control hidden-input" name="nacimiento" value="2023-11-04"/>
-                                        <label class="form-label" for="nacimiento"><i class="fa-solid fa-calendar-days me-3"></i>Fecha de nacimiento</label>
+                                        <input type="date" id="nacimiento" class="form-control hidden-input"
+                                            name="nacimiento" value="2023-11-04" />
+                                        <label class="form-label" for="nacimiento"><i
+                                                class="fa-solid fa-calendar-days me-3"></i>Fecha de nacimiento</label>
                                     </div>
                                 </div> --}}
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="Number" id="form3Example2" name="telefono" class="form-control" />
-                                        <label class="form-label" for="telefono"><i class="fa-solid fa-mobile-screen-button me-3"></i>Teléfono</label>
+                                        <label class="form-label" for="telefono"><i
+                                                class="fa-solid fa-mobile-screen-button me-3"></i> Teléfono</label>
+                                    </div>
+                                </div>
+                                <!-- Email input -->
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="email" id="form3Example3" name="email" class="form-control" />
+                                        <label class="form-label" for="form3Example3"> <i
+                                                class="fa fa-envelope me-3"></i>Email
+                                            address</label>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input type="email" id="form3Example3" name="email" class="form-control" />
-                                <label class="form-label" for="form3Example3"> <i class="fa fa-envelope me-3"></i>Email address</label>
-                            </div>
 
                             <!-- Password input -->
-                            {{!-- <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4"   name="password" class="form-control" />
-                                <label class="form-label" for="password"><i class="fa-solid fa-lock me-3"></i>Password</label>
-                            </div> --}}
+                            <div class="form-outline mb-4">
+                                <input type="password" id="form3Example4" name="password" class="form-control" />
+                                <label class="form-label" for="password"><i
+                                        class="fa-solid fa-lock me-3"></i>Password</label>
+                            </div>
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3 mb-4">
+                            <button type="submit"
+                                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3 mb-4">
                                 Enviar
                             </button>
                             {{!-- <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes cuenta?
@@ -108,8 +109,7 @@
             </div>
 
             <div class="col-lg-6 mb-5 mb-lg-0">
-                <img src="imagenes/pilates1.jpg" class="w-100 rounded-4 shadow-4"
-                    alt="" />
+                <img src="imagenes/pilates1.jpg" class="w-100 rounded-4 shadow-4" alt="" />
             </div>
         </div>
     </div>
@@ -118,14 +118,10 @@
 <!-- scripts -->
 
 
-{{!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
-{{!-- <script src="js/date.js"></script> --}}
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+{{!--
+<script src="js/date.js"></script> --}}
 <script src="/js/geonames.js"></script>
 <script src="/js/registro.js"></script>
 <script src="/js/imagePreview.js"></script>
-
-
-
-
-
-

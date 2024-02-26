@@ -118,11 +118,35 @@ h6,
 
 
 }
+.custom-select-container {
+    position: relative;
+}
+
+.custom-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 20px;
+    /* Ajusta según sea necesario para dejar espacio para el icono */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23363a3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+/* Para adaptar a tus estilos, puedes ajustar la posición de la flecha */
+.custom-select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-30%);
+    pointer-events: none;
+}
+
 
 .btn-grad {
     background-image: linear-gradient(to right, #673AB7 0%, #512DA8 51%, #673AB7 100%);
-    margin: 10px;
-    padding: 15px 45px;
+    margin: 5px;
+    padding: 10px 20px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -589,9 +613,7 @@ h6,
 
 /** Contact **/
 
-#select-form {
-    background-color: white;
-}
+
 
 
 

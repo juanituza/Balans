@@ -11,7 +11,7 @@
             <div class="col-lg-9">
                 <div class="wow fadeInUp" data-wow-delay="0.3s">
 
-                    <form id="imagenForm" enctype="multipart/form-data" >
+                    <form id="imagenForm" enctype="multipart/form-data">
 
                         {{#unless imagen}}
                         <div class="form-outline  col-12 text-center mb-4">
@@ -28,7 +28,7 @@
                         </div>
                         {{/unless}}
                         {{#if imagen}}
-                        
+
                         <div class="form-outline  col-12 text-center mb-4">
                             <div class="image-upload">
                                 <label for="fileInput" class="image-label">
@@ -44,9 +44,8 @@
                         </div>
                         {{/if}}
                         <div class="col-12 text-center">
-                            <button type="submit"
-                                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3 mb-4">
-                                Enviar
+                            <button type="submit" class="btn btn-grad rounded-pill  ">
+                                Cambiar imagen
                             </button>
                         </div>
 
@@ -63,8 +62,8 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="">
-                                    <input type="text" class="form-control" name="nombre" id="name" placeholder="{{user.nombre}}"
-                                        readonly>
+                                    <input type="text" class="form-control" name="nombre" id="name"
+                                        placeholder="{{user.nombre}}" readonly>
                                     <label for="nombre" id="labelNombre">Nombre</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('name', 'labelNombre')">Editar</button>
@@ -73,35 +72,35 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="apellido" name="apellido"
-                                        placeholder={{user.apellido}} readonly
-                                       >
+                                        placeholder={{user.apellido}} readonly>
                                     <label for="apellido" id="apellidoLabel">Apellido</label>
-                                    <button type="button" class="btn btn-link" onclick="habilitarEdicion('apellido', 'apellidoLabel')">Editar</button>
+                                    <button type="button" class="btn btn-link"
+                                        onclick="habilitarEdicion('apellido', 'apellidoLabel')">Editar</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="telefono" name="telefono"
-                                        placeholder="{{user.telefono}}" readonly/>
+                                        placeholder="{{user.telefono}}" readonly />
                                     <label for="telefono" id="telefonoLabel">Teléfono</label>
-                                    <button type="button" class="btn btn-link" onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
+                                    <button type="button" class="btn btn-link"
+                                        onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="">
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder={{user.email}} readonly/>
+                                        placeholder={{user.email}} readonly />
                                     <label for="email">Email</label>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="role" name="role"
-                                        placeholder={{user.role}} readonly
-                                        >
+                                        placeholder={{user.role}} readonly>
                                     <label for="role">Role</label>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -111,15 +110,17 @@
                                     <label for="email">{{nacimiento}}</label>
                                 </div> --}}
                                 <div class="">
-                                    <input type="date" id="nacimiento" class="form-control"
-                                        name="nacimiento" value="{{user.nacimiento}}"  placeholder={{user.nacimiento}} readonly/>
-                                
-                                    <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de nacimiento</label>
-                                    <button type="button" class="btn btn-link" onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button>
+                                    <input type="text" id="nacimiento" class="form-control" name="nacimiento"
+                                        value="{{user.nacimiento}}" placeholder={{user.nacimiento}} readonly />
+
+                                    <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
+                                        nacimiento</label>
+                                    <button type="button" class="btn btn-link"
+                                        onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button>
                                 </div>
                             </div>
                             <div class="col-12 text-center">
-                                <button type="button" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3 mb-4"
+                                <button type="button" class="btn btn-grad rounded-pill "
                                     onclick="enviarInputFormulario()">
                                     Enviar
                                 </button>
