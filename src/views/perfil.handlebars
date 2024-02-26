@@ -63,7 +63,7 @@
                             <div class="col-md-6">
                                 <div class="">
                                     <input type="text" class="form-control" name="nombre" id="name"
-                                        placeholder="{{user.nombre}}" readonly>
+                                        value="{{user.nombre}}" readonly>
                                     <label for="nombre" id="labelNombre">Nombre</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('name', 'labelNombre')">Editar</button>
@@ -72,7 +72,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="apellido" name="apellido"
-                                        placeholder={{user.apellido}} readonly>
+                                        value="{{user.apellido}}" readonly>
                                     <label for="apellido" id="apellidoLabel">Apellido</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('apellido', 'apellidoLabel')">Editar</button>
@@ -81,7 +81,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="telefono" name="telefono"
-                                        placeholder="{{user.telefono}}" readonly />
+                                        value="{{user.telefono}}" readonly />
                                     <label for="telefono" id="telefonoLabel">Teléfono</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
@@ -90,7 +90,7 @@
                             <div class="col-md-6">
                                 <div class="">
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder={{user.email}} readonly />
+                                        value={{user.email}} readonly />
                                     <label for="email">Email</label>
 
                                 </div>
@@ -98,7 +98,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="role" name="role"
-                                        placeholder={{user.role}} readonly>
+                                        value={{user.role}} readonly>
                                     <label for="role">Role</label>
 
                                 </div>
@@ -111,7 +111,7 @@
                                 </div> --}}
                                 <div class="">
                                     <input type="text" id="nacimiento" class="form-control" name="nacimiento"
-                                        value="{{user.nacimiento}}" placeholder={{user.nacimiento}} readonly />
+                                        value="{{nacimiento}}" placeholder={{nacimiento}} readonly />
 
                                     <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
                                         nacimiento</label>
@@ -140,3 +140,4 @@
 <script src="/js/mostrarBoton.js"></script>
 <script src="/js/modificarPerfil.js"></script>
 <script src="/js/cambiarImagen.js"></script>
+<script src="/js/formatearFecha.js"></script>

@@ -1,8 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { join } from "path"; 
+import { join } from "path";
 import handlebars from "express-handlebars";
-
 
 import __dirname from "./utils.js";
 import config from "./config.js";
@@ -10,7 +9,7 @@ import MongoSingleton from "./mongoSingleton.js";
 import initializePassportStrategies from "../config/passport.config.js";
 
 import exphbs from "express-handlebars";
-import {ifRoleAdmin} from "./middlewares/handlebars-helpers.js";
+import { ifRoleAdmin } from "./middlewares/handlebars-helpers.js";
 
 import ViewsRouter from "./rutas/view.router.js";
 import UsuarioRouter from "./rutas/usuario.router.js";
@@ -18,7 +17,6 @@ import ConsultaRouter from "./rutas/consulta.Router.js";
 import SessionRouter from "./rutas/session.Router.js";
 import LoggerService from "./dao/managers/LoggerManager.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
-
 
 const app = express();
 
@@ -45,8 +43,8 @@ const hbs = exphbs.create({
 
 // Asigna el layout principal para las rutas que no sean de administrador
 app.use((req, res, next) => {
-    res.locals.layout = "main";
-    next();
+  res.locals.layout = "main";
+  next();
 });
 
 app.use("/admin", (req, res, next) => {
@@ -72,7 +70,6 @@ const usuarioRouter = new UsuarioRouter();
 const consultaRouter = new ConsultaRouter();
 const viewsRouter = new ViewsRouter();
 const sessionRouter = new SessionRouter();
-
 
 app.use("/", viewsRouter.getRouter());
 app.use("/api/usuarios", usuarioRouter.getRouter());

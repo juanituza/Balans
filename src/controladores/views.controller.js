@@ -130,12 +130,29 @@ const perfilView = async (req, res) => {
   try {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
+      console.log(userData.apellido);
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
 
-      const fechaNacimiento = moment(userData.nacimiento).format("DD-MM-YYYY");
+      // Obtener la fecha de nacimiento de la base de datos
+      const fechaNacimientoDB = new Date(userData.nacimiento);
+
+      const fechaNacimientoUTC = new Date(fechaNacimientoDB);
+
+      const opcionesFormato = {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        timeZone: "UTC",
+      };
+
+      const fechaNacimientoLocal = fechaNacimientoUTC.toLocaleDateString(
+        "es-ES",
+        opcionesFormato
+      );
+
       res.render("perfil", {
         user: userData,
-        nacimiento: fechaNacimiento,
+        nacimiento: fechaNacimientoLocal,
         imagen: usuario.imagen,
       });
     } else if (req.user && req.user.nombre === "ADMIN") {
