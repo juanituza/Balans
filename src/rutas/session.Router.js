@@ -9,7 +9,8 @@ export default class SessionRouter extends BaseRouter {
       "/registro",
       ["PUBLIC"],
       passportCall("register", { strategyType: "locals" }),
-      
+    
+
       sessionsController.registro
     );
 

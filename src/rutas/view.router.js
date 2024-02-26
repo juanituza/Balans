@@ -69,7 +69,7 @@ export default class ViewsRouter extends BaseRouter {
     this.get("/registro", ["NO_AUTH"], (req, res) => {
       res.render("registro");
     });
-
+    
     // this.get(
     //   "/products",
     //   ["PUBLIC"],

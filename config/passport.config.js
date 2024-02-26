@@ -55,6 +55,7 @@ const initializePassportStrategies = () => {
           done(null, result);
         } catch (error) {
           done(error);
+          
         }
       }
     )

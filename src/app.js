@@ -76,6 +76,25 @@ app.use("/api/usuarios", usuarioRouter.getRouter());
 app.use("/api/consulta", consultaRouter.getRouter());
 app.use("/api/session", sessionRouter.getRouter());
 
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+  // Verifica si el error es "Unauthorized"
+  if (err && err.message === "Unauthorized") {
+    // Redirige al usuario a una imagen específica
+    return res.redirect("/imagenes/balansIMG.png");
+  }
+
+  // Si no es un error "Unauthorized", pasa al siguiente middleware de manejo de errores
+  next(err);
+});
+
+// Ruta de ejemplo que lanza un error "Unauthorized"
+    app.get("/ruta-protegida", (req, res, next) => {
+      const error = new Error("Unauthorized");
+      error.status = 401;
+      next(error);
+    });
+
 // // Configura el proxy para redirigir todas las solicitudes a la API de GeoNames
 // app.use(
 //   "/api",
