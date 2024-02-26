@@ -35,15 +35,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" id="form3Example2" name="domicilio" class="form-control" />
-                                        <label class="form-label" for="domicilio"><i class="fa-solid fa-house"></i>
-                                            Domicilio</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-6 mb-4">
                                     <select name="pais" class="form-control custom-select" id="countrySelect">
                                         <!-- Opciones de países se cargarán aquí -->
                                     </select>
@@ -61,15 +52,29 @@
                                     <label for="stateSelect"><i class="fa-solid fa-location-dot"></i> Seleccionar la
                                         provincia</label>
                                 </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="form3Example2" name="domicilio" class="form-control" />
+                                        <label class="form-label" for="domicilio"><i class="fa-solid fa-house"></i>
+                                            Domicilio</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="form3Example2" name="cp" class="form-control" />
+                                        <label class="form-label" for="cp"><i class="fa-solid fa-house"></i>
+                                            Código postal</label>
+                                    </div>
+                                </div>
 
-                                {{!-- <div class="col-md-6 mb-4">
+                                <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="date" id="nacimiento" class="form-control hidden-input"
                                             name="nacimiento" value="2023-11-04" />
                                         <label class="form-label" for="nacimiento"><i
                                                 class="fa-solid fa-calendar-days me-3"></i>Fecha de nacimiento</label>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="Number" id="form3Example2" name="telefono" class="form-control" />
@@ -86,20 +91,27 @@
                                             address</label>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-md-12 mb-4">
 
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4" name="password" class="form-control" />
-                                <label class="form-label" for="password"><i
-                                        class="fa-solid fa-lock me-3"></i>Password</label>
+                                    <select name="curso" class="form-control custom-select">
+                                        <option value="pilates">Pilates</option>
+                                        <option value="quiromasaje">Quiromasaje</option>
+                                        <option value="nutricion">Nutrición y gimnasia</option>
+                                    </select>
+                                    <label for="curso"><i class="fa-solid fa-arrow-pointer"></i> Seleccionar un
+                                        curso</label>
+                                </div>
+                                <!-- Password input -->
+                                <div class=" col-md-12 mb-4">
+                                    <input type="password" id="form3Example4" name="password" class="form-control" />
+                                    <label class="form-label" for="password"><i
+                                            class="fa-solid fa-lock me-3"></i>Password</label>
+                                </div>
+                                <!-- Submit button -->
+                                <div class="col-12 ">
+                                    <button class="btn btn-grad rounded-pill py-3 px-5" type="submit">Enviar</button>
+                                </div>
                             </div>
-                            <!-- Submit button -->
-                            <button type="submit"
-                                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3 mb-4">
-                                Enviar
-                            </button>
                             {{!-- <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes cuenta?
                                 <a href="/login" class="link-danger">¡Logueate!</a>
                             </p> --}}

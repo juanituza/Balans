@@ -23,7 +23,6 @@ const usuarioSchema = new mongoose.Schema(
     },
     password: String,
     imagen: [],
-    formacion: String,
     nacimiento: Date,
     role: {
       type: String,

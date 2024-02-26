@@ -18,7 +18,7 @@ const getStates = async (countryName, authToken) => {
     }
 
     const statesData = await response.json();
-    console.log("Estados obtenidos (debug):", statesData);
+  
     return statesData;
   } catch (error) {
     console.error("Error al obtener estados:", error);
@@ -86,17 +86,14 @@ fetch(tokenUrl, { method: "GET", headers: tokenHeaders })
         stateSelect.innerHTML = "<option value=''>Seleccionar</option>";
 
         if (selectedCountry) {
-          console.log("Cambio en el país seleccionado:", selectedCountry);
+        
 
           const selectedCountryObject = selectedCountries.find(
             (country) => country.country_name === selectedCountry
           );
 
           if (selectedCountryObject) {
-            console.log(
-              "Obteniendo estados para",
-              selectedCountryObject.country_name
-            );
+            
 
             try {
               const selectedCountryIso2 = selectedCountryObject.country_name;
@@ -104,8 +101,7 @@ fetch(tokenUrl, { method: "GET", headers: tokenHeaders })
                 selectedCountryIso2,
                 tokenData.auth_token
               );
-              console.log(selectedCountryIso2);
-              console.log("Estados obtenidos:", statesData);
+              
 
               // Llenar el select de estados
               statesData.forEach((state) => {

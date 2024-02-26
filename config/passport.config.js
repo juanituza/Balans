@@ -20,7 +20,7 @@ const initializePassportStrategies = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { nombre, apellido, nacimiento, telefono, role } = req.body;
+          const { nombre, apellido,dni,domicilio,localidad,pais,cp, nacimiento,curso, telefono, role } = req.body;
           const exist = await usuarioService.obtenerUsuarioPor({ email });
           if (exist)
             return done(
@@ -36,6 +36,12 @@ const initializePassportStrategies = () => {
           const usuario = {
             nombre,
             apellido,
+            dni,
+            domicilio,
+            localidad,
+            pais,
+            cp,
+            curso,
             email,
             nacimiento,
             role,
