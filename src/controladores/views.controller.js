@@ -130,7 +130,6 @@ const perfilView = async (req, res) => {
   try {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
-      console.log(userData.apellido);
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
 
       // Obtener la fecha de nacimiento de la base de datos
