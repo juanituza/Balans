@@ -15,8 +15,8 @@ export default class ConsultaRepositorio {
   crearConsulta = (user) => {
     return this.dao.crearConsulta(user);
   };
-  actualizarConsulta = (email, password) => {
-    return this.dao.actualizarConsulta(email, password);
+  actualizarConsulta = (id, consulta) => {
+    return this.dao.actualizarConsulta(id, consulta);
   };
   eliminarConsulta = (id) => {
     return this.dao.eliminarConsulta(id);
