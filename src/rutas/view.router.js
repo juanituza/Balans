@@ -78,6 +78,18 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.adminNutricionView
     );
+    this.get(
+      "/admin/comisiones",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminComisionesView
+    );
+    this.get(
+      "/admin/detallecomision/:id",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.comisionDetalles
+    );
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });

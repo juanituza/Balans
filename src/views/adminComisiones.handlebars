@@ -1,34 +1,36 @@
 <div class="m-5">
-    <h3>Consultas:</h3>
-    
+    <h3>Comisiones:</h3>
+    <div class="m-4">
+        <a href="/adminCrearComision">
+            <button class=" btn btn-primary center my-2"><i class="fa-solid fa-plus"></i> Crear comision</button>
+        </a>
+
+    </div>
     <table id="miTabla" class="display " style="width:100% ">
         <thead>
             <tr>
-                <th>Nombre y apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
+                <th>Número de comisión</th>
                 <th>Curso</th>
-                <th>Mensaje</th>
-                <th>Estado</th>
-                <th>Modificar estado</th>
-                <th>Delete</th>
+
+                {{!-- <th>Estado</th> --}}
+                <th>Modificar</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            {{#each consulta}}
+            {{#each Comisiones}}
             <tr>
-                <td class="no-wrap">{{this.nombre}} {{this.apellido}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.telefono}}</td>
+                <td class="no-wrap">{{this.numero}} </td>
                 <td>{{this.curso}}</td>
-                <td>{{this.mensaje}}</td>
-                <td class="no-wrap">
+
+
+                {{!-- <td class="no-wrap">
                     <!-- Agregar un formulario para cada estado -->
                     <form class="col-lg-12 rolForm no-wrap">
                         <div class="form-outline mb-4 no-wrap">
                             <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
-                                <option value="{{this.estado}}">{{this.estado}}</option>
-                                <option value="no leido" class="col-lg-12 center">
+                                <option value=""></option>
+                                <option value=" no leido" class="col-lg-12 center">
                                     No leido
                                 </option>
                                 <option value="pendiente">Pendiente</option>
@@ -36,13 +38,15 @@
                             </select>
                         </div>
                     </form>
-                </td>
+                </td> --}}
                 <td>
                     <!-- Agregar el botón de actualización dentro del formulario -->
-                    <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
-                        data-consulta-id="{{this._id}}">
-                        <i class="fa-regular fa-circle-up"></i> Modificar
-                    </button>
+                    <a href="/admin/detallecomision/{{this._id}}">
+                        <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
+                            data-consulta-id="{{this._id}}">
+                            <i class="fa-regular fa-circle-up"></i> Modificar
+                        </button>
+                    </a>
                 </td>
                 <td>
                     {{! <a href=""> }}

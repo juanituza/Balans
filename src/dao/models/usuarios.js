@@ -11,11 +11,11 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    domicilio:String,
-    localidad:String,
-    cp:String,
-    provincia:String,
-    pais:String,
+    domicilio: String,
+    localidad: String,
+    cp: String,
+    provincia: String,
+    pais: String,
     telefono: String,
     email: {
       type: String,
@@ -29,10 +29,14 @@ const usuarioSchema = new mongoose.Schema(
       default: "alumno",
       enum: ["alumno", "profesor", "admin"],
     },
+    // curso: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Cursos",
+    // },
+
     curso: {
       type: String,
-      ref: "Cursos",
-      required: true,
+      enum: ["pilates", "quiromasaje", "nutricion"],
     },
     // status: {
     //   type: Boolean,

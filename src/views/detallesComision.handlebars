@@ -1,34 +1,37 @@
 <div class="m-5">
     <h3>Consultas:</h3>
-    
+
     <table id="miTabla" class="display " style="width:100% ">
         <thead>
             <tr>
-                <th>Nombre y apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
+                <th>Número</th>
                 <th>Curso</th>
-                <th>Mensaje</th>
-                <th>Estado</th>
+                <th>id</th>
+                {{!-- <th>Estado</th> --}}
                 <th>Modificar estado</th>
-                <th>Delete</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            {{#each consulta}}
+            {{!-- {{#each comisionParticular}} --}}
             <tr>
-                <td class="no-wrap">{{this.nombre}} {{this.apellido}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.telefono}}</td>
-                <td>{{this.curso}}</td>
-                <td>{{this.mensaje}}</td>
-                <td class="no-wrap">
+                <td class="no-wrap">{{comisionParticular.numero}} </td>
+                <td>{{comisionParticular.curso}}</td>
+                <td>
+                    <ul>
+                        {{#each comisionParticular.alumnos}}
+                        <li>{{this.alumno.nombre}} {{this.alumno.apellido}}</li>
+                        {{/each}}
+                    </ul>
+                </td>
+
+                {{!-- <td class="no-wrap">
                     <!-- Agregar un formulario para cada estado -->
                     <form class="col-lg-12 rolForm no-wrap">
                         <div class="form-outline mb-4 no-wrap">
                             <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
-                                <option value="{{this.estado}}">{{this.estado}}</option>
-                                <option value="no leido" class="col-lg-12 center">
+                                <option value=""></option>
+                                <option value=" no leido" class="col-lg-12 center">
                                     No leido
                                 </option>
                                 <option value="pendiente">Pendiente</option>
@@ -36,30 +39,40 @@
                             </select>
                         </div>
                     </form>
+                </td> --}}
+                <td>
+                    {{!-- <!-- Agregar el botón de actualización dentro del formulario -->
+                    <a href="/admin/detallecomision/{{this._id}}">
+                        <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
+                            data-consulta-id="{{this._id}}">
+                            <i class="fa-regular fa-circle-up"></i> Modificar
+                        </button>
+                    </a> --}}
                 </td>
                 <td>
-                    <!-- Agregar el botón de actualización dentro del formulario -->
-                    <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
-                        data-consulta-id="{{this._id}}">
-                        <i class="fa-regular fa-circle-up"></i> Modificar
-                    </button>
-                </td>
-                <td>
-                    {{! <a href=""> }}
+                    {{!-- {{! <a href=""> }}
                         {{! </a> }}
                     <button class="col-lg-12 btn btn-danger center my-2 eliminarConsulta" id="{{this._id}}">
                         <i class="fa fa-trash"></i> Eliminar
-                    </button>
+                    </button> --}}
                 </td>
 
             </tr>
-            {{/each}}
+
 
         </tbody>
         <tfoot>
         </tfoot>
+        <div>
+            <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i
+                    class="bi bi-arrow-up mb-2 iconowp"></i></a>
+        </div>
     </table>
+    {{!-- {{#each comisionParticular}} --}}
+
+
 </div>
+
 
 <!-- Modal de Búsqueda -->
 <div class="modal" id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
@@ -84,6 +97,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="/js/dataTable.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>

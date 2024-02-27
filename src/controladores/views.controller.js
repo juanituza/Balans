@@ -2,6 +2,7 @@ import moment from "moment";
 import {
   usuarioService,
   consultaService,
+  comisionService,
 } from "../services/repositorios/index.js";
 
 const contactoView = async (req, res) => {
@@ -208,7 +209,6 @@ const adminQuiromasajeView = async (req, res) => {
   const userData = req.user;
 
   const resultados = usuarios.filter((item) => item.curso === "quiromasaje");
-  
 
   res.render("adminQuiromasaje", {
     Usuarios: resultados,
@@ -220,12 +220,38 @@ const adminNutricionView = async (req, res) => {
   const userData = req.user;
 
   const resultados = usuarios.filter((item) => item.curso === "nutricion");
-  
 
   res.render("adminNutricion", {
     Usuarios: resultados,
     imagen: userData.imagen,
   });
+};
+const adminComisionesView = async (req, res) => {
+  const comisiones = await comisionService.obtenerComision();
+  res.render("adminComisiones", {
+    Comisiones: comisiones,
+  });
+};
+const comisionDetalles = async (req, res) => {
+  const numeroComision = req.params.id;
+  
+
+  try {
+    const comision = await comisionService.obtenerComisionPor({
+      _id: numeroComision,
+    });
+    
+    if (!comision) {
+      return res.status(404).send("Comisión no encontrada");
+    }
+    console.log(comision);
+
+    // Renderizar la página con los detalles de la comisión
+    res.render("detallesComision", { comisionParticular: comision });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error interno del servidor");
+  }
 };
 
 export default {
@@ -241,4 +267,6 @@ export default {
   adminPilatesView,
   adminQuiromasajeView,
   adminNutricionView,
+  adminComisionesView,
+  comisionDetalles,
 };

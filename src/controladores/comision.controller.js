@@ -21,9 +21,12 @@ const obtenerComisiones = async (req, res) => {
 
 const crearComision = async (req, res) => {
   try {
-    const { numero, curso, alumno } = req.body;
+    const { numero, curso } = req.body;
 
-    const comision = { numero, curso };
+    const comision = {
+      numero,
+      curso,
+    };
 
     const result = await comisionService.crearComision(comision);
     res.sendSuccessWithPayload({ result });
@@ -78,7 +81,7 @@ const agregarAlumno = async (req, res) => {
     }
   }
 };
-const aliminarAlumno = async (req, res) => {
+const eliminarAlumno = async (req, res) => {
   try {
     const { uid, cid } = req.params;
     //obtengo la comisión
@@ -112,5 +115,5 @@ export default {
   obtenerComisiones,
   crearComision,
   agregarAlumno,
-  aliminarAlumno,
+  eliminarAlumno,
 };

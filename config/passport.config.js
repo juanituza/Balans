@@ -1,6 +1,7 @@
 import passport from "passport";
 import config from "../src/config.js";
 import local from "passport-local";
+import mongoose from "mongoose";
 
 import GithubStrategy from "passport-github2";
 import { usuarioService} from "../src/services/repositorios/index.js";
@@ -47,7 +48,6 @@ const initializePassportStrategies = () => {
             role,
             telefono,
             password: hashedPassword,
-          
           };
 
           // const result = await usuarioModel.create(usuario);

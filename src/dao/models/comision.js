@@ -13,8 +13,8 @@ const comisionSchema = new mongoose.Schema(
     alumnos: [
       {
         alumno: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Usuario",
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Usuario",
         },
       },
     ],
