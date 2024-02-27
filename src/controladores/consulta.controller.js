@@ -6,7 +6,7 @@ const guardarConsulta = async (req, res) => {
   const mailingService = new MailingService();
   try {
     const { nombre, apellido, telefono, email, curso, mensaje } = req.body;
-    
+
     const user = { nombre, apellido, telefono, email, curso, mensaje };
     await mailingService.sendMail(DTemplates.CONSULTA);
     const result = await consultaService.crearConsulta(user);
@@ -19,13 +19,10 @@ const guardarConsulta = async (req, res) => {
 const actualizarConsulta = async (req, res) => {
   try {
     const { cid } = req.params;
-    console.log(cid);
-
     const editarConsulta = req.body;
-    console.log(editarConsulta);
 
     const resultado = await consultaService.actualizarConsulta(cid,editarConsulta);
-    console.log(resultado);
+
     res.sendSuccessWithPayload("Consulta editada con éxito", resultado);
   } catch (error) {
     res.sendInternalError(error);
@@ -42,7 +39,6 @@ const eliminarConsulta = async (req, res) => {
     res.sendInternalError(error);
   }
 };
-
 
 export default {
   guardarConsulta,

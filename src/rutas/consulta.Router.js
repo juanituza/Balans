@@ -13,6 +13,7 @@ export default class ConsultaRouter extends BaseRouter {
     this.post(
       "/",
       ["PUBLIC"],
+      passportCall("jwt", { strategyType: "locals" }),
       consultaController.guardarConsulta
     );
      this.put("/:cid", ["ADMIN"], passportCall("jwt", { strategyType: "locals" }),consultaController.actualizarConsulta);

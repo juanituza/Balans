@@ -17,6 +17,7 @@ import ConsultaRouter from "./rutas/consulta.Router.js";
 import SessionRouter from "./rutas/session.Router.js";
 import LoggerService from "./dao/managers/LoggerManager.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import ComisionRouter from "./rutas/comision.Router.js";
 
 const app = express();
 
@@ -70,11 +71,13 @@ const usuarioRouter = new UsuarioRouter();
 const consultaRouter = new ConsultaRouter();
 const viewsRouter = new ViewsRouter();
 const sessionRouter = new SessionRouter();
+const comisionRouter = new ComisionRouter();
 
 app.use("/", viewsRouter.getRouter());
 app.use("/api/usuarios", usuarioRouter.getRouter());
 app.use("/api/consulta", consultaRouter.getRouter());
 app.use("/api/session", sessionRouter.getRouter());
+app.use("/api/comision", comisionRouter.getRouter());
 
 // Middleware para manejar errores
 app.use((err, req, res, next) => {

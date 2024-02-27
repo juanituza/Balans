@@ -8,31 +8,6 @@ const cursosSchema = new mongoose.Schema(
       type: String,      
       enum: ["pilates", "quiromasaje", "nutricion"],
     },
-    
-    Alumnos: [
-      {
-        quantity: {
-          type: Number,
-          default: 0,
-          max: 3,
-        },
-
-        alumno: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Usuario",
-        },
-        turnos: [
-          {
-            dia: {
-              type: String,
-            },
-            horario: {
-              type: String,
-            },
-          },
-        ],
-      },
-    ],
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
