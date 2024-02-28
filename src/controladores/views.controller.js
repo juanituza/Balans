@@ -234,25 +234,31 @@ const adminComisionesView = async (req, res) => {
 };
 const comisionDetalles = async (req, res) => {
   const numeroComision = req.params.id;
-  
+  const usuarios = await usuarioService.obtenerUsuarios();
 
   try {
     const comision = await comisionService.obtenerComisionPor({
       _id: numeroComision,
     });
-    
+
     if (!comision) {
       return res.status(404).send("Comisión no encontrada");
     }
     console.log(comision);
 
     // Renderizar la página con los detalles de la comisión
-    res.render("detallesComision", { comisionParticular: comision });
+    res.render("detallesComision", {
+      comisionParticular: comision,
+      alumnosDisp: usuarios, });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
+
+const crearComisionView = async (req, res) => {
+  res.render("CrearComision");
+}
 
 export default {
   contactoView,
@@ -269,4 +275,5 @@ export default {
   adminNutricionView,
   adminComisionesView,
   comisionDetalles,
+  crearComisionView,
 };

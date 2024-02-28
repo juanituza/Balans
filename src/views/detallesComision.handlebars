@@ -1,14 +1,14 @@
 <div class="m-5">
-    <h3>Consultas:</h3>
+    <h3>Comisión:</h3>
 
     <table id="miTabla" class="display " style="width:100% ">
         <thead>
             <tr>
                 <th>Número</th>
                 <th>Curso</th>
-                <th>id</th>
+                <th>Alumnos</th>
                 {{!-- <th>Estado</th> --}}
-                <th>Modificar estado</th>
+                <th>Acciones</th>
                 <th></th>
             </tr>
         </thead>
@@ -24,37 +24,15 @@
                         {{/each}}
                     </ul>
                 </td>
-
-                {{!-- <td class="no-wrap">
-                    <!-- Agregar un formulario para cada estado -->
-                    <form class="col-lg-12 rolForm no-wrap">
-                        <div class="form-outline mb-4 no-wrap">
-                            <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
-                                <option value=""></option>
-                                <option value=" no leido" class="col-lg-12 center">
-                                    No leido
-                                </option>
-                                <option value="pendiente">Pendiente</option>
-                                <option value="cerrado">Cerrado</option>
-                            </select>
-                        </div>
-                    </form>
-                </td> --}}
                 <td>
-                    {{!-- <!-- Agregar el botón de actualización dentro del formulario -->
-                    <a href="/admin/detallecomision/{{this._id}}">
-                        <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
-                            data-consulta-id="{{this._id}}">
-                            <i class="fa-regular fa-circle-up"></i> Modificar
-                        </button>
-                    </a> --}}
+                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-warning center my-2 eliminarConsulta">
+                        <i class="fa-solid fa-plus"></i> Agregar alumno
+                    </button>
                 </td>
                 <td>
-                    {{!-- {{! <a href=""> }}
+                    {{! <a href=""> }}
                         {{! </a> }}
-                    <button class="col-lg-12 btn btn-danger center my-2 eliminarConsulta" id="{{this._id}}">
-                        <i class="fa fa-trash"></i> Eliminar
-                    </button> --}}
+
                 </td>
 
             </tr>
@@ -64,15 +42,52 @@
         <tfoot>
         </tfoot>
         <div>
-            <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i
-                    class="bi bi-arrow-up mb-2 iconowp"></i></a>
+            <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="fa-solid fa-plus"></i></a>
         </div>
     </table>
     {{!-- {{#each comisionParticular}} --}}
 
 
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="listadoUsuariosModal" tabindex="-1" aria-labelledby="listadoUsuariosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="listadoUsuariosModalLabel">Listado de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {{!-- <th>ID</th> --}}
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Agregar</th>
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each alumnosDisp}}
+                        <tr data-alumno-id="{{this._id}}">
+                            {{!-- <td>{{this._id}}</td> --}}
+                            <td>{{this.nombre}}</td>
+                            <td>{{this.apellido}}</td>
+                            <td class="agregar-alumno-column"><a href="#"><i class="fa-solid fa-plus"></i></a></td>
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal de Búsqueda -->
 <div class="modal" id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
@@ -97,8 +112,43 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        // Evento al hacer clic en el botón "Agregar alumno"
+        $("#btnAgregarAlumno").click(function () {
+            // Lógica para abrir el modal aquí, si es necesario
+
+            // Abre el modal
+            $("#listadoUsuariosModal").modal("show");
+        });
+    });
+</script>
+
+{{!--
+<script>
+    $(document).ready(function () {
+        // Inicialización del modal
+        $("#listadoUsuariosModal").modal({
+            show: false
+        });
+
+        // Agregar evento de clic a las filas de la tabla
+        $("#listadoUsuariosModal table tbody tr").click(function () {
+            // Obtener el ID del alumno seleccionado
+            const alumnoId = $(this).data("alumno-id");
+
+            // Puedes realizar acciones adicionales aquí, como marcar el alumno como seleccionado
+            // o cerrar el modal después de seleccionar
+
+            // Ejemplo: Log al ID del alumno seleccionado
+            console.log("Alumno seleccionado:", alumnoId);
+        });
+    });
 
 
+</script> --}}
+
+<script src="/js/agregarAlumno.js"></script>
 <script src="/js/dataTable.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
 <script src="js/eliminarConsulta.js"></script>
