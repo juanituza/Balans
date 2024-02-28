@@ -110,10 +110,23 @@ const eliminarAlumno = async (req, res) => {
     res.sendInternalError("Internal server error,contact the administrator");
   }
 };
+const eliminarComision = async (req,res) => {
+  
+  try {
+    const { cid } = req.params;
+    await comisionService.eliminarComision(cid);
+    res.sendSuccessWithPayload("Comision eliminada con éxito");
+  } catch (error) {
+    res.sendInternalError("Internal server error,contact the administrator");
+  }
+  
+
+}
 
 export default {
   obtenerComisiones,
   crearComision,
   agregarAlumno,
   eliminarAlumno,
+  eliminarComision,
 };

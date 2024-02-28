@@ -244,7 +244,7 @@ const comisionDetalles = async (req, res) => {
     if (!comision) {
       return res.status(404).send("Comisión no encontrada");
     }
-    console.log(comision);
+    
 
     // Renderizar la página con los detalles de la comisión
     res.render("detallesComision", {

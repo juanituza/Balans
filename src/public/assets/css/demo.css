@@ -92,6 +92,11 @@ aside {
   z-index: 10001;
 }
 
+.modal-backdrop {
+  z-index: 1038 !important;
+  /* Un valor menor que el de SweetAlert */
+}
+
 .dropdown-item:hover {
   background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
   color: #6f86d6;

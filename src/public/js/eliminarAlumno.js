@@ -1,12 +1,13 @@
-$("#listadoUsuariosModal table tbody tr").click(async function () {
+$("#ComisionUsuariosModal table tbody tr").click(async function () {
   // Obtener el ID del alumno seleccionado y otros datos relevantes
   const alumnoId = $(this).data("alumno-id");
+  console.log(alumnoId);
   const comisionId = obtenerIdDeLaRutaActual(); // Reemplaza con el ID real de la comisión
 
   try {
     // Realizar solicitud con fetch
     const response = await fetch(`/api/comision/${comisionId}/${alumnoId}`, {
-      method: "POST", // o 'PUT' según tu lógica de servidor
+      method: "DELETE", // o 'PUT' según tu lógica de servidor
       headers: {
         "Content-Type": "application/json",
       },
@@ -15,13 +16,12 @@ $("#listadoUsuariosModal table tbody tr").click(async function () {
 
     const responseData = await response.json();
 
-       
     if (responseData.status === "success") {
       // Antes de mostrar SweetAlert, ajusta su z-index
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Alumno agregado",
+        title: "Alumno eliminado",
         showConfirmButton: false,
         timer: 1500,
         customClass: {
@@ -49,8 +49,6 @@ $("#listadoUsuariosModal table tbody tr").click(async function () {
         },
       });
     }
-  
-
   } catch (error) {
     console.error("Error al realizar la solicitud:", error);
     // Manejar errores aquí

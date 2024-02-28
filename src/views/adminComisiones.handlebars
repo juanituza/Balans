@@ -22,23 +22,6 @@
             <tr>
                 <td class="no-wrap">{{this.numero}} </td>
                 <td>{{this.curso}}</td>
-
-
-                {{!-- <td class="no-wrap">
-                    <!-- Agregar un formulario para cada estado -->
-                    <form class="col-lg-12 rolForm no-wrap">
-                        <div class="form-outline mb-4 no-wrap">
-                            <select class="col-lg-12 form-select center my-2 estadoSeleccionado">
-                                <option value=""></option>
-                                <option value=" no leido" class="col-lg-12 center">
-                                    No leido
-                                </option>
-                                <option value="pendiente">Pendiente</option>
-                                <option value="cerrado">Cerrado</option>
-                            </select>
-                        </div>
-                    </form>
-                </td> --}}
                 <td>
                     <!-- Agregar el botón de actualización dentro del formulario -->
                     <a href="/admin/detallecomision/{{this._id}}">
@@ -51,7 +34,7 @@
                 <td>
                     {{! <a href=""> }}
                         {{! </a> }}
-                    <button class="col-lg-12 btn btn-danger center my-2 eliminarConsulta" id="{{this._id}}">
+                    <button class="col-lg-12 btn btn-danger center my-2 eliminarComision" id="{{this._id}}">
                         <i class="fa fa-trash"></i> Eliminar
                     </button>
                 </td>
@@ -91,4 +74,4 @@
 
 <script src="/js/dataTable.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
-<script src="js/eliminarConsulta.js"></script>
+<script src="js/eliminarComision.js"></script>

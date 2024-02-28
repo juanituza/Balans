@@ -8,7 +8,7 @@ export default class ComisionRouter extends BaseRouter {
         this.get("/", ["ADMIN"], passportCall("jwt", { strategyType: "locals" }),comisionController.obtenerComisiones);
         this.post("/",["ADMIN"],passportCall("jwt", { strategyType: "locals" }),comisionController.crearComision);
         this.post("/:cid/:uid", ["ADMIN"],passportCall("jwt",{strategyType:"locals"}),comisionController.agregarAlumno);
-        this.delete("/:cid/:uid",["ADMIN"],passportCall("jwt", { strategyType: "local" }),comisionController.eliminarAlumno
-        );
+        this.delete("/:cid/:uid",["ADMIN"],passportCall("jwt", { strategyType: "local" }),comisionController.eliminarAlumno);
+        this.delete("/:cid",["ADMIN"],passportCall("jwt", { strategyType: "local" }),comisionController.eliminarComision);
     }
 }

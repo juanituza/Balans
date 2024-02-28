@@ -1,7 +1,7 @@
 <div class="m-5">
     <h3>Comisión:</h3>
 
-    <table id="miTabla" class="display " style="width:100% ">
+    <table id="miTablaC" class="display " style="width:100% ">
         <thead>
             <tr>
                 <th>Número</th>
@@ -9,7 +9,7 @@
                 <th>Alumnos</th>
                 {{!-- <th>Estado</th> --}}
                 <th>Acciones</th>
-                <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -25,19 +25,14 @@
                     </ul>
                 </td>
                 <td>
-                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-warning center my-2 eliminarConsulta">
+                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-primary center my-2 eliminarConsulta">
                         <i class="fa-solid fa-plus"></i> Agregar alumno
                     </button>
+                    <button id="btnEliminarAlumno" class="col-lg-12 btn btn-danger center my-2 eliminarConsulta">
+                        <i class="fa-solid fa-x"></i> eliminar alumno
+                    </button>
                 </td>
-                <td>
-                    {{! <a href=""> }}
-                        {{! </a> }}
-
-                </td>
-
             </tr>
-
-
         </tbody>
         <tfoot>
         </tfoot>
@@ -66,6 +61,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Agregar</th>
+
                             <!-- Agrega más columnas según sea necesario -->
                         </tr>
                     </thead>
@@ -76,6 +72,49 @@
                             <td>{{this.nombre}}</td>
                             <td>{{this.apellido}}</td>
                             <td class="agregar-alumno-column"><a href="#"><i class="fa-solid fa-plus"></i></a></td>
+
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ComisionUsuariosModal" tabindex="-1" aria-labelledby="listadoUsuariosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="listadoUsuariosModalLabel">Listado de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {{!-- <th>ID</th> --}}
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+
+                            <th>Eliminar</th>
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each comisionParticular.alumnos}}
+                        <tr data-alumno-id="{{this.alumno._id}}">
+                            {{!-- <td>{{this._id}}</td> --}}
+                            <td>{{this.alumno.nombre}}</td>
+                            <td>{{this.alumno.apellido}}</td>
+
+                            <td class="agregar-alumno-column"><a href="#" style="color:red"><i
+                                        class="fa-solid fa-x"></i></a></td>
                             <!-- Agrega más columnas según sea necesario -->
                         </tr>
                         {{/each}}
@@ -119,8 +158,21 @@
             // Lógica para abrir el modal aquí, si es necesario
 
             // Abre el modal
-            $("#listadoUsuariosModal").modal("show");
+            $("#listadoUsuariosModal").modal("show").focus();
         });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Evento al hacer clic en el botón "Agregar alumno"
+        $("#btnEliminarAlumno").click(function () {
+            // Lógica para abrir el modal aquí, si es necesario
+
+            // Abre el modal
+            $("#ComisionUsuariosModal").modal("show").focus();
+        });
+
     });
 </script>
 
@@ -149,6 +201,6 @@
 </script> --}}
 
 <script src="/js/agregarAlumno.js"></script>
-<script src="/js/dataTable.js"></script>
+<script src="/js/eliminarAlumno.js"></script>
+<script src="/js/dataTableComision.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
-<script src="js/eliminarConsulta.js"></script>
