@@ -1,6 +1,16 @@
 import multer from "multer";
 import __dirname from "../utils.js";
 
+// Función para determinar la carpeta según el campo del archivo
+const determineFolder = (fieldname) => {
+  switch (fieldname) {
+    case "archivos":
+      return "archivos";
+    default:
+      return "others"; // Carpeta por defecto si no coincide con ninguno de los casos
+  }
+};
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const folder = determineFolder(file.fieldname); // Función para determinar la carpeta según el campo del archivo
@@ -13,22 +23,5 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-
-
-// Función para determinar la carpeta según el campo del archivo
-const determineFolder = (fieldname) => {
-  switch (fieldname) {
-    case "perfil":
-      return "perfil";
-    case "products":
-      return "products";
-    case "documents":
-      return "documents";
-    default:
-      return "others"; // Carpeta por defecto si no coincide con ninguno de los casos
-  }
-}
-
 
 export default upload;

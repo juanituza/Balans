@@ -18,7 +18,19 @@ const comisionSchema = new mongoose.Schema(
         },
       },
     ],
+    documents: [
+      {
+        name: {
+          type: String,
+        },
+        reference: {
+          type: String,
+          enum: "archivo",
+        },
+      },
+    ],
   },
+
   {
     timestamps: {
       createdAt: "fecha_creacion",

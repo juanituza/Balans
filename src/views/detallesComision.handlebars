@@ -7,8 +7,8 @@
                 <th>Número</th>
                 <th>Curso</th>
                 <th>Alumnos</th>
-                {{!-- <th>Estado</th> --}}
                 <th>Acciones</th>
+
 
             </tr>
         </thead>
@@ -25,13 +25,17 @@
                     </ul>
                 </td>
                 <td>
-                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-primary center my-2 eliminarConsulta">
+                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-primary center my-2 ">
                         <i class="fa-solid fa-plus"></i> Agregar alumno
                     </button>
-                    <button id="btnEliminarAlumno" class="col-lg-12 btn btn-danger center my-2 eliminarConsulta">
+                    <button id="btnEliminarAlumno" class="col-lg-12 btn btn-danger center my-2 ">
                         <i class="fa-solid fa-x"></i> eliminar alumno
                     </button>
+                    <button id="btnSubirArchivo" class="col-lg-12 btn btn-dark center my-2 ">
+                        <i class="fa-solid fa-plus"></i> Subir Archivo
+                    </button>
                 </td>
+
             </tr>
         </tbody>
         <tfoot>
@@ -202,5 +206,6 @@
 
 <script src="/js/agregarAlumno.js"></script>
 <script src="/js/eliminarAlumno.js"></script>
+<script src="/js/subirArchivo.js"></script>
 <script src="/js/dataTableComision.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>

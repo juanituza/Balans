@@ -110,8 +110,7 @@ const eliminarAlumno = async (req, res) => {
     res.sendInternalError("Internal server error,contact the administrator");
   }
 };
-const eliminarComision = async (req,res) => {
-  
+const eliminarComision = async (req, res) => {
   try {
     const { cid } = req.params;
     await comisionService.eliminarComision(cid);
@@ -119,9 +118,29 @@ const eliminarComision = async (req,res) => {
   } catch (error) {
     res.sendInternalError("Internal server error,contact the administrator");
   }
-  
+};
 
-}
+const cargarArchivos = async (req, res) => {
+  try {
+    const { cid } = req.params;
+    const nuevosDocumentos = req.files.map((file) => ({
+      name: file.originalname,
+      reference: "archivo", // Puedes ajustar esto según tus necesidades
+    }));
+    //obtengo la comisión
+    const comision = await comisionService.obtenerComisionPor(cid);
+    // Agrega los nuevos documentos al array existente
+    comision.documents = comision.documents.concat(nuevosDocumentos);
+    //actualizo la comision
+    await comisionService.actualizarComision(cid, comision);
+    //Creo el DTO
+    const comisionDto = new ComisionDTO(comision);
+    //Devuelvo la respuesta con DTO incluido
+    res.sendSuccessWithPayload({ comisionDto });
+  } catch (error) {
+    res.sendInternalError("Internal server error,contact the administrator");
+  }
+};
 
 export default {
   obtenerComisiones,
@@ -129,4 +148,5 @@ export default {
   agregarAlumno,
   eliminarAlumno,
   eliminarComision,
+  cargarArchivos,
 };

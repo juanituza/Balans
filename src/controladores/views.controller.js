@@ -258,7 +258,9 @@ const comisionDetalles = async (req, res) => {
 
 const crearComisionView = async (req, res) => {
   res.render("CrearComision");
-}
+};
+
+
 
 export default {
   contactoView,
