@@ -61,6 +61,10 @@ aside {
   letter-spacing: -0.5px;
 }
 
+.trashDocumento{
+  scale: 0.75;
+}
+
 /* Estilos personalizados para el menú desplegable */
 .dropdown-menu {
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);

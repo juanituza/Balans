@@ -302,7 +302,7 @@ const comisionDetalles = async (req, res) => {
     const comision = await comisionService.obtenerComisionPor({
       _id: numeroComision,
     });
-    console.log(comision);
+    
     if (!comision) {
       return res.status(404).send("Comisión no encontrada");
     }

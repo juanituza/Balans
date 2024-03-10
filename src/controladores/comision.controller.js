@@ -144,6 +144,32 @@ const cargarArchivos = async (req, res) => {
   }
 };
 
+const eliminarDocumento = async (req, res) => {
+  try {
+    const { cid, documentId } = req.params;
+    const comision = await comisionService.obtenerComisionPor(cid);
+    //Busco el documento a eliminar
+    const documentIndex = comision.documents.findIndex((doc) =>
+      doc._id.equals(documentId)
+    );
+
+    if (documentIndex !== -1) {
+      //Elimino el documento del array
+      comision.documents.splice(documentIndex, 1);
+      //actualizo la comision
+      await comisionService.actualizarComision(cid, comision);
+      //Creo el DTO
+      const comisionDto = new ComisionDTO(comision);
+      //Devuelvo la respuesta con DTO incluido
+      res.sendSuccessWithPayload({ comisionDto });
+    } else {
+       res.sendNotFound("Documento no encontrado en la comisión")
+    }   
+  } catch (error) {
+    res.sendInternalError("Internal server error,contact the administrator");
+  }
+};
+
 export default {
   obtenerComisiones,
   crearComision,
@@ -151,4 +177,5 @@ export default {
   eliminarAlumno,
   eliminarComision,
   cargarArchivos,
+  eliminarDocumento,
 };

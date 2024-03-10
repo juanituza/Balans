@@ -7,6 +7,7 @@
                 <th>Número</th>
                 <th>Curso</th>
                 <th>Alumnos</th>
+                <th>Documentos</th>
                 <th>Acciones</th>
 
 
@@ -15,7 +16,7 @@
         <tbody>
             {{!-- {{#each comisionParticular}} --}}
             <tr>
-                <td class="no-wrap">{{comisionParticular.numero}} </td>
+                <td>{{comisionParticular.numero}} </td>
                 <td>{{comisionParticular.curso}}</td>
                 <td>
                     <ul>
@@ -24,7 +25,20 @@
                         {{/each}}
                     </ul>
                 </td>
-                <td>
+                <td class="no-wrap">
+                    <ul>
+                        {{#each comisionParticular.documents}}
+                        <li>{{this.name}}
+                            <button class="btn btn-danger trashDocumento">
+                                <i class="fa-solid fa-trash-can" data-document-id="{{this._id}}"
+                                    data-cid="{{../comisionParticular._id}}" id="trash"></i>
+                            </button>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </td>
+
+                <td class="no-wrap">
                     <button id="btnAgregarAlumno" class="col-lg-12 btn btn-primary center my-2 ">
                         <i class="fa-solid fa-plus"></i> Agregar alumno
                     </button>
@@ -207,5 +221,6 @@
 <script src="/js/agregarAlumno.js"></script>
 <script src="/js/eliminarAlumno.js"></script>
 <script src="/js/subirArchivo.js"></script>
+<script src="/js/eliminarDocumento.js"></script>
 <script src="/js/dataTableComision.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>

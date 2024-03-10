@@ -28,10 +28,9 @@ const downloadFile = async (req, res) => {
       throw new Error("Documento no encontrado en la comisión");
     }
 
-    const originalFileName = document.originalFileName;
-    console.log(originalFileName);
+    // const originalFileName = document.originalFileName;
+    // console.log(originalFileName);
     const fileName = document.name;
-    console.log(fileName);
 
     const filePath = path.join(
       __dirname,
