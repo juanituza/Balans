@@ -338,6 +338,10 @@ const crearComisionView = async (req, res) => {
   });
 };
 
+const restoreRequest = async (req, res) => {
+  res.render("restoreRequest");
+};
+
 export default {
   contactoView,
   nosotrosView,
@@ -356,4 +360,5 @@ export default {
   crearComisionView,
   cursosAlumnos,
   cursoVista,
+  restoreRequest,
 };

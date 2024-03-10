@@ -27,5 +27,11 @@ export default class SessionRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "locals" }),
       sessionsController.cerrarSesion
     );
+    this.post(
+      "/restoreRequest",
+      ["NO_AUTH"],
+      
+      sessionsController.restoreRequest
+    );
   }
 }
