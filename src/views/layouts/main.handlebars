@@ -131,7 +131,7 @@
               <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
               {{#ifRoleAdmin user.role}}
               <li>
-
+                
                 <a class="dropdown-item" href="/admin/user">Panel de administrador</a>
               </li>
               {{/ifRoleAdmin}}
@@ -152,6 +152,7 @@
           <li><a class="dropdown-item" href="/cursoPanel">Cursos</a></li>
           <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
           {{#ifRoleAdmin user.role}}
+          <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
           <li class="dropdown-item" href="/admin">Panel de administrador</p>
             {{/ifRoleAdmin}}
 

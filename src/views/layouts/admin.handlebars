@@ -71,12 +71,36 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-  
+        
+        
+       
+        
+        
+        
         <aside  class="layout-menu menu-vertical menu bg-menu-theme">
           <a href="/nosotros" class="navbar-brand p-0 imgAdmin">
             <img class="logo-img" src="/imagenes/BalansNav2.png" alt="">
             <p class="pt-1 balans"> Balans</p>
           </a>
+          {{#if user}}
+          <ul class="dropdown btn btn-light  rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
+            <li>
+              <i class="fa-solid fa-user"></i>
+              <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
+                {{!-- <i class="fa-solid fa-user"></i> --}}
+                {{user.nombre}}
+                {{user.apellido}}
+              </a>
+              <ul class="dropdown-menu">
+                <li id="loguotButton"><a class="dropdown-item" href="/nosotros">Inicio</a></li>         
+                <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>         
+                <li><a class="dropdown-item" href="/admin/user">Panel de administrador</a>
+                </li>
+          
+              </ul>
+            </li>
+          </ul>
+          {{/if}}
           <ul class="menuUl">
           <li class="app-brand demo">
           

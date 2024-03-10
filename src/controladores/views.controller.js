@@ -232,6 +232,7 @@ const cursoVista = async (req, res) => {
 
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
+  console.log(usuarios);
   const userData = req.user;
 
   res.render("layouts/admin", { Usuarios: usuarios, imagen: userData.imagen });
@@ -246,12 +247,15 @@ const adminUserView = async (req, res) => {
     Usuarios: usuarios,
     imagen: userData.imagen,
     consulta: consultData,
+    user: userData,
   });
 };
 const adminConsultasView = async (req, res) => {
   const consultData = await consultaService.obtenerConsultas();
+  const userData = req.user;
   res.render("adminConsultas", {
     consulta: consultData,
+    user: userData,
   });
 };
 
@@ -264,6 +268,7 @@ const adminPilatesView = async (req, res) => {
   res.render("adminPilates", {
     Usuarios: resultados,
     imagen: userData.imagen,
+    user: userData,
   });
 };
 const adminQuiromasajeView = async (req, res) => {
@@ -275,6 +280,7 @@ const adminQuiromasajeView = async (req, res) => {
   res.render("adminQuiromasaje", {
     Usuarios: resultados,
     imagen: userData.imagen,
+    user: userData,
   });
 };
 const adminNutricionView = async (req, res) => {
@@ -286,23 +292,28 @@ const adminNutricionView = async (req, res) => {
   res.render("adminNutricion", {
     Usuarios: resultados,
     imagen: userData.imagen,
+    user: userData,
   });
 };
 const adminComisionesView = async (req, res) => {
   const comisiones = await comisionService.obtenerComision();
+  const userData = req.user;
+
   res.render("adminComisiones", {
     Comisiones: comisiones,
+    user: userData,
   });
 };
 const comisionDetalles = async (req, res) => {
   const numeroComision = req.params.id;
   const usuarios = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
 
   try {
     const comision = await comisionService.obtenerComisionPor({
       _id: numeroComision,
     });
-    
+
     if (!comision) {
       return res.status(404).send("Comisión no encontrada");
     }
@@ -311,6 +322,7 @@ const comisionDetalles = async (req, res) => {
     res.render("detallesComision", {
       comisionParticular: comision,
       alumnosDisp: usuarios,
+      user: userData,
     });
   } catch (error) {
     console.error(error);
@@ -319,7 +331,11 @@ const comisionDetalles = async (req, res) => {
 };
 
 const crearComisionView = async (req, res) => {
-  res.render("CrearComision");
+  const userData = req.user;
+  
+  res.render("adminCrearComision", {
+    user: userData,
+  });
 };
 
 export default {

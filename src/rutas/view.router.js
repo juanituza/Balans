@@ -106,6 +106,12 @@ export default class ViewsRouter extends BaseRouter {
       viewController.adminComisionesView
     );
     this.get(
+      "/admin/CrearComision",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.crearComisionView
+    );
+    this.get(
       "/admin/detalleComision/:id",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
@@ -114,9 +120,7 @@ export default class ViewsRouter extends BaseRouter {
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
-    this.get("/admin/crearComision", ["ADMIN"], (req, res) => {
-      res.render("adminCrearComision");
-    });
+    
     // this.get("/nosotros", ["USER"], (req, res) => {
     //   res.render("nosotros");
     // });
