@@ -24,12 +24,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         const response = await fetch(`/api/comision/${cid}`, {
           method: "POST",
           body: formData,
+          // Cambia el tipo de contenido a "multipart/form-data"
           headers: {
             // No es necesario especificar "Content-Type" aquí, FormData se encarga de eso automáticamente
           },
         });
 
-        console.log(response);
 
         if (!response.ok) {
           // Maneja el caso en el que la respuesta no sea exitosa
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         const responseData = await response.json();
-        console.log(responseData);
+      
 
         if (responseData.status === "success") {
           Swal.fire({

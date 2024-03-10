@@ -29,10 +29,10 @@ const usuarioSchema = new mongoose.Schema(
       default: "alumno",
       enum: ["alumno", "profesor", "admin"],
     },
-    // curso: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Cursos",
-    // },
+    comision: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comision",
+    },
 
     curso: {
       type: String,

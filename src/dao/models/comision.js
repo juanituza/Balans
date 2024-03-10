@@ -23,10 +23,10 @@ const comisionSchema = new mongoose.Schema(
         name: {
           type: String,
         },
-        reference: {
-          type: String,
-          enum: "archivo",
-        },
+        // reference: {
+        //   type: String,
+        //   enum: "archivo",
+        // },
       },
     ],
   },

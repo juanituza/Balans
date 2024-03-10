@@ -4,6 +4,9 @@ import {
   consultaService,
   comisionService,
 } from "../services/repositorios/index.js";
+import __dirname from "../utils.js";
+import { promises as fsPromises } from "fs";
+import path from "path";
 
 const contactoView = async (req, res) => {
   try {
@@ -168,6 +171,65 @@ const perfilView = async (req, res) => {
   }
 };
 
+const cursosAlumnos = async (req, res) => {
+  try {
+    const comisiones = await comisionService.obtenerComision();
+    const alumnoBuscado = await req.user;
+    const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+
+    const documentId = req.params.documentId;
+
+    // Filtra las comisiones que contienen al alumno buscado
+    const comisionesConAlumno = comisiones.filter((comision) => {
+      return comision.alumnos.some((alumno) =>
+        alumno.alumno._id.equals(usuario._id)
+      );
+    });
+
+    res.render("cursoPanel", {
+      comision: comisionesConAlumno,
+      user: alumnoBuscado,
+      imagen: usuario.imagen,
+      // numeroComision: numeroComision,
+      // alumno: alumnosComision,
+    });
+
+    // Ahora, puedes imprimir la información de las comisiones encontradas
+    // comisionesConAlumno.forEach(async (comision) => {
+    //   const numeroComision = comision.numero;
+    //   const cursoComision = comision.curso;
+    //   const alumnosComision = comision.alumnos;
+
+    //   // Renderiza la vista sin esperar las descargas
+    // });
+  } catch (error) {
+    res.status(500).send({ status: "error", error });
+  }
+};
+
+const cursoVista = async (req, res) => {
+  try {
+    // const { id } = req.params;
+    const numeroComision = req.params.id;
+    const userData = req.user;
+    const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+
+    const comision = await comisionService.obtenerComisionPor({
+      _id: numeroComision,
+    });
+    const docu = comision.documents;
+
+    res.render("particular", {
+      user: userData,
+      comisionParticular: comision,
+      imagen: usuario.imagen,
+      documentos: docu,
+    });
+  } catch (error) {
+    res.status(500).send({ status: "error", error });
+  }
+};
+
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
   const userData = req.user;
@@ -240,16 +302,16 @@ const comisionDetalles = async (req, res) => {
     const comision = await comisionService.obtenerComisionPor({
       _id: numeroComision,
     });
-
+    console.log(comision);
     if (!comision) {
       return res.status(404).send("Comisión no encontrada");
     }
-    
 
     // Renderizar la página con los detalles de la comisión
     res.render("detallesComision", {
       comisionParticular: comision,
-      alumnosDisp: usuarios, });
+      alumnosDisp: usuarios,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error interno del servidor");
@@ -259,8 +321,6 @@ const comisionDetalles = async (req, res) => {
 const crearComisionView = async (req, res) => {
   res.render("CrearComision");
 };
-
-
 
 export default {
   contactoView,
@@ -278,4 +338,6 @@ export default {
   adminComisionesView,
   comisionDetalles,
   crearComisionView,
+  cursosAlumnos,
+  cursoVista,
 };

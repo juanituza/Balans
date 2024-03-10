@@ -1,6 +1,7 @@
 import BaseRouter from "./baseRouter.js";
 import { passportCall } from "../utils.js";
 import viewController from "../controladores/views.controller.js";
+import download from "../middlewares/download.js";
 
 /*-----------RENDER CON MONGO---------*/
 
@@ -38,9 +39,29 @@ export default class ViewsRouter extends BaseRouter {
     );
     this.get(
       "/perfil",
-      ["ALUMNO", "PROFESOR"],
+      ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.perfilView
+    );
+    this.get(
+      "/cursoPanel",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      // download("documentos", 5),
+      viewController.cursosAlumnos
+    );
+    this.get(
+      "/particular/:id",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.cursoVista
+    );
+    // Ruta para descargar documentos
+    this.get(
+      "/descargarDocumento/:cid/:documentId",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      download
     );
     this.get(
       "/admin",

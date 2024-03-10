@@ -16,12 +16,16 @@ const storage = multer.diskStorage({
     const folder = determineFolder(file.fieldname); // Función para determinar la carpeta según el campo del archivo
     cb(null, `${__dirname}/public/uploads/${folder}`);
   },
+  // filename: (req, file, cb) => {
+  //   const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+  //   cb(null, file.fieldname + "-" + uniqueSuffix + "-" + file.originalname);
+  // },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + "-" + file.originalname);
+    cb(null, file.originalname);
   },
 });
 
 const upload = multer({ storage: storage });
 
 export default upload;
+export { determineFolder };

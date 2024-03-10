@@ -131,8 +131,10 @@ const cargarArchivos = async (req, res) => {
     const comision = await comisionService.obtenerComisionPor(cid);
     // Agrega los nuevos documentos al array existente
     comision.documents = comision.documents.concat(nuevosDocumentos);
+
     //actualizo la comision
     await comisionService.actualizarComision(cid, comision);
+
     //Creo el DTO
     const comisionDto = new ComisionDTO(comision);
     //Devuelvo la respuesta con DTO incluido
