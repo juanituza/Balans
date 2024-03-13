@@ -53,6 +53,24 @@ const agregarAlumno = async (req, res) => {
     const alumnoExistente = comision.alumnos.find(
       ({ alumno }) => alumno._id.toString() === uid
     );
+    if (alumno.comision) {
+      return ErrorService.createError({
+        name: "Usuario ya asignado a una comisión",
+        cause: usuarioYaEnComision(uid),
+        message: `Usuario ya asignado a una comisión`,
+        code: EErrors.USUARIO_YA_EN_COMISION,
+        status: 401,
+      });
+    }
+
+    // Agregar la referencia de la comisión en el usuario
+    alumno.comision = comision._id;
+   
+
+    await usuarioService.actualizarUsuarioPorId(uid, {
+      comision: comision._id,
+    });
+
     if (alumnoExistente !== undefined) {
       return ErrorService.createError({
         name: "Alumno ya existe en el curso",
@@ -83,20 +101,20 @@ const agregarAlumno = async (req, res) => {
 };
 const eliminarAlumno = async (req, res) => {
   try {
-    const { uid, cid } = req.params;
+    const { aid, cid } = req.params;   
     //obtengo la comisión
     const comision = await comisionService.obtenerComisionPor(cid);
     //obetengo el alumno a eliminar
     const alumno = comision.alumnos.find(
-      (a) => a.alumno._id.toString() === uid
-    );
+      (a) => a.alumno._id.toString() === aid
+    );  
     //si el alumno no existe
     if (!alumno) {
       return res.sendNotFound("Alumno no existe en la comisión");
     }
     // busco la ubicacion del alumno en el array
     const alumnoIndex = comision.alumnos.findIndex(
-      (p) => p.alumno._id.toString() === uid
+      (p) => p.alumno._id.toString() === aid
     );
     //Elimino el alumno
     comision.alumnos.splice(alumnoIndex, 1);
@@ -107,7 +125,9 @@ const eliminarAlumno = async (req, res) => {
     //Devuelvo la respuesta con DTO incluido
     res.sendSuccessWithPayload({ comisionDto });
   } catch (error) {
-    res.sendInternalError("Internal server error,contact the administrator");
+    res.sendInternalError(
+      "Error al elimnar al alumno, pongase en contacto con el administrador"
+    );
   }
 };
 const eliminarComision = async (req, res) => {
@@ -163,8 +183,8 @@ const eliminarDocumento = async (req, res) => {
       //Devuelvo la respuesta con DTO incluido
       res.sendSuccessWithPayload({ comisionDto });
     } else {
-       res.sendNotFound("Documento no encontrado en la comisión")
-    }   
+      res.sendNotFound("Documento no encontrado en la comisión");
+    }
   } catch (error) {
     res.sendInternalError("Internal server error,contact the administrator");
   }

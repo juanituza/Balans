@@ -57,6 +57,12 @@ export default class ViewsRouter extends BaseRouter {
       viewController.restoreRequest
     );
     this.get(
+      "/restorePassword",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.restorePassword
+    );
+    this.get(
       "/particular/:id",
       ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),

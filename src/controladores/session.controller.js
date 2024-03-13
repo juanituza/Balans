@@ -78,6 +78,35 @@ const restoreRequest = async (req, res) => {
 }
 };
 
+const restorePassword = async (req, res) => {
+  const { password, token } = req.body;
+  console.log(password);
+  console.log(token);
+  try {
+    const tokenUser = jwt.verify(token, "jwtSecret");
+    const user = await usuarioService.obtenerUsuarioPor({
+      email: tokenUser.email,
+    });
+    //Verificar si la contraseña es la misma
+    const isSamePassword = await validatePassword(password, user.password);
+    if (isSamePassword)
+      return res.sendUnauthorized(
+        "No se puede reemplazar la contraseña con la contraseña actual"
+      );
+    //  hasheo password nuevo
+    const newHashPassword = await createHash(password);
+
+    const result = await usuarioService.actualizarUsuario(
+      { _id: user._id },
+      { password: newHashPassword }
+    );
+    res.sendSuccess("Password modificado con éxito");
+  } catch (error) {
+    LoggerService.error;
+    res.sendInternalError("Internal server error, contact the administrator");
+  }
+};
+
 export default {
   registro,
   login,
@@ -86,5 +115,5 @@ export default {
   //   loginGitHub,
 
   restoreRequest,
-  //   restorePassword,
+  restorePassword,
 };

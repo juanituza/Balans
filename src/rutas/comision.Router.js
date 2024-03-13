@@ -31,13 +31,13 @@ export default class ComisionRouter extends BaseRouter {
       comisionController.cargarArchivos
     );
     this.delete(
-      "/:cid/:documentId",
+      "/documento/:cid/:documentId",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "locals" }),
       comisionController.eliminarDocumento
     );
     this.delete(
-      "/:cid/:uid",
+      "/:cid/:aid",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "local" }),
       comisionController.eliminarAlumno

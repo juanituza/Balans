@@ -3,11 +3,11 @@ $("#ComisionUsuariosModal table tbody tr").click(async function () {
   const alumnoId = $(this).data("alumno-id");
   console.log(alumnoId);
   const comisionId = obtenerIdDeLaRutaActual(); // Reemplaza con el ID real de la comisión
-
+  console.log(comisionId);
   try {
     // Realizar solicitud con fetch
     const response = await fetch(`/api/comision/${comisionId}/${alumnoId}`, {
-      method: "DELETE", // o 'PUT' según tu lógica de servidor
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,7 +39,7 @@ $("#ComisionUsuariosModal table tbody tr").click(async function () {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: responseData.error,
+        text: "Error al realizar la solicitud",
         customClass: {
           popup: "swal2-popup", // Clase específica para la ventana modal en SweetAlert 2
         },

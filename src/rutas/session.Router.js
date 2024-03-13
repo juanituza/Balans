@@ -33,5 +33,11 @@ export default class SessionRouter extends BaseRouter {
       
       sessionsController.restoreRequest
     );
+
+     this.post(
+       "/restorePassword",
+       ["PUBLIC"],
+       sessionsController.restorePassword
+     );
   }
 }

@@ -11,14 +11,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Envía una solicitud DELETE al servidor
       try{
 
-          const response = await fetch(`/api/comision/${cid}/${documentId}`, {
+          const response = await fetch(
+            `/api/comision/documento/${cid}/${documentId}`,
+            {
               method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          // Puedes agregar encabezados adicionales si es necesario
-        },
-        // body: Puedes enviar un cuerpo de solicitud si es necesario
-    })
+              headers: {
+                "Content-Type": "application/json",
+                // Puedes agregar encabezados adicionales si es necesario
+              },
+              // body: Puedes enviar un cuerpo de solicitud si es necesario
+            }
+          );
 
       const responseData = await response.json();
 

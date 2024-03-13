@@ -342,6 +342,11 @@ const restoreRequest = async (req, res) => {
   res.render("restoreRequest");
 };
 
+const restorePassword = async (req, res) => {
+  const userData = req.user;
+  res.render("restorePassword", { user: userData });
+};
+
 export default {
   contactoView,
   nosotrosView,
@@ -361,4 +366,5 @@ export default {
   cursosAlumnos,
   cursoVista,
   restoreRequest,
+  restorePassword,
 };

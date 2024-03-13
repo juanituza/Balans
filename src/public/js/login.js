@@ -33,8 +33,8 @@ form.addEventListener('submit', async (event) => {
     }else{
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: responseData.error,
+          title: "Error al iniciar sesión",
+          text: "Credenciales incorrectas",
         })
     }
     

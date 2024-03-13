@@ -16,6 +16,13 @@ export default class UsersManager {
   actualizarUsuario = async (email, password) => {
     return await usuarioModel.updateOne(email, { $set: password });
   };
+  actualizarUsuarioPorId = async (userId, data) => {
+    return await usuarioModel.findByIdAndUpdate(
+      userId,
+      { $set: data },
+      { new: true }
+    );
+  };
 
   eliminarUsuario = async (id) => {
     return await usuarioModel.findByIdAndDelete(id);
