@@ -1,5 +1,3 @@
-
-
 <div class="container-xxl py-5" id="contact">
     <div class="container py-5 px-lg-5">
 
@@ -46,26 +44,19 @@
                         </div>
                         {{/if}}
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-grad rounded-pill  ">
+                            <button type="submit" class="btn btn-outline-info" data-id="{{alumno._id}}">
                                 Cambiar imagen
                             </button>
                         </div>
 
                     </form>
-                    {{!-- <div class="col-md-6">
-                        <div class="">
-                            <input type="text" class="form-control" name="nombre" id="name" placeholder="nombre"
-                                readonly onfocus="habilitarEdicion('name', 'labelNombre')">
-                            <p>Nombre</p>
-                            <label for="nombre" id="labelNombre">{{user.nombre}}</label>
-                        </div>
-                    </div> --}}
                     <form id="inputForm" enctype="multipart/form-data" onsubmit="return validarFormulario()">
                         <div class="row g-3">
+
                             <div class="col-md-6">
                                 <div class="">
                                     <input type="text" class="form-control" name="nombre" id="name"
-                                        value="{{user.nombre}}" readonly>
+                                        value="{{alumno.nombre}}">
                                     <label for="nombre" id="labelNombre">Nombre</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('name', 'labelNombre')">Editar</button>
@@ -74,7 +65,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="apellido" name="apellido"
-                                        value="{{user.apellido}}" readonly>
+                                        value="{{alumno.apellido}}">
                                     <label for="apellido" id="apellidoLabel">Apellido</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('apellido', 'apellidoLabel')">Editar</button>
@@ -83,8 +74,17 @@
                             <div class="col-md-6">
                                 <div>
                                     <input type="text" class="form-control" id="telefono" name="telefono"
-                                        value="{{user.telefono}}" readonly />
+                                        value="{{alumno.telefono}}" />
                                     <label for="telefono" id="telefonoLabel">Teléfono</label>
+                                    <button type="button" class="btn btn-link"
+                                        onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <input type="text" class="form-control" id="dni" name="dni"
+                                        value="{{alumno.dni}}" />
+                                    <label for="dni" id="dniLabel">dni</label>
                                     <button type="button" class="btn btn-link"
                                         onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
                                 </div>
@@ -92,40 +92,64 @@
                             <div class="col-md-6">
                                 <div class="">
                                     <input type="email" class="form-control" id="email" name="email"
-                                        value={{user.email}} readonly />
+                                        value={{alumno.email}} />
                                     <label for="email">Email</label>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div>
-                                    <input type="text" class="form-control" id="role" name="role" value={{user.role}}
-                                        readonly>
+                                    <input type="text" class="form-control" id="role" name="role" value={{alumno.role}}
+                                        {{alumno.role}}>
                                     <label for="role">Role</label>
 
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                {{!-- <div class="">
-                                    <input type="date" id="nacimiento" class="form-control" id="email" name="email"
-                                        placeholder={{nacimiento}}>
-                                    <label for="email">{{nacimiento}}</label>
-                                </div> --}}
-                                <div class="">
-                                    <input type="text" id="nacimiento" class="form-control" name="nacimiento"
-                                        value="{{nacimiento}}" placeholder={{nacimiento}} readonly />
 
-                                    <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
-                                        nacimiento</label>
-                                    <button type="button" class="btn btn-link"
-                                        onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button>
-                                </div>
+                            {{!-- <div class="">
+                                <input type="date" id="nacimiento" class="form-control" id="email" name="email"
+                                    placeholder={{nacimiento}}>
+                                <label for="email">{{nacimiento}}</label>
+                            </div> --}}
+                            <div class="col-md-6">
+                                <input type="text" id="nacimiento" class="form-control" name="nacimiento"
+                                    value="{{nacimiento}}" placeholder={{nacimiento}} />
+
+                                <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
+                                    nacimiento</label>
+                                {{!-- <button type="button" class="btn btn-link"
+                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
                             </div>
+                            <div class="col-md-6">
+                                <input type="text" id="domicilio" class="form-control" name="domicilio"
+                                    value="{{alumno.domicilio}}" placeholder={{alumno.domicilio}} />
+
+                                <label class="form-label" for="domicilio" id="domicilioLabel">Domicilio</label>
+                                {{!-- <button type="button" class="btn btn-link"
+                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="cp" class="form-control" name="cp" value="{{alumno.cp}}"
+                                    placeholder={{alumno.cp}} />
+
+                                <label class="form-label" for="cp" id="cpLabel">Código postal</label>
+                                {{!-- <button type="button" class="btn btn-link"
+                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="pais" class="form-control" name="cp" value="{{alumno.pais}}"
+                                    placeholder={{alumno.pais}} />
+
+                                <label class="form-label" for="pais" id="paisLabel">País</label>
+                                {{!-- <button type="button" class="btn btn-link"
+                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
+                            </div>
+
                             <div class="col-12 text-center">
-                                <button type="button" class="btn btn-grad rounded-pill "
-                                    onclick="enviarInputFormulario()">
+                                <button type="button" class="btn btn btn-primary " onclick="enviarInputFormulario()">
                                     Enviar
                                 </button>
+
                             </div>
                         </div>
                     </form>
@@ -141,5 +165,5 @@
 <script src="/js/habilitarEdicion.js"></script>
 <script src="/js/mostrarBoton.js"></script>
 <script src="/js/modificarPerfil.js"></script>
-<script src="/js/cambiarImagen.js"></script>
+<script src="/js/adminCambiarImagen.js"></script>
 <script src="/js/formatearFecha.js"></script>

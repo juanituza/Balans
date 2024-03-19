@@ -250,6 +250,57 @@ const adminUserView = async (req, res) => {
     user: userData,
   });
 };
+
+const adminAlumnos = async (req, res) => {
+  const { aid } = req.params;
+
+  const alumnos = await usuarioService.obtenerUsuarios();
+  const userData = req.user;
+  const alumnoBuscado = alumnos.find((alumno) => alumno._id.toString() === aid);
+  // console.log(alumnoBuscado);
+  const imgAlumno = alumnoBuscado.imagen;
+  
+
+  const comisiones = await comisionService.obtenerComision();
+  // console.log(comisiones);
+
+  // Obtener los IDs de las comisiones en las que está inscrito el alumno
+  const comisionesAlumno = alumnoBuscado.comisiones.map((comision) =>
+    comision.comision.toString()
+  );
+  
+
+  // Filtrar las comisiones para encontrar las que están en la lista de comisiones del alumno
+  const comisionesDelAlumno = comisiones.filter((comision) =>
+    comisionesAlumno.includes(comision._id.toString())
+  );
+
+  // Obtener la fecha de nacimiento de la base de datos
+  const fechaNacimientoDB = new Date(alumnoBuscado.nacimiento);
+
+  const fechaNacimientoUTC = new Date(fechaNacimientoDB);
+
+  const opcionesFormato = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "UTC",
+  };
+
+  const fechaNacimientoLocal = fechaNacimientoUTC.toLocaleDateString(
+    "es-ES",
+    opcionesFormato
+  );
+  
+  res.render("adminAlumnos", {
+    alumno: alumnoBuscado,
+    user: userData,
+    comision: comisionesDelAlumno,
+    imagen: imgAlumno,
+    nacimiento: fechaNacimientoLocal,
+  });
+};
+
 const adminConsultasView = async (req, res) => {
   const consultData = await consultaService.obtenerConsultas();
   const userData = req.user;
@@ -332,7 +383,7 @@ const comisionDetalles = async (req, res) => {
 
 const crearComisionView = async (req, res) => {
   const userData = req.user;
-  
+
   res.render("adminCrearComision", {
     user: userData,
   });
@@ -356,6 +407,7 @@ export default {
   nutricionView,
   adminView,
   adminUserView,
+  adminAlumnos,
   adminConsultasView,
   adminPilatesView,
   adminQuiromasajeView,

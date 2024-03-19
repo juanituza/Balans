@@ -126,6 +126,111 @@ aside {
   z-index: auto;
 }
 
+.image-upload {
+  display: inline-block;
+  position: relative;
+}
+
+.image-label {
+  cursor: pointer;
+  display: block;
+  width: 50px;
+  /* Ancho de la vista previa */
+  height: 50px;
+  /* Alto de la vista previa */
+  background-color: #3498db;
+  /* Color de fondo del icono */
+  border-radius: 50%;
+  /* Para crear un círculo si es necesario */
+  text-align: center;
+  line-height: 50px;
+  /* Centra verticalmente el contenido */
+}
+
+.updateImage {
+  color: #fff;
+  font-size: 24px;
+  margin-top: 10px;
+  /* viewBox:"0 0 50 50"; */
+  /* Color del icono */
+}
+
+.file-input {
+  display: none;
+  /* Oculta el campo de entrada de archivo real */
+}
+
+.image-label {
+  cursor: pointer;
+  display: block;
+  width: 100px;
+  /* Ancho de la vista previa */
+  height: 100px;
+  /* Alto de la vista previa */
+  background-color: #3498db;
+  /* Color de fondo del contenedor */
+  border-radius: 50%;
+  /* Para crear un círculo si es necesario */
+  text-align: center;
+  line-height: 100px;
+  /* Centra verticalmente el contenido */
+  position: relative;
+  /* Añade esta propiedad para posicionar los elementos internos */
+}
+
+.updateImage {
+  color: #fff;
+  font-size: 50px;
+  position: absolute;
+  top: 10;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+}
+
+#imagePreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+#imagePreview {
+  display: none;
+  /* Oculta la imagen de previsualización inicialmente */
+}
+
+
+.perfil {
+  display: flex;
+  align-items: center;
+}
+
+.foto-de-perfil {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  /* Hace que la imagen sea circular */
+  overflow: hidden;
+  /* Oculta las partes de la imagen fuera del círculo */
+}
+
+.foto-de-perfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ajusta la imagen para que llene el círculo */
+}
+
+.informacion-de-perfil {
+  margin-left: 20px;
+}
+
 /*
 * Content
 ******************************************************************************/

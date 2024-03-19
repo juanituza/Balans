@@ -88,6 +88,12 @@ export default class ViewsRouter extends BaseRouter {
       viewController.adminUserView
     );
     this.get(
+      "/admin/alumnos/:aid",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminAlumnos
+    );
+    this.get(
       "/admin/consultas",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
@@ -132,7 +138,7 @@ export default class ViewsRouter extends BaseRouter {
     this.get("/login", ["NO_AUTH"], (req, res) => {
       res.render("login");
     });
-    
+
     // this.get("/nosotros", ["USER"], (req, res) => {
     //   res.render("nosotros");
     // });

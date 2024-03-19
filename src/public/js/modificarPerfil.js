@@ -24,7 +24,7 @@ async function enviarInputFormulario() {
         if (result.isConfirmed) {
           Swal.fire(
             "¡Cambio exitoso!",
-            "Tu información se editó con éxito! Debe volver a loguearse para ver los cambios",
+            "Su información se editó con éxito! Debe volver a loguearse para ver los cambios",
             "success"
           ).then(() => {
             window.location.replace("/perfil");

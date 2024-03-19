@@ -63,13 +63,26 @@ const agregarAlumno = async (req, res) => {
       });
     }
 
-    // Agregar la referencia de la comisión en el usuario
-    alumno.comision = comision._id;
-   
+    // Verificar si la comisión ya está presente en el array de comisiones del alumno
+    const comisionExistente = alumno.comisiones.find(
+      (com) => com.comision.toString() === comision._id.toString()
+    );
 
-    await usuarioService.actualizarUsuarioPorId(uid, {
-      comision: comision._id,
-    });
+    if (!comisionExistente) {
+      // Si la comisión no está presente, agregarla al array de comisiones del alumno
+      alumno.comisiones.push({ comision: comision._id });
+
+      // Actualizar el usuario con las comisiones actualizadas
+      await usuarioService.actualizarUsuarioPorId(uid, {
+        comisiones: alumno.comisiones,
+      });
+
+      console.log("Comisión agregada exitosamente.");
+    } else {
+      console.log(
+        "La comisión ya está presente en el array de comisiones del alumno."
+      );
+    }
 
     if (alumnoExistente !== undefined) {
       return ErrorService.createError({
@@ -101,13 +114,15 @@ const agregarAlumno = async (req, res) => {
 };
 const eliminarAlumno = async (req, res) => {
   try {
-    const { aid, cid } = req.params;   
+    const { aid, cid } = req.params;
+    const alumnoTotal = await usuarioService.obtenerUsuarioPorId(aid);
     //obtengo la comisión
     const comision = await comisionService.obtenerComisionPor(cid);
     //obetengo el alumno a eliminar
     const alumno = comision.alumnos.find(
       (a) => a.alumno._id.toString() === aid
-    );  
+    );c
+    
     //si el alumno no existe
     if (!alumno) {
       return res.sendNotFound("Alumno no existe en la comisión");
@@ -116,8 +131,19 @@ const eliminarAlumno = async (req, res) => {
     const alumnoIndex = comision.alumnos.findIndex(
       (p) => p.alumno._id.toString() === aid
     );
-    //Elimino el alumno
+    
+    // Buscar el índice de la comisión que deseas eliminar en el array de comisiones del alumno
+    const indiceComisionEliminar = alumnoTotal.comisiones.findIndex(
+      (comision) => comision._id.toString() === cid
+    );
+    console.log(indiceComisionEliminar);
+    //Elimino el alumno de la comision
     comision.alumnos.splice(alumnoIndex, 1);
+    //Elimino la comision del alumno
+    alumnoTotal.comisiones.splice(indiceComisionEliminar,1);
+    // Guardo el alumno
+    await usuarioService.actualizarUsuario(aid, {
+        comisiones: alumnoTotal.comisiones})
     //Guardo la comision editada
     await comisionService.actualizarComision(cid, comision);
     //Creo el DTO
