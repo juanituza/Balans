@@ -259,7 +259,6 @@ const adminAlumnos = async (req, res) => {
   const alumnoBuscado = alumnos.find((alumno) => alumno._id.toString() === aid);
   // console.log(alumnoBuscado);
   const imgAlumno = alumnoBuscado.imagen;
-  
 
   const comisiones = await comisionService.obtenerComision();
   // console.log(comisiones);
@@ -268,36 +267,41 @@ const adminAlumnos = async (req, res) => {
   const comisionesAlumno = alumnoBuscado.comisiones.map((comision) =>
     comision.comision.toString()
   );
-  
 
   // Filtrar las comisiones para encontrar las que están en la lista de comisiones del alumno
   const comisionesDelAlumno = comisiones.filter((comision) =>
     comisionesAlumno.includes(comision._id.toString())
   );
 
-  // Obtener la fecha de nacimiento de la base de datos
+  // // Obtener la fecha de nacimiento de la base de datos
+  // const fechaNacimientoDB = new Date(alumnoBuscado.nacimiento);
+
+  // const fechaNacimientoUTC = new Date(fechaNacimientoDB);
+
+  // const opcionesFormato = {
+  //   day: "2-digit",
+  //   month: "2-digit",
+  //   year: "numeric",
+  //   timeZone: "UTC",
+  // };
+
+  // const fechaNacimientoLocal = fechaNacimientoUTC.toLocaleDateString(
+  //   "es-ES",
+  //   opcionesFormato
+  // );
+
+  // Obtén la fecha de nacimiento del alumno
   const fechaNacimientoDB = new Date(alumnoBuscado.nacimiento);
 
-  const fechaNacimientoUTC = new Date(fechaNacimientoDB);
+  // Convierte la fecha al formato ISO (YYYY-MM-DD)
+  const fechaNacimientoISO = fechaNacimientoDB.toISOString().split("T")[0]; // Obtiene la parte de la fecha (YYYY-MM-DD)
 
-  const opcionesFormato = {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    timeZone: "UTC",
-  };
-
-  const fechaNacimientoLocal = fechaNacimientoUTC.toLocaleDateString(
-    "es-ES",
-    opcionesFormato
-  );
-  
   res.render("adminAlumnos", {
     alumno: alumnoBuscado,
     user: userData,
     comision: comisionesDelAlumno,
     imagen: imgAlumno,
-    nacimiento: fechaNacimientoLocal,
+    nacimiento: fechaNacimientoISO,
   });
 };
 

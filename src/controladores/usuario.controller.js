@@ -65,17 +65,17 @@ const editarImagen = async (req, res) => {
 };
 const adminEditarImagen = async (req, res) => {
   // obtengo el id del usuario
-  const userId  = req.params.uid;
+  const userId = req.params.uid;
   // obtengo la ruta de la imagen
   const imagePath = req.files.map((file) => `/uploads/perfil/${file.filename}`);
-  
+
   try {
     // actualizo el usuario
     const userUpdate = await usuarioService.actualizarUsuario(
       { _id: userId },
       { imagen: imagePath }
     );
-    
+
     res.sendSuccessWithPayload(userUpdate);
   } catch (error) {
     LoggerService.error;
@@ -151,64 +151,103 @@ const editarUsuario = async (req, res) => {
     res.sendInternalError("Internal error");
   }
 };
+// const adminEditarUsuario = async (req, res) => {
+//   try {
+//     const userId = req.params.uid;
+
+//     const userUpdate = req.body;
+//     const usuarioActual = await usuarioService.obtenerUsuarioPorId(userId);
+
+//     // Verifica si el campo "nombre" está presente y no es igual al valor actual
+//     if (userUpdate.nombre && userUpdate.nombre !== usuarioActual.nombre) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { nombre: userUpdate.nombre }
+//       );
+//     }
+//     if (userUpdate.apellido && userUpdate.apellido !== usuarioActual.apellido) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { apellido: userUpdate.apellido }
+//       );
+//     }
+//     if (userUpdate.apellido && userUpdate.apellido !== usuarioActual.apellido) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { apellido: userUpdate.apellido }
+//       );
+//     }
+//     if (userUpdate.telefono && userUpdate.telefono !== usuarioActual.telefono) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { telefono: userUpdate.telefono }
+//       );
+//     }
+//     if (userUpdate.email && userUpdate.email !== usuarioActual.email) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { email: userUpdate.email }
+//       );
+//     }
+//     if (userUpdate.role && userUpdate.role !== usuarioActual.role) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { role: userUpdate.role }
+//       );
+//     }
+//     if (
+//       userUpdate.nacimiento &&
+//       userUpdate.nacimiento !== usuarioActual.nacimiento
+//     ) {
+//       // Actualiza el nombre en la base de datos
+//       await usuarioService.actualizarUsuario(
+//         { _id: userId },
+//         { nacimiento: userUpdate.nacimiento }
+//       );
+//     }
+//     // Vuelve a obtener el usuario actualizado después de las actualizaciones
+//     const updatedUser = await usuarioService.obtenerUsuarioPorId(userId);
+
+//     res.sendSuccessWithPayload(updatedUser);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendInternalError("Internal error");
+//   }
+// };
+
 const adminEditarUsuario = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.params.uid;
     const userUpdate = req.body;
     const usuarioActual = await usuarioService.obtenerUsuarioPorId(userId);
+    const actualizaciones = {};
 
-    // Verifica si el campo "nombre" está presente y no es igual al valor actual
-    if (userUpdate.nombre && userUpdate.nombre !== usuarioActual.nombre) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { nombre: userUpdate.nombre }
-      );
-    }
-    if (userUpdate.apellido && userUpdate.apellido !== usuarioActual.apellido) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { apellido: userUpdate.apellido }
-      );
-    }
-    if (userUpdate.apellido && userUpdate.apellido !== usuarioActual.apellido) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { apellido: userUpdate.apellido }
-      );
-    }
-    if (userUpdate.telefono && userUpdate.telefono !== usuarioActual.telefono) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { telefono: userUpdate.telefono }
-      );
-    }
-    if (userUpdate.email && userUpdate.email !== usuarioActual.email) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { email: userUpdate.email }
-      );
-    }
-    if (userUpdate.role && userUpdate.role !== usuarioActual.role) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { role: userUpdate.role }
-      );
-    }
-    if (
-      userUpdate.nacimiento &&
-      userUpdate.nacimiento !== usuarioActual.nacimiento
-    ) {
-      // Actualiza el nombre en la base de datos
-      await usuarioService.actualizarUsuario(
-        { _id: userId },
-        { nacimiento: userUpdate.nacimiento }
-      );
+    // Verificar si userUpdate es un objeto
+    if (typeof userUpdate === "object" && userUpdate !== null) {
+      // Iterar sobre las propiedades del objeto userUpdate
+      for (let key in userUpdate) {
+        // Verificar si la propiedad existe en userUpdate y es diferente de null o undefined
+        if (
+          Object.prototype.hasOwnProperty.call(userUpdate, key) && // Usar Object.prototype.hasOwnProperty.call para verificar la propiedad
+          userUpdate[key] !== null &&
+          userUpdate[key] !== undefined &&
+          userUpdate[key] !== usuarioActual[key]
+        ) {
+          // Agregar la actualización al objeto actualizaciones
+          actualizaciones[key] = userUpdate[key];
+        }
+      }
+    }    
+    // Verificar si hay actualizaciones para realizar
+    if (Object.keys(actualizaciones).length > 0) {
+      // Realizar las actualizaciones en la base de datos
+      await usuarioService.actualizarUsuario({ _id: userId }, actualizaciones);
     }
     // Vuelve a obtener el usuario actualizado después de las actualizaciones
     const updatedUser = await usuarioService.obtenerUsuarioPorId(userId);
@@ -219,6 +258,9 @@ const adminEditarUsuario = async (req, res) => {
     res.sendInternalError("Internal error");
   }
 };
+
+
+
 
 const eliminarUsuario = async (req, res) => {
   try {

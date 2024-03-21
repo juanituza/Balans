@@ -112,8 +112,8 @@
                                 <label for="email">{{nacimiento}}</label>
                             </div> --}}
                             <div class="col-md-6">
-                                <input type="text" id="nacimiento" class="form-control" name="nacimiento"
-                                    value="{{nacimiento}}" placeholder={{nacimiento}} />
+                                <input type="date" id="nacimiento" class="form-control" name="nacimiento"
+                                    value="{{nacimiento}}" />
 
                                 <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
                                     nacimiento</label>
@@ -137,7 +137,7 @@
                                     onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
                             </div>
                             <div class="col-md-6">
-                                <input type="text" id="pais" class="form-control" name="cp" value="{{alumno.pais}}"
+                                <input type="text" id="pais" class="form-control" name="pais" value="{{alumno.pais}}"
                                     placeholder={{alumno.pais}} />
 
                                 <label class="form-label" for="pais" id="paisLabel">País</label>
@@ -164,6 +164,6 @@
 <script src="/js/imagePreview.js"></script>
 <script src="/js/habilitarEdicion.js"></script>
 <script src="/js/mostrarBoton.js"></script>
-<script src="/js/modificarPerfil.js"></script>
+<script src="/js/adminModificarPerfil.js"></script>
 <script src="/js/adminCambiarImagen.js"></script>
 <script src="/js/formatearFecha.js"></script>

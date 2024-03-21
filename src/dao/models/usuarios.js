@@ -29,15 +29,14 @@ const usuarioSchema = new mongoose.Schema(
       default: "alumno",
       enum: ["alumno", "profesor", "admin"],
     },
-    comisiones:[
+    comisiones: [
       {
-        comision:{
+        comision: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Comision",
-
-        } 
+        },
       },
-    ] ,
+    ],
 
     curso: {
       type: String,
@@ -91,15 +90,15 @@ usuarioSchema.virtual("CursosCreate", {
 });
 
 // Define un setter para "nacimiento" para convertir la fecha al formato deseado
-usuarioSchema.path("nacimiento").set(function(value) {
-  // Aquí puedes realizar la conversión de la fecha, asumiendo que "value" está en formato "DD-MM-AAAA"
-  const parts = value.split("-");
-  if (parts.length === 3) {
-    const [day, month, year] = parts;
-    return `${day}-${month}-${year}`;
-  }
-  return value;
-});
+// usuarioSchema.path("nacimiento").set(function(value) {
+//   // Aquí puedes realizar la conversión de la fecha, asumiendo que "value" está en formato "DD-MM-AAAA"
+//   const parts = value.split("-");
+//   if (parts.length === 3) {
+//     const [day, month, year] = parts;
+//     return `${day}-${month}-${year}`;
+//   }
+//   return value;
+// });
 
 const usuarioModel = mongoose.model(collection, usuarioSchema);
 
