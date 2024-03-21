@@ -73,7 +73,13 @@ export default class ViewsRouter extends BaseRouter {
       "/descargarDocumento/:cid/:documentId",
       ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
-      download
+      download.downloadFile
+    );
+    this.get(
+      "/descargarDocumentoParticular/public/imagenes/:fileName",
+      ["ALUMNO", "ADMIN", "PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      download.downloadSpecificFile
     );
     this.get(
       "/admin",

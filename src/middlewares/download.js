@@ -12,10 +12,10 @@ const downloadFile = async (req, res) => {
   try {
     const { cid, documentId } = req.params;
     // const comisionId = req.params.cid;
-  
+
     // console.log(documentId);
     const comision = await comisionService.obtenerComisionPor(cid);
-   
+
     if (!comision) {
       throw new Error("Comisión no encontrada");
     }
@@ -23,7 +23,7 @@ const downloadFile = async (req, res) => {
     const document = comision.documents.find(
       (doc) => doc._id.toString() === documentId
     );
-    
+
     if (!document) {
       throw new Error("Documento no encontrado en la comisión");
     }
@@ -50,5 +50,24 @@ const downloadFile = async (req, res) => {
     res.status(500).send({ error: "Error al descargar el archivo" });
   }
 };
+// export default ;
 
-export default downloadFile;
+// Método para descargar un archivo específico
+const downloadSpecificFile = async (req, res) => {
+  try {
+    const fileName = "adhesionInstitutoBalans.pdf";
+    // Nombre del archivo específico
+    const filePath = path.join(__dirname, "public", "imagenes", fileName);
+  
+    const fileData = await fsPromises.readFile(filePath);
+  
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+    res.setHeader("Content-Type", "application/pdf"); // Establecer el tipo de contenido como PDF
+    res.send(fileData);
+  } catch (error) {
+    console.error(`Error al descargar el archivo específico: ${error.message}`);
+    res.status(500).send({ error: "Error al descargar el archivo específico" });
+  }
+};
+
+export default { downloadSpecificFile, downloadFile };

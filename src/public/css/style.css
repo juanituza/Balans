@@ -7,7 +7,14 @@
     --loginPrimary: #0751c0;
 }
 
-
+.imagenQR {
+    /* width: 400px;
+    height: 300px; */
+    scale: 0.25;
+    margin-left: -491px;
+    margin-top: -232px;
+    margin-bottom: -202px;
+}
 /*** Spinner ***/
 #spinner {
     opacity: 0;
