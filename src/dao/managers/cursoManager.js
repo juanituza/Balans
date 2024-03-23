@@ -10,11 +10,18 @@ export default class CursosManager {
   obtenerCursoPor = async (id) => {
     return await cursoModel.findOne({ _id: id }).lean();
   };
-  crearCurso = async (comision) => {
-    return await cursoModel.create(comision);
+  crearCurso = async (curso) => {
+    return await cursoModel.create(curso);
   };
-  actualizarCurso = async (cid, comision) => {
-    return await cursoModel.updateOne({ _id: cid }, { $set: comision });
+  actualizarCurso = async (cid, curso) => {
+    return await cursoModel.updateOne({ _id: cid }, { $set: curso });
+  };
+  actualizarCursoPorId = async (cursoId, data) => {
+    return await cursoModel.findByIdAndUpdate(
+    cursoId,
+      { $set: data },
+      { new: true }
+    );
   };
 
   eliminarCurso = async (id) => {

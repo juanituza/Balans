@@ -44,7 +44,7 @@ export default class ViewsRouter extends BaseRouter {
       viewController.perfilView
     );
     this.get(
-      "/cursoPanel",
+      "/comisionPanel",
       ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
       // download("documentos", 5),
@@ -104,6 +104,18 @@ export default class ViewsRouter extends BaseRouter {
       ["ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.adminConsultasView
+    );
+    this.get(
+      "/admin/cursos",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.adminCursosView
+    );
+    this.get(
+      "/admin/detalleCurso/:id",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.detalleCurso
     );
     this.get(
       "/admin/pilates",

@@ -14,6 +14,8 @@
     margin-left: -491px;
     margin-top: -232px;
     margin-bottom: -202px;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(99, 20, 173, 0.5);
 }
 /*** Spinner ***/
 #spinner {

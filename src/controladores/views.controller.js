@@ -3,6 +3,7 @@ import {
   usuarioService,
   consultaService,
   comisionService,
+  cursoService,
 } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
 import { promises as fsPromises } from "fs";
@@ -66,18 +67,27 @@ const pilatesView = async (req, res) => {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Pilates");
       res.render("pilates", {
         user: userData,
         imagen: usuario.imagen,
+        pilates: curso,
       });
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
-
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Pilates");
       res.render("pilates", {
         user: userData,
+        pilates: curso,
       });
     } else {
-      res.render("pilates");
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Pilates");
+      res.render("pilates", {
+        pilates: curso,
+      });
     }
   } catch (error) {
     res.sendInternalError({ status: "error", error });
@@ -89,18 +99,35 @@ const quiromasajeView = async (req, res) => {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
-      res.render("quiromasaje", {
-        user: userData,
-        imagen: usuario.imagen,
-      });
-    } else if (req.user && req.user.nombre === "ADMIN") {
-      const userData = req.user;
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
 
       res.render("quiromasaje", {
         user: userData,
+        imagen: usuario.imagen,
+        quiromasaje: curso,
+        escapeHtml: false,
+      });
+    } else if (req.user && req.user.nombre === "ADMIN") {
+      const userData = req.user;
+      const cursos = await cursoService.obtenerCursos();
+
+      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
+
+      res.render("quiromasaje", {
+        user: userData,
+        // imagen : userData.imagen,
+        quiromasaje: curso,
+        escapeHtml: false,
       });
     } else {
-      res.render("quiromasaje");
+      const cursos = await cursoService.obtenerCursos();
+
+      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
+      res.render("quiromasaje", {
+        quiromasaje: curso,
+        escapeHtml: false,
+      });
     }
   } catch (error) {
     res.sendInternalError({ status: "error", error });
@@ -112,18 +139,29 @@ const nutricionView = async (req, res) => {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Nutrición");
       res.render("nutricion", {
         user: userData,
         imagen: usuario.imagen,
+        nutricion: curso,
       });
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
+      const cursos = await cursoService.obtenerCursos();
+      
+      const curso = cursos.filter((item) => item.nombre === "Nutrición");
 
       res.render("nutricion", {
         user: userData,
+        nutricion: curso,
       });
     } else {
-      res.render("nutricion");
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Nutrición");
+      res.render("nutricion", {
+        nutricion: curso,
+      });
     }
   } catch (error) {
     res.sendInternalError({ status: "error", error });
@@ -186,22 +224,11 @@ const cursosAlumnos = async (req, res) => {
       );
     });
 
-    res.render("cursoPanel", {
+    res.render("comisionPanel", {
       comision: comisionesConAlumno,
       user: alumnoBuscado,
       imagen: usuario.imagen,
-      // numeroComision: numeroComision,
-      // alumno: alumnosComision,
     });
-
-    // Ahora, puedes imprimir la información de las comisiones encontradas
-    // comisionesConAlumno.forEach(async (comision) => {
-    //   const numeroComision = comision.numero;
-    //   const cursoComision = comision.curso;
-    //   const alumnosComision = comision.alumnos;
-
-    //   // Renderiza la vista sin esperar las descargas
-    // });
   } catch (error) {
     res.status(500).send({ status: "error", error });
   }
@@ -230,9 +257,42 @@ const cursoVista = async (req, res) => {
   }
 };
 
+const adminCursosView = async (req, res) => {
+  try {
+    const userData = req.user;
+    const allCursos = await cursoService.obtenerCursos();
+
+    res.render("adminCursos", { cursos: allCursos, user: userData });
+  } catch (error) {
+    res.sendInternalError("Internal error");
+  }
+};
+
+const detalleCurso = async (req, res) => {
+  try {
+    const numeroDeCurso = req.params.id;
+    const userData = req.user;
+    const cursoPart = await cursoService.obtenerCursoPor(numeroDeCurso);
+
+    const usuarios = await usuarioService.obtenerUsuarios();
+    const resultados = usuarios.filter(
+      (item) => item.curso === cursoPart.nombre
+    );
+
+    res.render("adminDetalleCurso", {
+      curso: cursoPart,
+      Usuarios: resultados,
+      user: userData,
+    });
+  } catch (error) {
+    res.sendInternalError("Internal error");
+  }
+};
+
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
-  console.log(usuarios);
+  const cursos = await cursoService.obtenerCursos();
+  console.log(cursos);
   const userData = req.user;
 
   res.render("layouts/admin", { Usuarios: usuarios, imagen: userData.imagen });
@@ -361,6 +421,7 @@ const adminComisionesView = async (req, res) => {
 };
 const comisionDetalles = async (req, res) => {
   const numeroComision = req.params.id;
+  console.log(numeroComision);
   const usuarios = await usuarioService.obtenerUsuarios();
   const userData = req.user;
 
@@ -409,6 +470,8 @@ export default {
   pilatesView,
   quiromasajeView,
   nutricionView,
+  adminCursosView,
+  detalleCurso,
   adminView,
   adminUserView,
   adminAlumnos,

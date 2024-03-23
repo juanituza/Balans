@@ -3,8 +3,8 @@ export default class CursoRepositorio {
     this.dao = dao;
   }
 
-  obtenerCurso = () => {
-    return this.dao.obtenerCurso();
+  obtenerCursos = () => {
+    return this.dao.obtenerCursos();
   };
   obtenerCursoPorId = (id) => {
     return this.dao.obtenerCursoPorId(id);
@@ -12,12 +12,15 @@ export default class CursoRepositorio {
   obtenerCursoPor = (params) => {
     return this.dao.obtenerCursoPor(params);
   };
-  crearCurso = (user) => {
-    return this.dao.crearCurso(user);
+  crearCurso = (curso) => {
+    return this.dao.crearCurso(curso);
   };
   actualizarCurso = (id, consulta) => {
     return this.dao.actualizarCurso(id, consulta);
   };
+  actualizarCursoPorId = (id,data) => {
+    return this.dao.actualizarCursoPorId(id,data);
+  }
   eliminarCurso = (id) => {
     return this.dao.eliminarCurso(id);
   };

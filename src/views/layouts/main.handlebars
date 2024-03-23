@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -54,7 +56,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Geoname Incluye jQuery desde una CDN -->
   {{!--
   <script type="module" src="geonames.js"></script> --}}
@@ -127,11 +129,11 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
-              <li><a class="dropdown-item" href="/cursoPanel">Cursos</a></li>
+              <li><a class="dropdown-item" href="/comisionPanel">Cursos</a></li>
               <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
               {{#ifRoleAdmin user.role}}
               <li>
-                
+
                 <a class="dropdown-item" href="/admin/user">Panel de administrador</a>
               </li>
               {{/ifRoleAdmin}}
@@ -149,10 +151,10 @@
         </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
-          <li><a class="dropdown-item" href="/cursoPanel">Cursos</a></li>
+          <li><a class="dropdown-item" href="/comisionPanel">Cursos</a></li>
           <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+          {{!-- <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil"> --}}
           {{#ifRoleAdmin user.role}}
-          <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
           <li class="dropdown-item" href="/admin">Panel de administrador</p>
             {{/ifRoleAdmin}}
 
@@ -239,7 +241,7 @@
   <!-- Template Javascript -->
   <script src="/js/main.js"></script>
   <script src="/js/cerrarSesion.js"></script>
- 
+
 </body>
 
 </html>

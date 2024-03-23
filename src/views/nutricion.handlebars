@@ -1,7 +1,11 @@
 <div class="container py-5 px-lg-5">
     <div class="row g-5 align-items-center">
         <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-4">ASESORAMIENTO EN NUTRICIÓN Y GIMNASIA</h1>
+
+            {{#each nutricion}}
+            {{{ this.texto }}}
+            {{/each}}
+            {{!-- <h1 class="mb-4">ASESORAMIENTO EN NUTRICIÓN Y GIMNASIA</h1>
             <h5 class="text-primary-gradient fw-medium">La formación comprende:</h5>
 
             <ul>
@@ -72,7 +76,7 @@
             <p>
                 Instituto Balans otorga el material teórico, en formato digital, y los materiales de
                 aprendizaje para todas sus formaciones prácticas.
-            </p>
+            </p> --}}
         </div>
         <div class="col-lg-6">
             <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/nutricion.jpg">

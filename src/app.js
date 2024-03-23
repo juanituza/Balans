@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { join } from "path";
 import handlebars from "express-handlebars";
+import path from "path";
 
 import __dirname from "./utils.js";
 import config from "./config.js";
@@ -16,8 +17,9 @@ import UsuarioRouter from "./rutas/usuario.router.js";
 import ConsultaRouter from "./rutas/consulta.Router.js";
 import SessionRouter from "./rutas/session.Router.js";
 import LoggerService from "./dao/managers/LoggerManager.js";
-import { createProxyMiddleware } from "http-proxy-middleware";
 import ComisionRouter from "./rutas/comision.Router.js";
+import CursoRouter from "./rutas/curso.Router.js";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 
@@ -41,6 +43,8 @@ const hbs = exphbs.create({
   partialsDir: `${__dirname}/views/partials`, // Ruta absoluta
   extname: "handlebars",
 });
+// Configura la ruta estática para servir los archivos de TinyMCE
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // Asigna el layout principal para las rutas que no sean de administrador
 app.use((req, res, next) => {
@@ -72,12 +76,14 @@ const consultaRouter = new ConsultaRouter();
 const viewsRouter = new ViewsRouter();
 const sessionRouter = new SessionRouter();
 const comisionRouter = new ComisionRouter();
+const cursoRouter = new CursoRouter();
 
 app.use("/", viewsRouter.getRouter());
 app.use("/api/usuarios", usuarioRouter.getRouter());
 app.use("/api/consulta", consultaRouter.getRouter());
 app.use("/api/session", sessionRouter.getRouter());
 app.use("/api/comision", comisionRouter.getRouter());
+app.use("/api/curso", cursoRouter.getRouter());
 
 // Middleware para manejar errores
 app.use((err, req, res, next) => {
