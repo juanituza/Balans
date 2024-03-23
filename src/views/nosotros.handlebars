@@ -4,8 +4,11 @@
     <div class="container py-5 px-lg-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="text-primary-gradient fw-medium">ABIERTA LA INSCRIPCIÓN 2024</h5>
-                <h1 class="mb-4">INICIO MARZO 2024!!</h1>
+                {{!-- <h5 class="text-primary-gradient fw-medium">ABIERTA LA INSCRIPCIÓN 2024</h5> --}}
+                {{#each inicio}}
+                {{{ this.texto }}}
+                {{/each}}
+                {{!-- <h1 class="mb-4">INICIO MARZO 2024!!</h1>
                 <ul>
                     <li>Valor de la cuota inicial $20000 (sujeto a modificación)</li>
                     <li>Podes abonar en efectivo o transferencia</li>
@@ -14,7 +17,7 @@
                     <li>Duración 20 meses dividido en 2 ciclos de 10 meses</li>
                     <li>Cada formación se desarrolla de manera práctica y teórica, no necesitas
                         conocimientos previos.</li>
-                </ul>
+                </ul> --}}
                 <h5>Requisitos:</h5>
                 <ul>
                     <li>Ser mayor de 17 años</li>
@@ -27,8 +30,8 @@
                     <li>Instituto Balans otorga el material teórico, en formato digital, y los materiales de
                         aprendizaje para todas sus formaciones prácticas.</li>
                     <li>Titulos avalados por la <a
-                            href="/descargarDocumentoParticular/public/imagenes/adhesionInstitutoBalans.pdf"
-                            download> Cámara
+                            href="/descargarDocumentoParticular/public/imagenes/adhesionInstitutoBalans.pdf" download></a>
+                            Cámara
                             Argentina para la formación profesional y capacitación laboral</a></li>
 
 

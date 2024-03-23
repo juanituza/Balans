@@ -10,7 +10,7 @@ import MongoSingleton from "./mongoSingleton.js";
 import initializePassportStrategies from "../config/passport.config.js";
 
 import exphbs from "express-handlebars";
-import { ifRoleAdmin } from "./middlewares/handlebars-helpers.js";
+import { ifRoleAdmin, ifRoleIsUser } from "./middlewares/handlebars-helpers.js";
 
 import ViewsRouter from "./rutas/view.router.js";
 import UsuarioRouter from "./rutas/usuario.router.js";
@@ -37,6 +37,7 @@ initializePassportStrategies();
 const hbs = exphbs.create({
   helpers: {
     ifRoleAdmin,
+    ifRoleIsUser,
   },
   layoutsDir: `${__dirname}/views/layouts`, // Ruta absoluta
   defaultLayout: "main",
@@ -44,7 +45,10 @@ const hbs = exphbs.create({
   extname: "handlebars",
 });
 // Configura la ruta estática para servir los archivos de TinyMCE
-app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
 
 // Asigna el layout principal para las rutas que no sean de administrador
 app.use((req, res, next) => {
@@ -98,8 +102,8 @@ app.use((err, req, res, next) => {
 });
 
 // Ruta de ejemplo que lanza un error "Unauthorized"
-    app.get("/ruta-protegida", (req, res, next) => {
-      const error = new Error("Unauthorized");
-      error.status = 401;
-      next(error);
-    });
+app.get("/ruta-protegida", (req, res, next) => {
+  const error = new Error("Unauthorized");
+  error.status = 401;
+  next(error);
+});

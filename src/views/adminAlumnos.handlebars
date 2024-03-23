@@ -64,8 +64,7 @@
                                     <input type="text" class="form-control" name="nombre" id="name"
                                         value="{{alumno.nombre}}">
                                     <label for="nombre" id="labelNombre">Nombre</label>
-                                    <button type="button" class="btn btn-link"
-                                        onclick="habilitarEdicion('name', 'labelNombre')">Editar</button>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -73,8 +72,7 @@
                                     <input type="text" class="form-control" id="apellido" name="apellido"
                                         value="{{alumno.apellido}}">
                                     <label for="apellido" id="apellidoLabel">Apellido</label>
-                                    <button type="button" class="btn btn-link"
-                                        onclick="habilitarEdicion('apellido', 'apellidoLabel')">Editar</button>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -82,8 +80,7 @@
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                         value="{{alumno.telefono}}" />
                                     <label for="telefono" id="telefonoLabel">Teléfono</label>
-                                    <button type="button" class="btn btn-link"
-                                        onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -91,8 +88,6 @@
                                     <input type="text" class="form-control" id="dni" name="dni"
                                         value="{{alumno.dni}}" />
                                     <label for="dni" id="dniLabel">dni</label>
-                                    <button type="button" class="btn btn-link"
-                                        onclick="habilitarEdicion('telefono', 'telefonoLabel')">Editar</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -112,43 +107,47 @@
                                 </div>
                             </div>
 
-                            {{!-- <div class="">
-                                <input type="date" id="nacimiento" class="form-control" id="email" name="email"
-                                    placeholder={{nacimiento}}>
-                                <label for="email">{{nacimiento}}</label>
-                            </div> --}}
+
                             <div class="col-md-6">
                                 <input type="date" id="nacimiento" class="form-control" name="nacimiento"
                                     value="{{nacimiento}}" />
 
                                 <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
                                     nacimiento</label>
-                                {{!-- <button type="button" class="btn btn-link"
-                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
+
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <select name="pais" class="form-control custom-select" id="countrySelect"
+                                    value="{{alumno.pais}}">
+                                    <option value="{{alumno.pais}}">{{alumno.pais}}</option>
+                                    <!-- Opciones de países se cargarán aquí -->
+                                </select>
+                                <label for="countrySelect"> <i class="fa-solid fa-earth-americas"></i> Seleccionar
+                                    el
+                                    país</label>
+                            </div>
+                            <div class="col-md-6 mb-4">
+
+                                <select name="provincia" class="form-control custom-select"
+                                    id="item-details-stateValue">
+                                    <option value="{{alumno.provincia}}">{{alumno.provincia}}</option>
+                                </select>
+                                <label for="stateSelect"><i class="fa-solid fa-location-dot"></i> Seleccionar la
+                                    provincia</label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" id="domicilio" class="form-control" name="domicilio"
                                     value="{{alumno.domicilio}}" placeholder={{alumno.domicilio}} />
 
                                 <label class="form-label" for="domicilio" id="domicilioLabel">Domicilio</label>
-                                {{!-- <button type="button" class="btn btn-link"
-                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
+
                             </div>
                             <div class="col-md-6">
                                 <input type="text" id="cp" class="form-control" name="cp" value="{{alumno.cp}}"
                                     placeholder={{alumno.cp}} />
 
                                 <label class="form-label" for="cp" id="cpLabel">Código postal</label>
-                                {{!-- <button type="button" class="btn btn-link"
-                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" id="pais" class="form-control" name="pais" value="{{alumno.pais}}"
-                                    placeholder={{alumno.pais}} />
 
-                                <label class="form-label" for="pais" id="paisLabel">País</label>
-                                {{!-- <button type="button" class="btn btn-link"
-                                    onclick="habilitarEdicion('nacimiento', 'nacimientoLabel')">Editar</button> --}}
                             </div>
 
                             <div class="col-12 text-center">
@@ -173,3 +172,4 @@
 <script src="/js/adminModificarPerfil.js"></script>
 <script src="/js/adminCambiarImagen.js"></script>
 <script src="/js/formatearFecha.js"></script>
+<script src="/js/geonames.js"></script>

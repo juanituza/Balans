@@ -128,21 +128,25 @@
               {{user.apellido}}
             </a>
             <ul class="dropdown-menu">
+              {{#ifRoleIsUser user.role}}
               <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+
               <li><a class="dropdown-item" href="/comisionPanel">Cursos</a></li>
-              <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+              {{/ifRoleIsUser}}
               {{#ifRoleAdmin user.role}}
               <li>
 
                 <a class="dropdown-item" href="/admin/user">Panel de administrador</a>
               </li>
               {{/ifRoleAdmin}}
+              <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
 
             </ul>
           </li>
         </ul>
         {{/unless}}
         {{#if imagen}}
+
         <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
         <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
           {{!-- <i class="fa-solid fa-user"></i> --}}
@@ -150,13 +154,15 @@
           {{user.apellido}}
         </a>
         <ul class="dropdown-menu">
+          {{#ifRoleIsUser user.role}}
           <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
           <li><a class="dropdown-item" href="/comisionPanel">Cursos</a></li>
-          <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-          {{!-- <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil"> --}}
+          {{/ifRoleIsUser}}
           {{#ifRoleAdmin user.role}}
+          <img class="foto-de-perfil-button" src="{{imagen}}" alt="Mi Foto de Perfil">
           <li class="dropdown-item" href="/admin">Panel de administrador</p>
             {{/ifRoleAdmin}}
+          <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>
 
         </ul>
 
@@ -216,8 +222,8 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-6 mt-5 pt-5">
-          <p class="mt-5  pt-5 derechos"><i class="fa-regular fa-registered"></i> Creado y desarrollado por <span
-              style="color:red">MK Design</span>. Todos los derechos
+          <p class="mt-5  pt-5 derechos"><i class="fa-regular fa-registered"></i> Creado y desarrollado por <a
+              href="https://w.app/oFYD20" style="color:red" target="_blank">MK Design</a>. Todos los derechos
             reservados.</p>
         </div>
       </div>

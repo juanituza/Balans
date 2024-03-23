@@ -23,6 +23,9 @@ export default class UsersManager {
       { new: true }
     );
   };
+  obtenerUsuariosPorComision = async (comisionId) => {
+    return await usuarioModel.find({ 'comisiones.comision':comisionId}).lean();
+  };
 
   eliminarUsuario = async (id) => {
     return await usuarioModel.findByIdAndDelete(id);

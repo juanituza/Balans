@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   Array.from(deleteUser).forEach((button) => {
     button.addEventListener("click", async (event) => {
       const usuarioId = event.target.id;
-      console.log(usuarioId);
+    
 
       const data = { usuarioId: usuarioId };
-      console.log(data);
+     
 
       const response = await fetch("/api/usuarios/" + usuarioId, {
         method: "DELETE",

@@ -6,7 +6,7 @@ const cursosSchema = new mongoose.Schema(
   {
     nombre: {
       type: String,
-      enum: ["Pilates", "Quiromasaje", "Nutrición"],
+      enum: ["Pilates", "Quiromasaje", "Nutrición","Inicio"],
     },
     texto: {
       type: mongoose.Schema.Types.Mixed,

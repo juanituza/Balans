@@ -37,7 +37,10 @@ const nosotrosView = async (req, res) => {
   try {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
+      console.log();
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Inicio");
       const userRole = {
         role: "profesor", // Debes obtener el rol del usuario desde tus datos
       };
@@ -46,17 +49,25 @@ const nosotrosView = async (req, res) => {
         user: userData,
         imagen: usuario.imagen,
         userRole,
+        inicio: curso,
       });
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
       const userRole = "profesor";
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Inicio");
 
       res.render("nosotros", {
         user: userData,
         userRole,
+        inicio: curso,
       });
     } else {
-      res.render("nosotros");
+      const cursos = await cursoService.obtenerCursos();
+      const curso = cursos.filter((item) => item.nombre === "Inicio");
+      res.render("nosotros", {
+        inicio: curso,
+      });
     }
   } catch (error) {
     res.sendInternalError({ status: "error", error });
@@ -116,7 +127,6 @@ const quiromasajeView = async (req, res) => {
 
       res.render("quiromasaje", {
         user: userData,
-        // imagen : userData.imagen,
         quiromasaje: curso,
         escapeHtml: false,
       });
@@ -149,7 +159,7 @@ const nutricionView = async (req, res) => {
     } else if (req.user && req.user.nombre === "ADMIN") {
       const userData = req.user;
       const cursos = await cursoService.obtenerCursos();
-      
+
       const curso = cursos.filter((item) => item.nombre === "Nutrición");
 
       res.render("nutricion", {
@@ -172,6 +182,7 @@ const perfilView = async (req, res) => {
   try {
     if (req.user && req.user.nombre !== "ADMIN") {
       const userData = req.user;
+      console.log(userData);
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
 
       // Obtener la fecha de nacimiento de la base de datos
@@ -421,7 +432,6 @@ const adminComisionesView = async (req, res) => {
 };
 const comisionDetalles = async (req, res) => {
   const numeroComision = req.params.id;
-  console.log(numeroComision);
   const usuarios = await usuarioService.obtenerUsuarios();
   const userData = req.user;
 
