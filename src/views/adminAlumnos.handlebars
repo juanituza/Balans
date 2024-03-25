@@ -149,6 +149,16 @@
                                 <label class="form-label" for="cp" id="cpLabel">Código postal</label>
 
                             </div>
+                            <h3>Comisiones:</h3>
+                            {{#each comision}}
+                            <div class="col-md-6">
+                                <input type="text" id="comisiones" class="form-control" name="comision"
+                                    placeholder=" Número : {{this.numero}} - Curso: {{this.curso}}" readonly />
+
+                                <label class="form-label" for="cp" id="cpLabel">Comisión</label>
+
+                            </div>
+                            {{/each}}
 
                             <div class="col-12 text-center">
                                 <button type="button" class="btn btn btn-primary " onclick="enviarInputFormulario()">

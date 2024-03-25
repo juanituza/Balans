@@ -64,7 +64,7 @@ export default class MailingService {
     // Utiliza la función processEmailTemplate para procesar la plantilla antes de enviar el correo.
     const processedHtml = this.processEmailTemplate(html, payload);
     const result = await this.mailer.sendMail({
-      from: "Instituto Balans - <juanituza85@gmail.com>",
+      from: "Instituto Balans - <institutobalans@gmail.com>",
       to: emails,
       html: processedHtml,
       ...mailInfo,

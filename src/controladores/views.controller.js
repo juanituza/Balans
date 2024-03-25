@@ -332,35 +332,23 @@ const adminAlumnos = async (req, res) => {
   const imgAlumno = alumnoBuscado.imagen;
 
   const comisiones = await comisionService.obtenerComision();
-  // console.log(comisiones);
 
-  // Obtener los IDs de las comisiones en las que está inscrito el alumno
-  const comisionesAlumno = alumnoBuscado.comisiones.map((comision) =>
-    comision.comision.toString()
-  );
+  //busco las comisiones del alumno
+  const comisionesDelAlumno = alumnoBuscado.comisiones.map((comisionAlumno) => {
+    // Encuentra la comisión correspondiente en el array 'comisiones' utilizando el ID
+    const comisionEncontrada = comisiones.find(
+      (comision) => comision._id.toString() === comisionAlumno._id.toString()
+    );
 
-  // Filtrar las comisiones para encontrar las que están en la lista de comisiones del alumno
-  const comisionesDelAlumno = comisiones.filter((comision) =>
-    comisionesAlumno.includes(comision._id.toString())
-  );
-
-  // // Obtener la fecha de nacimiento de la base de datos
-  // const fechaNacimientoDB = new Date(alumnoBuscado.nacimiento);
-
-  // const fechaNacimientoUTC = new Date(fechaNacimientoDB);
-
-  // const opcionesFormato = {
-  //   day: "2-digit",
-  //   month: "2-digit",
-  //   year: "numeric",
-  //   timeZone: "UTC",
-  // };
-
-  // const fechaNacimientoLocal = fechaNacimientoUTC.toLocaleDateString(
-  //   "es-ES",
-  //   opcionesFormato
-  // );
-
+    // Verifica si se encontró la comisión
+    if (comisionEncontrada) {
+      // Retorna los detalles completos de la comisión
+      return comisionEncontrada;
+    } else {
+      // Si la comisión no se encuentra, puedes manejar el caso de alguna manera, por ejemplo, lanzando un error o retornando un objeto vacío
+      return {}; // O puedes retornar null o undefined según tus necesidades
+    }
+  });
   // Obtén la fecha de nacimiento del alumno
   const fechaNacimientoDB = new Date(alumnoBuscado.nacimiento);
 

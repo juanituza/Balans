@@ -108,40 +108,7 @@ const initializePassportStrategies = () => {
     )
   );
 
-  passport.use(
-    "github",
-    new GithubStrategy(
-      {
-        clientID: "Iv1.fd6853e95ce4c8a5",
-        clientSecret: "aff259b7114a590e0c5c51ffb71f7ac4f868bbb2",
-        callbackURL:"https://backend-project-q2nk.onrender.com/api/sessions/githubcallback",
-      },
-      async (accessToken, refreshToken, profile, done) => {
-        try {
-          //tomo los datos del profile que me sirvan.
-          const { name, email } = profile._json;
-          const usuario = await usuarioService.obtenerUsuarioPor({ email });
-          // const cart = await cartService.createCart();
-          //Gestiono ambas logicas
-          if (!usuario) {
-            //si no existe usuario lo creo
-            const nuevoUsuario = {
-              nombre: name,
-              email,
-              // cart: cart._id,
-              password: "",
-            };
-            const result = await usuarioService.crearUsuario(nuevoUsuario);
-            done(null, result);
-          }
-          // si ya existe el usuario
-          done(null, usuario);
-        } catch (error) {
-          done(error);
-        }
-      }
-    )
-  );
+  
 
   //passport se encarga de la verificacion del token
   passport.use(
