@@ -80,8 +80,7 @@ const restoreRequest = async (req, res) => {
 
 const restorePassword = async (req, res) => {
   const { password, token } = req.body;
-  console.log(password);
-  console.log(token);
+ 
   try {
     const tokenUser = jwt.verify(token, "jwtSecret");
     const user = await usuarioService.obtenerUsuarioPor({
@@ -111,9 +110,6 @@ export default {
   registro,
   login,
   cerrarSesion,
-  //   registerGitHub,
-  //   loginGitHub,
-
   restoreRequest,
   restorePassword,
 };

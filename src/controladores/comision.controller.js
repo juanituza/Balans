@@ -37,10 +37,8 @@ const crearComision = async (req, res) => {
 const agregarAlumno = async (req, res) => {
   try {
     const { cid, uid } = req.params;
-
     const alumno = await usuarioService.obtenerUsuarioPorId(uid);
     const comision = await comisionService.obtenerComisionPor(cid);
-
     if (!comision) {
       return res.sendNotFound("Comisión no encontrada");
     }
@@ -52,9 +50,8 @@ const agregarAlumno = async (req, res) => {
 
     // Verificar si la comisión ya está presente en el array de comisiones del alumno
     const comisionExistente = alumno.comisiones.find(
-      (com) => com.toString() === cid
+      (com) => com._id.toString() === cid
     );
-
     if (!comisionExistente) {
       // Agregar la comisión al array de comisiones del alumno
       alumno.comisiones.push(cid);
@@ -70,30 +67,21 @@ const agregarAlumno = async (req, res) => {
 
       return res.sendSuccess("Alumno agregado exitosamente.");
     } else {
-      return res.sendUnauthorized(
-        "La comisión ya está presente en el array de comisiones del alumno."
-      );
+      return res.sendUnauthorized("El alumno ya está presente en la comisión");
     }
   } catch (error) {
-    console.error(error);
-    if (error.name === "Comisión no encontrada") {
-      return res.sendNotFound(error.message);
-    } else if (error.name === "Alumno ya existe en el curso") {
-      return res.sendUnauthorized(error.message);
-    } else {
-      return res.sendInternalError(
-        "Error interno del servidor. Por favor, contacta al administrador."
-      );
-    }
+    res.sendInternalError(
+      "Error interno del servidor. Por favor, contacta al administrador."
+    );
   }
 };
 
 const eliminarAlumno = async (req, res) => {
   try {
     const { aid, cid } = req.params;
-
+    //obtengo el alumno completo
     const alumnoTotal = await usuarioService.obtenerUsuarioPorId(aid);
-
+    
     //obtengo la comisión
     const comision = await comisionService.obtenerComisionPor(cid);
 
@@ -109,30 +97,26 @@ const eliminarAlumno = async (req, res) => {
     const alumnoIndex = comision.alumnos.findIndex(
       (p) => p.alumno._id.toString() === aid
     );
-
-    // Buscar el índice de la comisión que deseas eliminar en el array de comisiones del alumno
-    // const comisionEnALumno = alumnoTotal.comisiones.find(
-    //   (c) => c.comision._id.toString() === cid.toString()
-    // );
-    // console.log(comisionEnALumno);
-
+     //Busco el índice del la comisión a eliminar 
     const indiceComisionEliminar = alumnoTotal.comisiones.findIndex(
-      (a) => a.comision._id.toString() === cid.toString()
+      (comision) => comision._id.toString() === cid
     );
-
-    // console.log(indiceComisionEliminar);
-    //Elimino el alumno de la comision
-    comision.alumnos.splice(alumnoIndex, 1);
-    //Elimino la comision del alumno
-    alumnoTotal.comisiones.splice(indiceComisionEliminar, 1);
-    // Guardo el alumno
-    await usuarioService.actualizarUsuarioPorId(aid, {
-      comisiones: alumnoTotal.comisiones,
-    });
-    //Guardo la comision editada
-    await comisionService.actualizarComision(cid, {
-      alumnos: comision.alumnos,
-    });
+    if (indiceComisionEliminar !== -1) {
+      //Elimino la comision del alumno
+      alumnoTotal.comisiones.splice(indiceComisionEliminar, 1);
+      // Guardo el alumno
+      await usuarioService.actualizarUsuarioPorId(aid, {
+        comisiones: alumnoTotal.comisiones,
+      });
+    }
+    if (alumnoIndex != -1) {
+      //Elimino el alumno de la comision
+      comision.alumnos.splice(alumnoIndex, 1);
+      //Guardo la comision editada
+      await comisionService.actualizarComision(cid, {
+        alumnos: comision.alumnos,
+      });
+    }
     //Creo el DTO
     const comisionDto = new ComisionDTO(comision);
     //Devuelvo la respuesta con DTO incluido
@@ -150,23 +134,6 @@ const eliminarComision = async (req, res) => {
     //obtengo la comisión
     const comision = await comisionService.obtenerComisionPor(cid);
 
-    // Eliminar la comisión
-    // const comision = await comisionService.eliminarComision(cid);
-    // const usuarios = await usuarioService.obtenerUsuariosPorComision(cid);
-    // console.log(usuarios);
-    // // const comision = await comisionService.obtenerComisionPorId(cid);
-    // if (comision && comision.alumnos && comision.alumnos.length > 0) {
-    //   // Obtener usuarios asociados con la comisión
-    //   // Iterar sobre cada usuario y eliminar la comisión del array de comisiones
-    //   await Promise.all(
-    //     usuarios.map(async (usuario) => {
-    //       await usuarioService.actualizarUsuarioPorId(usuario._id, {
-    //          comisiones: cid ,
-    //       });
-    //     })
-    //   );
-    // }
-
     // Obtener los IDs de los alumnos
     const idsAlumnos = comision.alumnos.map((alumno) => alumno.alumno._id);
     // console.log(idsAlumnos);
@@ -176,7 +143,7 @@ const eliminarComision = async (req, res) => {
       idsAlumnos.map(async (userId) => {
         // Obtener el usuario por su ID
         const usuario = await usuarioService.obtenerUsuarioPorId(userId);
-        
+
         if (usuario) {
           // Encontrar la posición de la comisión en el array de comisiones del usuario
           // const index = usuario.comisiones.indexOf(cid);
@@ -185,7 +152,7 @@ const eliminarComision = async (req, res) => {
             const comisionIdString = comision._id.toString();
             return comisionIdString === cid;
           });
-          
+
           // Si se encuentra la comisión, eliminarla del array
           if (index !== -1) {
             usuario.comisiones.splice(index, 1);
