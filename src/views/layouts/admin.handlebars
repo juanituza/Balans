@@ -1,5 +1,5 @@
 <!-- beautify ignore:start -->
-
+<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
   <head>
     <meta charset="utf-8" />
@@ -77,14 +77,17 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-        
-        
-       
-        
-        
-        
-        <aside  class="layout-menu menu-vertical menu bg-menu-theme">
-          <a href="/nosotros" class="navbar-brand p-0 imgAdmin">
+        <aside  class="layout-menu menu-vertical menu bg-menu-theme mb-5">
+          <div>
+            <button class="menu-toggle-btn flecha my-5">
+              <i class="fa-solid fa-circle-chevron-down rotate-arrow iconoFlecha"></i>
+            </button>
+
+          </div>
+          <div class="menu-content my-0">
+
+          
+          <a href="/nosotros" class="navbar-brand m-5 p-4 imgAdmin">
             <img class="logo-img" src="/imagenes/BalansNav2.png" alt="">
             <p class="pt-1 balans"> Balans</p>
           </a>
@@ -108,73 +111,106 @@
           </ul>
           {{/if}}
           <ul class="menuUl">
-          <li class="app-brand demo">
-          
-            <a href="/admin/user" class="app-brand-link">
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Alumnos</span> 
-            </a>
-          </li>
-  
-          <div class="app-brand demo">
-            <a href="/admin/consultas" class="app-brand-link">                
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Consultas</span>
-            </a>
-  
-            {{!-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a> --}}
-          </div>
-      <div class="app-brand demo">
-        <a class="app-brand-link"  href="/admin/cursos">
-          <!-- Contenido del logo si es necesario -->
-          <span class="app-brand-text demo menu-text fw-bolder ms-2">Cursos</span>
-        </a>
-        {{!-- <ul class="dropdown-menu ">
-          <li><a class="dropdown-item active" href="/admin/pilates">Pilates</a></li>
-          <li><a class="dropdown-item" href="/admin/quiromasaje">Quiromasaje</a></li>
-          <li><a class="dropdown-item" href="/admin/nutricion">Nutrición</a></li>
-          
-        </ul> --}}
-      </div>
-      <div class="app-brand demo">
-        <a href="/admin/comisiones" class="app-brand-link">
-          <span class="app-brand-text demo menu-text fw-bolder ms-2">Comisiones</span>
-        </a>
-      
-        {{!-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-          <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a> --}}
-      </div>
-
-          
-  
-          <div class="menu-inner-shadow">
-            <span>user</span>
-          </div>
-
-         
+            <li class="app-brand demo">            
+              <a href="/admin/user" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Alumnos</span> 
+              </a>
+            </li>    
+            <li class="app-brand demo">
+              <a href="/admin/consultas" class="app-brand-link">                
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Consultas</span>
+              </a>
+            </li>
+            <li class="app-brand demo">
+              <a class="app-brand-link"  href="/admin/cursos">
+                <!-- Contenido del logo si es necesario -->
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Cursos</span>
+              </a>
+            </li>
+            <li class="app-brand demo">
+              <a href="/admin/comisiones" class="app-brand-link">
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Comisiones</span>
+              </a>
+            </li>
           </ul>
+        </div>
         </aside>
         <!-- / Menu -->
   
         <!-- Layout container -->
-        <div class="layout-page">
-          
+        <div class="layout-page main-content">
           <!-- Content wrapper -->
-          <div class="content-wrapper">
+          <div class="content-wrapper ">
             
-          {{{body}}}
-          </div>
-           </body>
-  
-           
-          
+           {{{body}}}
+          </div>  
         </div>
        
       </div>
   
     </div>
-   
+</body>
+
+
+   <script>
+    $(document).ready(function () {
+      $('.menu-toggle-btn').click(function () {
+        $('.layout-menu').toggleClass('menu-collapsed');
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggleBtn = document.getElementById("menu-toggle-btn");
+      const layoutMenu = document.querySelector(".layout-menu");
+      const mainContent = document.querySelector(".main-content");
+
+      if (menuToggleBtn && layoutMenu && mainContent) {
+        menuToggleBtn.addEventListener("click", function () {
+          layoutMenu.classList.toggle("menu-expanded");
+
+          // Ajustar el margen izquierdo del contenido principal
+          const asideWidth = layoutMenu.offsetWidth;
+          const windowWidth = window.innerWidth;
+
+          if (windowWidth <= 991) {
+            if (layoutMenu.classList.contains("menu-expanded")) {
+              mainContent.style.marginLeft = asideWidth + "px";
+            } else {
+              mainContent.style.marginLeft = "0";
+            }
+          } else {
+            mainContent.style.marginLeft = "0";
+          }
+        });
+
+        // Ajustar el margen izquierdo al cargar la página
+        window.addEventListener("load", adjustMainContentMargin);
+
+        // Ajustar el margen izquierdo al cambiar el tamaño de la ventana
+        window.addEventListener("resize", adjustMainContentMargin);
+      } else {
+        console.error("One or more required elements not found.");
+      }
+
+      function adjustMainContentMargin() {
+        const asideWidth = layoutMenu.offsetWidth;
+        const windowWidth = window.innerWidth;
+
+        if (windowWidth <= 991) {
+          if (layoutMenu.classList.contains("menu-expanded")) {
+            mainContent.style.marginLeft = asideWidth + "px";
+          } else {
+            mainContent.style.marginLeft = "0";
+          }
+        } else {
+          mainContent.style.marginLeft = "0";
+        }
+      }
+    });
+  </script>
+
+
   
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -204,6 +240,7 @@
     
   
   <script src="/js/cerrarSesion.js"></script>
+  {{!-- <script src="/js/botonAside.js"></script> --}}
   
 
    

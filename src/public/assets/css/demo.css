@@ -325,3 +325,154 @@ aside {
   text-align: center;
   margin-top: 1rem;
 }
+
+
+/* CSS para la rotación de la flecha */
+.rotate-arrow {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+  /* Agregar una transición suave */
+}
+
+.menu-open .rotate-arrow {
+  transform: rotate(-90deg);
+  /* Rotar en sentido opuesto cuando el menú está abierto */
+}
+
+@media (min-width: 992px) {
+  .menu-toggle-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  /* .layout-menu {
+      top: 0 !important;
+      height: 100% !important;
+      left: 0 !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    
+      transform: translate3d(0, 0, 0) !important;
+      will-change: transform, -webkit-transform;
+    } */
+    
+    
+    /* Establece la anchura del aside para que pueda expandirse y contraerse */
+    .layout-menu {
+      width: 250px;
+      /* Ajusta según el ancho deseado del aside */
+      transition: width 0.3s ease;
+      /* Agrega una transición suave para el cambio de ancho */
+      transform: translate3d(0, 0, 0) !important;
+    }
+  
+  
+    /* Establece la clase para contraer el aside */
+    .menu-collapsed {
+      width: 0;
+      /* Contrae el aside */
+    }
+  
+    /* Establece el contenido del aside para que pueda expandirse y contraerse */
+    .menu-content {
+      overflow: hidden;
+      /* Oculta el contenido que desborda */
+      transition: width 0.3s ease;
+      /* Agrega una transición suave para el cambio de ancho */
+    }
+  
+    /* Oculta el contenido del aside cuando está contraído */
+    .menu-collapsed .menu-content {
+      width: 0;
+      /* Contrae el contenido del aside */
+    }
+  
+    /* Estilos para el botón de la flecha */
+    .menu-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      /* Ajusta según la posición deseada */
+      left: 10px;
+      /* Ajusta según la posición deseada */
+    }
+  
+    .rotate-arrow {
+      transition: transform 0.3s ease;
+    }
+  
+    /* Rota la flecha cuando el aside está contraído */
+    .menu-collapsed .rotate-arrow {
+      transform: rotate(180deg);
+    }
+
+    .layout-page {
+      margin-left: 15px;
+      margin-right: 20px;
+      /* transition: margin-left 0.3s ease; */
+    }
+                    
+    .flecha {
+      
+      position: absolute;
+      
+      /* Ajusta según la posición deseada desde el borde izquierdo */
+      transform: translateY(-50%);
+      /* Centra verticalmente el botón */
+      z-index: 99;
+      width: 40px;
+      /* Ancho del botón */
+      height: 40px;
+      /* Altura del botón */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid;
+      border-radius: 50%;
+      border-width: 2px;
+      border-color: #FFFFFF;
+      background-image: linear-gradient(to right, #673AB7 0%, #512DA8 51%, #673AB7 100%);
+    }
+  
+    .iconoFlecha {
+      
+      /* Ajusta el tamaño del icono */
+      color: #fff;
+    }
+    .flecha:hover {
+      background-position: right center;
+      /* change the direction of the change here */
+      color: #e7be08;
+      text-decoration: none;
+    }
+    .content-expanded {
+    margin-left: 0;
+    width: calc(100% - 200px); /* Ajusta el valor 250px según el ancho de tu menú */
+}
+
+
+/* 
+.layout-container{
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  width: 100%;
+  
+}
+.layout-page .main-content {
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
+
+} */
+body {
+background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+
+
+
+
+
+
+}

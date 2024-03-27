@@ -76,6 +76,8 @@ const agregarAlumno = async (req, res) => {
   }
 };
 
+
+
 const eliminarAlumno = async (req, res) => {
   try {
     const { aid, cid } = req.params;

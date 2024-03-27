@@ -80,45 +80,58 @@
     <div class="position-relative " id="home">
       <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 ">
         <a href="/nosotros" class="navbar-brand  imagenBalans nav-link p-0">
+          <img src="/imagenes/BalansIMG.png" class="" alt="BalansIMG">
           <img src="/imagenes/BalansNav2.png" class="" alt="">
           <p class="pt-1 balans">
             Balans
           </p>
         </a>
 
-        <div class="mx-auto  navbar-expand-lg bg-body-tertiary">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link " href="/nosotros" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle justify-content-between" href="#" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Formación
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/pilates">Pilates</a></li>
-                <li><a class="dropdown-item" href="/quiromasaje">Quiromasaje</a></li>
-                <li><a class="dropdown-item" href="/nutricion">Nutricion y gimnasia</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="/registro" class="nav-item nav-link">Inscripción</a>
-            </li>
-            <li class="nav-item">
-              <a href="/contacto" class="nav-item nav-link">Contacto</a>
-            </li>
+        <!-- Botón de barras para mostrar/ocultar el menú en pantallas pequeñas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars" id="bars-icon"></i>
+        </button>
 
-          </ul>
+        <!-- Menú que se mostrará/ocultará en pantallas pequeñas -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="mx-auto menuUl navbar-expand-lg bg-body-tertiary">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/nosotros" aria-current="page">Inicio</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Formación
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/pilates">Pilates</a></li>
+                  <li><a class="dropdown-item" href="/quiromasaje">Quiromasaje</a></li>
+                  <li><a class="dropdown-item" href="/nutricion">Nutricion y gimnasia</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="/registro" class="nav-link">Inscripción</a>
+              </li>
+              <li class="nav-item">
+                <a href="/contacto" class="nav-link">Contacto</a>
+              </li>
+            </ul>
+          </div>
         </div>
         {{#unless user}}
-        <a href="/login" class="btn btn-light  rounded-pill py-2 px-4 ms-3 d-none d-lg-block"><i
+
+
+        <a href="/login" class="btn btn-light navbar-nav rounded-pill py-2 px-4 ms-3 d-lg-block"><i
             class="fa-solid fa-user"></i>
           Iniciar sesión</a>
+
         {{/unless}}
         {{#if user}}
 
-        <ul class="dropdown btn btn-light  rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
+        <ul class="dropdown btn btn-light navbar-nav rounded-pill py-2 px-4 ms-3 d-lg-block"
+          style="list-style-type: none;">
           <li>
             {{#unless imagen}}
             <i class="fa-solid fa-user"></i>
@@ -179,7 +192,7 @@
 
 
 
-  <div class="container-xxl bg-primary hero-header">
+  <div class="container-xxl bg-primary hero-header hide-on-small">
     <div class="container px-lg-5">
       <div class="row g-5 mt-5">
 
@@ -230,6 +243,7 @@
 
     </div>
   </div> <!-- Footer End -->
+
 
 
 

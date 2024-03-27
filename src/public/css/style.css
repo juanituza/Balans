@@ -8,12 +8,9 @@
 }
 
 .imagenQR {
-    /* width: 400px;
-    height: 300px; */
-    scale: 0.25;
-    margin-left: -491px;
-    margin-top: -232px;
-    margin-bottom: -202px;
+    
+    scale: 0.75;
+   
     border-radius: 50px;
     box-shadow: 0 0 20px rgba(99, 20, 173, 0.5);
 }
@@ -523,7 +520,36 @@ h6,
     /* Color de fondo al pasar el cursor */
 }
 
+
+
 @media (max-width: 991.98px) {
+    .hide-on-small {
+        display: none;
+    }
+    #bars-icon {
+        color: #693c8f;
+        /* Cambiar color */
+        font-size: 24px;
+        border-color: #693c8f;
+        scale: 0.9;
+        /* Otros estilos personalizados */
+    }
+    .balans {
+        font-family: 'Antura Script', cursive;
+        font-weight: lighter;
+        color: #693c8f;
+        font-size: 14px;
+    }
+
+    .imagenBalans img[src="/imagenes/BalansNav2.png"] {
+        display: none;
+        /* Oculta la imagen original en resoluciones pequeñas */
+    }
+
+    .navbar-light {
+        background-color: transparent !important;
+    }
+
     .sticky-top.navbar-light {
         position: relative;
         background: #FFFFFF;
@@ -559,7 +585,24 @@ h6,
     .navbar-light .navbar-brand img {
         max-height: 45px;
     }
+
+    /* Nuevos estilos para mostrar elementos uno al lado del otro */
+    .navbar {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-logo,
+    .navbar-nav-container,
+    .login-button-container {
+        margin-right: 10px;
+    }
+
+    .navbar-logo {
+        flex-grow: 1;
+    }
 }
+
 
 @media (min-width: 992px) {
     .navbar-light {
@@ -569,7 +612,10 @@ h6,
         left: 0;
         z-index: 999;
     }
-
+    .imagenBalans img[src="/imagenes/BalansIMG.png"] {
+        display: none;
+        /* Oculta la nueva imagen en resoluciones grandes */
+    }
     .sticky-top.navbar-light {
         position: fixed;
         background: #FFFFFF;
@@ -629,11 +675,11 @@ h6,
     background-repeat: no-repeat;
 }
 
-@media (max-width: 991.98px) {
-    .hero-header {
+/* @media (max-width: 991.98px) {
+     .hero-header {
         padding: 6rem 0 9rem 0;
-    }
-}
+    } 
+} */
 
 /** Contact **/
 
