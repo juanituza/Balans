@@ -92,15 +92,15 @@
             <p class="pt-1 balans"> Balans</p>
           </a>
           {{#if user}}
-          <ul class="dropdown btn btn-light  rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
+          <ul class="dropdown btn btn-light  boton rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
             <li>
-              <i class="fa-solid fa-user"></i>
-              <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-user boton"></i>
+              <a class="dropdown-toggle justify-content-between boton" data-bs-toggle="dropdown">
                 {{!-- <i class="fa-solid fa-user"></i> --}}
                 {{user.nombre}}
                 {{user.apellido}}
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu ">
                 <li><a class="dropdown-item" href="/nosotros">Inicio</a></li>         
                 <li><a class="dropdown-item" href="/admin/user">Panel de administrador</a>
                 <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>         
@@ -152,63 +152,7 @@
 </body>
 
 
-   <script>
-    $(document).ready(function () {
-      $('.menu-toggle-btn').click(function () {
-        $('.layout-menu').toggleClass('menu-collapsed');
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggleBtn = document.getElementById("menu-toggle-btn");
-      const layoutMenu = document.querySelector(".layout-menu");
-      const mainContent = document.querySelector(".main-content");
-
-      if (menuToggleBtn && layoutMenu && mainContent) {
-        menuToggleBtn.addEventListener("click", function () {
-          layoutMenu.classList.toggle("menu-expanded");
-
-          // Ajustar el margen izquierdo del contenido principal
-          const asideWidth = layoutMenu.offsetWidth;
-          const windowWidth = window.innerWidth;
-
-          if (windowWidth <= 991) {
-            if (layoutMenu.classList.contains("menu-expanded")) {
-              mainContent.style.marginLeft = asideWidth + "px";
-            } else {
-              mainContent.style.marginLeft = "0";
-            }
-          } else {
-            mainContent.style.marginLeft = "0";
-          }
-        });
-
-        // Ajustar el margen izquierdo al cargar la página
-        window.addEventListener("load", adjustMainContentMargin);
-
-        // Ajustar el margen izquierdo al cambiar el tamaño de la ventana
-        window.addEventListener("resize", adjustMainContentMargin);
-      } else {
-        console.error("One or more required elements not found.");
-      }
-
-      function adjustMainContentMargin() {
-        const asideWidth = layoutMenu.offsetWidth;
-        const windowWidth = window.innerWidth;
-
-        if (windowWidth <= 991) {
-          if (layoutMenu.classList.contains("menu-expanded")) {
-            mainContent.style.marginLeft = asideWidth + "px";
-          } else {
-            mainContent.style.marginLeft = "0";
-          }
-        } else {
-          mainContent.style.marginLeft = "0";
-        }
-      }
-    });
-  </script>
+   
 
 
   
@@ -240,7 +184,7 @@
     
   
   <script src="/js/cerrarSesion.js"></script>
-  {{!-- <script src="/js/botonAside.js"></script> --}}
+  <script src="/js/botonAside.js"></script>
   
 
    

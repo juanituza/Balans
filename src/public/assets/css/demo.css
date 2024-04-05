@@ -345,22 +345,13 @@ aside {
   }
 }
 
-@media (max-width: 991px) {
-  /* .layout-menu {
-      top: 0 !important;
-      height: 100% !important;
-      left: 0 !important;
-      margin-right: 0 !important;
-      margin-left: 0 !important;
-    
-      transform: translate3d(0, 0, 0) !important;
-      will-change: transform, -webkit-transform;
-    } */
+@media (max-width: 1200px) {
+  
     
     
     /* Establece la anchura del aside para que pueda expandirse y contraerse */
     .layout-menu {
-      width: 250px;
+      width: 200px;
       /* Ajusta según el ancho deseado del aside */
       transition: width 0.3s ease;
       /* Agrega una transición suave para el cambio de ancho */
@@ -376,12 +367,14 @@ aside {
   
     /* Establece el contenido del aside para que pueda expandirse y contraerse */
     .menu-content {
+     
       overflow: hidden;
       /* Oculta el contenido que desborda */
       transition: width 0.3s ease;
       /* Agrega una transición suave para el cambio de ancho */
     }
-  
+   
+    
     /* Oculta el contenido del aside cuando está contraído */
     .menu-collapsed .menu-content {
       width: 0;
@@ -410,10 +403,14 @@ aside {
     }
 
     .layout-page {
-      margin-left: 15px;
+      margin-left: 200px;
       margin-right: 20px;
-      /* transition: margin-left 0.3s ease; */
+      transition: margin-left 0.3s ease;
     }
+        .layout-page.menu-collapsed {
+          margin-left: 100px;
+          /* Establece el margen izquierdo cuando el menú está contraído */
+        }
                     
     .flecha {
       
