@@ -3,7 +3,7 @@ import config from "../src/config.js";
 import local from "passport-local";
 import mongoose from "mongoose";
 
-import GithubStrategy from "passport-github2";
+
 import { usuarioService} from "../src/services/repositorios/index.js";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { cookieExtractor, createHash, validatePassword } from "../src/utils.js";

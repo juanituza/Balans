@@ -1,12 +1,12 @@
 {
   "name": "gimnasio",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "engines": {
-    "node": "v18.14.0"
+    "node": "v20.11.1"
   },
   "scripts": {
-    "start": "node src/app.js",
+    "start": "nodejs src/app.js",
     "dev": "nodemon src/app.js",
     "test": "mocha test/supertest.test.js"
   },
