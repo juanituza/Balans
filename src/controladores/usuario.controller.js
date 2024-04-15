@@ -42,12 +42,7 @@ const createPreference = async (req, res) => {
       },
       auto_return: "approved",
     };
-    
-
-    console.log(body);
-    const preference = new Preference(client);
-    console.log(preference);
-    
+    const preference = new Preference(client);    
     const result = await preference.create({ body });
     res.json({ id: result.id });
   } catch (error) {

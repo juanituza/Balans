@@ -17,7 +17,7 @@ form.addEventListener("submit", async (event) => {
       quantity: 1,
       price: document.querySelector("input[name='precio']").value,
     };
-    console.log(data);
+   
 
     const response = await fetch("/api/usuarios/createPreference", {
       method: "POST",
@@ -28,7 +28,7 @@ form.addEventListener("submit", async (event) => {
     });
 
     const preference = await response.json();
-    console.log(preference.id);
+  
 
     createCheckoutButton(preference.id);
   } catch (error) {
