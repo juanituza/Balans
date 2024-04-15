@@ -8,6 +8,13 @@ import uploadImage from "../middlewares/uploaderImage.js";
 
 export default class ConsultaRouter extends BaseRouter {
   init() {
+    this.post(
+      "/createPreference",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      usuarioController.createPreference
+    );
+
     this.get(
       "/admin",
       ["ADMIN"],

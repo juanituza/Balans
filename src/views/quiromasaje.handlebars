@@ -1,5 +1,3 @@
-<!-- About Start -->
-
 <div class="container-xxl py-5" id="nosotros">
     <div class="container py-5 px-lg-5">
         <div class="row g-5 align-items-center">
@@ -7,17 +5,48 @@
                 {{#each quiromasaje}}
                 {{{ this.texto }}}
                 {{/each}}
-
-                
             </div>
-
             <div class="col-lg-6">
                 <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/quiromasaje.jpg">
-                {{!-- <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/pilates3.jpg"> --}}
+
             </div>
-            <div class="col-12 ">
-                <a class="btn btn-grad rounded-pill py-3 px-5" href="/registro">Inscribirme</a>
-            </div>
+          
+            <form id="mpForm" enctype="multipart/form-data">
+                <div class="row">
+                    {{#each quiromasaje}}
+
+                    <div class="col-md-2 mb-4">
+                        <div class="">
+                            <input type="text"  name="nombre" class="form-control  ms-2"
+                                value="{{this.nombre}}" />
+                            <label class="form-label" for="nombre">Curso:</label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <div class="">
+                            <input type="text"  name="precio" class="form-control ms-4"
+                                value="{{this.precio}}"/>
+                            <label class="form-label ms-1" for="precio">Precio:</label>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="col-12 ">
+                    <button class="col-6 btn btn-grad rounded-pill py-3 px-5" type="submit" id="checkout-btn">Inscribirme</button>
+                </div>
+                <div id="wallet_container" class="col-3"></div>
+            </form>
+            
+            
+            
         </div>
     </div>
 </div>
+
+{{!--
+<script src="/js/mercadoPago.js"></script> --}}
+
+{{!-- SDK MercadoPago.js --}}
+{{!-- <script src="https://sdk.mercadopago.com/js/v2"></script> --}}
+<script type="module" src="/js/mercadoPago.js"></script>

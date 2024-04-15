@@ -1,9 +1,59 @@
 import {
   usuarioService,
   comisionService,
+  cursoService,
 } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
 import usuariosDTO from "../dto/usuarioDTO.js";
+import config from "../config.js";
+import { MercadoPagoConfig, Preference } from "mercadopago";
+
+
+const client = new MercadoPagoConfig({
+  accessToken:
+    "TEST-593741329831048-041321-456dfa5513a11ee44a97d152c02dd41b-6494809",
+});
+
+const createPreference = async (req, res) => {
+  // Agrega credenciales
+  // //Capturo el nombre del curso a pagar
+  // const cursoNombre = req.query.nombre;
+  // console.log(cursoNombre);
+  // //Obtengo todos los cursos
+  // const allCursos = await cursoService.obtenerCursos();
+  // //Busca el curso encontrado por el nombre
+  // const cursoEncontrado = allCursos.find((curso) => curso.nombre === cursoNombre);
+  // console.log(cursoEncontrado);
+  try {
+    const body = {
+      items: [
+        {
+          title: req.body.title,
+          quantity: Number(req.body.quantity),
+          unit_price: Number(req.body.price),
+          currency_id: "ARS",
+        },
+        
+      ],
+      back_urls: {
+        success: "https://www.institutobalans.com.ar/",
+        failure: "https://www.institutobalans.com.ar/",
+        pending: "https://www.institutobalans.com.ar/",
+      },
+      auto_return: "approved",
+    };
+    
+
+    console.log(body);
+    const preference = new Preference(client);
+    console.log(preference);
+    
+    const result = await preference.create({ body });
+    res.json({ id: result.id });
+  } catch (error) {
+    res.sendInternalError("Internal error");
+  }
+};
 
 const obtenerUsuarios = async (req, res) => {
   const users = await usuarioService.obtenerUsuarios();
@@ -235,6 +285,7 @@ const eliminarUsuario = async (req, res) => {
 };
 
 export default {
+  createPreference,
   obtenerUsuarios,
   guardarUsuario,
   editarUsuario,

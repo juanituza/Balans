@@ -27,4 +27,8 @@ export default {
     COOKIE: process.env.JWT_COOKIE,
     SECRET: process.env.JWT_SECRET,
   },
+  mercado_pago: {
+    CREDENCIALES: process.env.CREDENCIALES_MP,
+    TOKEN: process.env.TOKEN_MP,
+  },
 };

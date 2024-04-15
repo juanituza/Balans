@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import { join } from "path";
 import handlebars from "express-handlebars";
@@ -50,6 +51,7 @@ app.use(
   express.static(path.join(__dirname, "node_modules", "tinymce"))
 );
 
+
 // Asigna el layout principal para las rutas que no sean de administrador
 app.use((req, res, next) => {
   res.locals.layout = "main";
@@ -61,6 +63,7 @@ app.use("/admin", (req, res, next) => {
   next();
 });
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

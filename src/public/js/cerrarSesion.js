@@ -1,7 +1,7 @@
 
 
 const logoutButton = document.getElementById("loguotButton");
-
+if (logoutButton) {
 // Agrega un event listener al botón de logout
 logoutButton.addEventListener("click", async function () {
   // Realiza una petición POST al endpoint de logout
@@ -27,3 +27,4 @@ logoutButton.addEventListener("click", async function () {
     });
   }
 });
+}

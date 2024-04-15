@@ -60,8 +60,11 @@
   <!-- Geoname Incluye jQuery desde una CDN -->
   {{!--
   <script type="module" src="geonames.js"></script> --}}
+  {{!-- SDK MercadoPago.js --}}
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
   <!-- Template Stylesheet -->
   <link href="/css/style.css" rel="stylesheet">
+  
   <title>{{title}}</title>
 </head>
 
@@ -113,19 +116,36 @@
                   <li><a class="dropdown-item" href="/nutricion">Nutricion y gimnasia</a></li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a href="/registro" class="nav-link">Inscripción</a>
-              </li>
+             {{!--  <li class="nav-item">
+                <a href="/registro" class="nav-link">Crear usuario</a>
+              </li> --}}
               <li class="nav-item">
                 <a href="/contacto" class="nav-link">Contacto</a>
               </li>
             </ul>
           </div>
         </div>
-
-        <a href="/login" class="btn btn-light navbar-nav rounded-pill py-2 px-4 ms-3 d-lg-block"><i
+        <ul class="dropdown btn btn-light navbar-nav rounded-pill py-2 px-4 ms-3 d-lg-block" style="list-style-type: none;">
+          <li>
+            <a class="dropdown-toggle justify-content-between" data-bs-toggle="dropdown" href="/login">
+              Iniciar sesión
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"  href="/login">
+                    Iniciar sesión
+                  </a>
+              </li>
+              <li>
+                <a href="/registro" class="dropdown-item"  >
+                  Crear usuario
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {{!-- <a href="/login" class="btn btn-light navbar-nav rounded-pill py-2 px-4 ms-3 d-lg-block"><i
             class="fa-solid fa-user"></i>
-          Iniciar sesión</a>
+          Iniciar sesión</a> --}}
 
         {{/unless}}
         {{#if user}}
