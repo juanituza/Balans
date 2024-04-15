@@ -3,9 +3,9 @@ import __dirname from "../utils.js";
 
 const crarCurso = async (req, res) => {
   try {
-    const { nombre, texto } = req.body;
+    const { nombre, texto, precio } = req.body;
 
-    const curso = { nombre, texto };
+    const curso = { nombre, texto, precio };
 
     const result = await cursoService.crearCurso(curso);
     res.sendSuccessWithPayload({ result });
@@ -33,6 +33,7 @@ res.sendSuccessWithPayload("curso editado con éxito");
     res.sendInternalError("Internal error");
   }
 };
+
 
 export default {
   crarCurso,

@@ -4,7 +4,7 @@ import local from "passport-local";
 import mongoose from "mongoose";
 
 
-import { usuarioService} from "../src/services/repositorios/index.js";
+import { usuarioService , cursoService} from "../src/services/repositorios/index.js";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { cookieExtractor, createHash, validatePassword } from "../src/utils.js";
 
@@ -21,7 +21,18 @@ const initializePassportStrategies = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { nombre, apellido,dni,domicilio,localidad,pais,cp, nacimiento,curso, telefono, role } = req.body;
+          let {
+            nombre,
+            apellido,
+            dni,
+            domicilio,
+            localidad,
+            pais,
+            cp,
+            nacimiento,
+            telefono,
+            role,
+          } = req.body;
           const exist = await usuarioService.obtenerUsuarioPor({ email });
           if (exist)
             return done(
@@ -31,8 +42,16 @@ const initializePassportStrategies = () => {
               LoggerService.error("Usuario existente")
             );
 
+          // Busca el curso por nombre
+          const cursoNombre = req.body.curso;
+          
+          //Busca todos los cursos  
+          const allCursos = await cursoService.obtenerCursos();
+          //Busca el curso encontrado por el nombre
+          const cursoEncontrado = allCursos.find(
+            (curso) => curso.nombre === cursoNombre
+          );       
           // Accede a la información del archivo cargado
-         
           const hashedPassword = await createHash(password);
           const usuario = {
             nombre,
@@ -42,15 +61,13 @@ const initializePassportStrategies = () => {
             localidad,
             pais,
             cp,
-            curso,
+            curso: cursoEncontrado ? cursoEncontrado._id : null, // Asigna el _id del curso encontrado o null si no se encontró ningún curso
             email,
             nacimiento,
             role,
             telefono,
             password: hashedPassword,
           };
-
-          // const result = await usuarioModel.create(usuario);
           const result = await usuarioService.crearUsuario(usuario);
           done(null, result);
         } catch (error) {

@@ -7,61 +7,39 @@
                 {{#each pilates}}
                 {{{ this.texto }}}
                 {{/each}}
-                {{!-- <h1 class="mb-4">Pilates</h1>
-                <h5 class="text-primary-gradient fw-medium">La formación comprende:</h5>
-
-                <ul>
-                    <li>
-                        Técnicas de Mat (colchonetas)
-
-                    </li>
-                    <li>
-                        Reformer, torre, barrel, chair.
-
-                    </li>
-                    <li>
-                        Duración 20 meses dividido en 2 ciclos de 10 meses.
-
-                    </li>
-                    <li>
-                        En el 1° ciclo se desarrolla Mat y elementos
-
-                    </li>
-                    <li>
-                        En el 2° ciclo se desarrolla Reformer y máquinas (torre, barrel y chiar)
-
-                    </li>
-                </ul>
-                <h5> Asistencia:
-                </h5>
-                <ul>
-                    <li>
-
-                        La Asistencia es semanal, consta de 1hora 30 min de clase teórico/práctica,
-                    </li>
-                    <li>
-
-                        completando tu formación con trabajos prácticos, que se presentarán a través de una plataforma
-                        virtual. Lo cuales deberán ser presentados en tiempo y forma y aprobados.
-                    </li>
-                </ul>
-                <h5>
-
-                    Evaluación:
-                </h5>
-                <ul>
-                    <li>
-                        Cada ciclo tendrá una evaluación final donde se evaluará el nivel de conocimiento y de
-                        conducción para dictar clases.
-                    </li>
-                </ul> --}}
             </div>
             <div class="col-lg-6">
                 <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/pilates2.jpg">
             </div>
-            <div class="col-12 ">
-                <a class="btn btn-grad rounded-pill py-3 px-5" href="/registro">Inscribirme</a>
-            </div>
+            {{#if user}}
+            <form id="registroForm" enctype="multipart/form-data">
+                <div class="row">
+                    {{#each pilates}}
+
+                    <div class="col-md-2 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="form3Example1" name="nombre" class="form-control nombre"
+                                value="{{this.nombre}}" readonly />
+
+                            <label class="form-label" for="nombre"><i
+                                    class="fa-solid fa-id-card-clip me-3"></i></i>Curso</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <div class="form-outline">
+                            <input type="text" id="form3Example2" name="precio" class="form-control precio"
+                                value="{{this.precio}}" readonly />
+                            <label class="form-label" for="precio"><i
+                                    class="fa-solid fa-signature me-3"></i>Precio</label>
+                        </div>
+                    </div>
+                    {{/each}}
+            </form>
+            {{!-- <div class="col-12 ">
+                <a class="btn btn-grad rounded-pill py-3 px-5" id="checkout-btn">Inscribirme</a>
+            </div> --}}
+            <div id="wallet_container" class="col-3"></div>
+            {{/if}}
         </div>
     </div>
 </div>

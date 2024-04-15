@@ -39,8 +39,8 @@ const usuarioSchema = new mongoose.Schema(
     ],
 
     curso: {
-      type: String,
-      enum: ["pilates", "quiromasaje", "nutricion"],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cursos",
     },
     // status: {
     //   type: Boolean,

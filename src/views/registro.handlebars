@@ -94,9 +94,9 @@
                                 <div class="col-md-12 mb-4">
 
                                     <select name="curso" class="form-control custom-select">
-                                        <option value="pilates">Pilates</option>
-                                        <option value="quiromasaje">Quiromasaje</option>
-                                        <option value="nutricion">Nutrición y gimnasia</option>
+                                        {{#each cursos}}
+                                        <option value="{{this.nombre}}">{{this.nombre}}</option>
+                                        {{/each}}
                                     </select>
                                     <label for="curso"><i class="fa-solid fa-arrow-pointer"></i> Seleccionar un
                                         curso</label>
@@ -107,14 +107,13 @@
                                     <label class="form-label" for="password"><i
                                             class="fa-solid fa-lock me-3"></i>Password</label>
                                 </div>
+                                
                                 <!-- Submit button -->
                                 <div class="col-12 ">
-                                    <button class="btn btn-grad rounded-pill py-3 px-5" type="submit">Enviar</button>
+                                    <button class="btn btn-grad rounded-pill py-3 px-5"  type="submit">Enviar</button>
                                 </div>
+                                <div id="wallet_container"></div>
                             </div>
-                            {{!-- <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes cuenta?
-                                <a href="/login" class="link-danger">¡Logueate!</a>
-                            </p> --}}
                         </form>
                     </div>
                 </div>
@@ -137,3 +136,4 @@
 <script src="/js/geonames.js"></script>
 <script src="/js/registro.js"></script>
 <script src="/js/imagePreview.js"></script>
+{{!-- <script src="/js/mercadoPago.js"></script> --}}

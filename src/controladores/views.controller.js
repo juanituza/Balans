@@ -1,4 +1,4 @@
-import moment from "moment";
+import config from "../config.js";
 import {
   usuarioService,
   consultaService,
@@ -6,8 +6,26 @@ import {
   cursoService,
 } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
-import { promises as fsPromises } from "fs";
-import path from "path";
+
+
+
+const registroView = async (req,res) => {
+  try {
+    const allCursos = await cursoService.obtenerCursos();
+
+   
+    // Filtrar cuando el nombre sea distinto a "Inicio"
+    const cursosFiltrados1 = allCursos.filter(
+      (curso) =>
+        curso.nombre !== "Inicio" &&
+        curso.nombre !== "Prueba Mercado Pago NO TOCAR!!"
+    );
+
+    res.render("registro", { cursos: cursosFiltrados1 });
+  } catch (error) {
+    res.sendInternalError("Internal error");
+  }
+}
 
 const contactoView = async (req, res) => {
   try {
@@ -112,7 +130,7 @@ const quiromasajeView = async (req, res) => {
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
       const cursos = await cursoService.obtenerCursos();
       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
-
+      
       res.render("quiromasaje", {
         user: userData,
         imagen: usuario.imagen,
@@ -132,8 +150,8 @@ const quiromasajeView = async (req, res) => {
       });
     } else {
       const cursos = await cursoService.obtenerCursos();
-
       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
+     
       res.render("quiromasaje", {
         quiromasaje: curso,
         escapeHtml: false,
@@ -461,7 +479,11 @@ const restorePassword = async (req, res) => {
   res.render("restorePassword", { user: userData });
 };
 
+
+
+
 export default {
+  registroView,
   contactoView,
   nosotrosView,
   perfilView,

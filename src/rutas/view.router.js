@@ -75,6 +75,7 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       download.downloadFile
     );
+    
     this.get(
       "/descargarDocumentoParticular/public/imagenes/:fileName",
       ["ALUMNO", "ADMIN", "PUBLIC"],
@@ -160,9 +161,11 @@ export default class ViewsRouter extends BaseRouter {
     // this.get("/nosotros", ["USER"], (req, res) => {
     //   res.render("nosotros");
     // });
-    this.get("/registro", ["NO_AUTH"], (req, res) => {
-      res.render("registro");
-    });
+    this.get("/registro", 
+    ["NO_AUTH"], 
+    passportCall("jwt", { strategyType: "jwt" }),
+    viewController.registroView
+    );
 
     // this.get(
     //   "/products",
