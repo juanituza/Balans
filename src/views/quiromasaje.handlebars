@@ -10,43 +10,52 @@
                 <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/quiromasaje.jpg">
 
             </div>
-          
+            {{#if user}}
             <form id="mpForm" enctype="multipart/form-data">
                 <div class="row">
                     {{#each quiromasaje}}
 
                     <div class="col-md-2 mb-4">
                         <div class="">
-                            <input type="text"  name="nombre" class="form-control  ms-2"
-                                value="{{this.nombre}}" />
                             <label class="form-label" for="nombre">Curso:</label>
+                            <input type="text" name="nombre"
+                                class="form-control precio btn btn-outline-primary  py-3 px-3"
+                                value="{{this.nombre}}" />
 
                         </div>
                     </div>
                     <div class="col-md-2 mb-4">
-                        <div class="">
-                            <input type="text"  name="precio" class="form-control ms-4"
-                                value="{{this.precio}}"/>
+                        <div>
                             <label class="form-label ms-1" for="precio">Precio:</label>
+                            <input type="text" name="precio"
+                                class="form-control precio btn btn-outline-primary  py-3 px-3" value="${{this.precio}}"
+                                data-precio="{{this.precio}}" />
                         </div>
                     </div>
                     {{/each}}
                 </div>
                 <div class="col-12 ">
-                    <button class="col-6 btn btn-grad rounded-pill py-3 px-5" type="submit" id="checkout-btn">Inscribirme</button>
+                    <button class="col-4 btn btn-grad rounded-pill py-3 px-5" type="submit"
+                        id="checkout-btn">Inscribirme</button>
                 </div>
-                <div id="wallet_container" class="col-3"></div>
             </form>
-            
-            
-            
+            <div id="wallet_container" class="col-4"></div>
+            {{/if}}
+            {{#unless user}}
+            <div class="col-md-12 my-2">
+                <span class="text">Para inscribirte en un curso debes</span>
+                <a class="info-text " href="/registro"> registrarte </a>
+                <span class="informacion">o</span>
+                <a class="info-text " href="/login">iniciar sesión</a>
+            </div>
+            <div class="col-md-6 my-2">
+                <a href="/contacto" class="informacion col-md-12">solicitar información</a>
+            </div>
+            {{/unless}}
+
         </div>
     </div>
 </div>
 
-{{!--
-<script src="/js/mercadoPago.js"></script> --}}
 
-{{!-- SDK MercadoPago.js --}}
-{{!-- <script src="https://sdk.mercadopago.com/js/v2"></script> --}}
 <script type="module" src="/js/mercadoPago.js"></script>
