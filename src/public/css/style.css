@@ -178,31 +178,71 @@ h6,
     /* display: block; */
 }
 .btn-info {
-    background-image: linear-gradient(to right, #ba94fd 0%, #652de9 51%, #8a4cf5 100%);
+    background-image: linear-gradient(to right, #b2b1b4 0%, #5f26e4 51%, #4108c5 100%);
     margin: 5px;
     padding: 10px 20px;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #e4e4e4 100%);
     /* display: block; */
 }
-.btn-info:hover{
+.precio {
+    text-align: center;
+
+    border: none;
+    /* Quita el borde */
+    /* background-color: transparent; */
+    /* Fondo transparente */
+    pointer-events: none;
+    /* Desactiva eventos de puntero */
+    /* outline: inherit; */
+    /* Quita el contorno al seleccionar */
+    color: #673AB7;
+
+    /* Mantiene el color de texto original */
+    box-shadow: 0 0 20px rgba(99, 20, 173, 0.5);
+}
+
+.precio:hover {
+    text-align: center;
+
+    border: none;
+    /* Quita el borde */
+    /* background-color: transparent; */
+    /* Fondo transparente */
+    pointer-events: none;
+    /* Desactiva eventos de puntero */
+    outline: inherit;
+    /* Quita el contorno al seleccionar */
+    color: #FFFFFF;
+    /* Mantiene el color de texto original */
+}
+.btn-info:hover {
         background-position: right center;
         /* change the direction of the change here */
         color: #FFFFFF;
         text-decoration: none;
-    }
+}
 .btn-grad:hover {
     background-position: right center;
     /* change the direction of the change here */
     color: #FFFFFF;
     text-decoration: none;
+    
 }
-
+.informacion{
+    color:rgba(75, 0, 130, 1);
+    font-size:smaller ;
+}
+.text{
+    color:rgba(75, 0, 130, 1);
+    font-size:medium ;
+}
 .btn-login-gradient {
     background: linear-gradient(to bottom right, var(--loginPrimary), var(--primary));
 }
@@ -384,19 +424,10 @@ h6,
     display: none;
     /* Oculta el campo de entrada de archivo real */
 }
-.precio {
-    
-    border: none;
-    /* Quita el borde */
-    background-color: transparent;
-    /* Fondo transparente */
-    pointer-events: none;
-    /* Desactiva eventos de puntero */
-    outline: none;
-    /* Quita el contorno al seleccionar */
-    color: inherit;
-    /* Mantiene el color de texto original */
+.info-text {
+ color: red;
 }
+
 .image-label {
     cursor: pointer;
     display: block;

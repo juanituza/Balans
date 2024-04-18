@@ -11,7 +11,7 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 
 const client = new MercadoPagoConfig({
   accessToken:
-    "TEST-593741329831048-041321-456dfa5513a11ee44a97d152c02dd41b-6494809",
+    "APP_USR-2015520622823350-041413-f72d45a88c013437c6673c14c6cf8fdd-1771312530",
 });
 
 const createPreference = async (req, res) => {
