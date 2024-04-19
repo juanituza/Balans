@@ -20,8 +20,7 @@ form.addEventListener("submit", async (event) => {
     let precioValue = parseFloat(
       precioInput.dataset.precio.replace("$", "").replace(".", "")
     );
-  
-    console.log(precioInput.value);
+    
     const data = {
       title: document.querySelector("input[name='nombre']").value,
       quantity: 1,
