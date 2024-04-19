@@ -17,13 +17,10 @@ const crarCurso = async (req, res) => {
 const editarCurso = async (req, res) => {
   try {
     //obtengo el id del curso
-    const cursoId = req.params.cursoId;
-    // // obtengo el curso a editar
-    // const cursoActual = await cursoService.obtenerCursoPorId(cursoId);
+    const cursoId = req.params.cursoId;   
     // los datos a modificar   
     const cursoUpdate = req.body;
-   
-    //actualizo el curso
+        //actualizo el curso
     await cursoService.actualizarCursoPorId(
       { _id: cursoId },
      cursoUpdate
