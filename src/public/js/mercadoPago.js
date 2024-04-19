@@ -3,7 +3,7 @@
 // import MercadoPago from "mercadopago";
 
 // Inizializo mercado pago
-const mp = new MercadoPago("APP_USR-48c73f3c-f546-4eab-b3da-c0fdcfa9770a", {
+const mp = new MercadoPago("APP_USR-a87739ae-90c2-425e-b66f-3f92b7e6fc0c", {
   locale: "es-AR",
 });
 // Inicializa window.checkoutButton

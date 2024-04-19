@@ -11,19 +11,11 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 
 const client = new MercadoPagoConfig({
   accessToken:
-    "APP_USR-2015520622823350-041413-f72d45a88c013437c6673c14c6cf8fdd-1771312530",
+    "APP_USR-4658053348299931-041908-117d311a4989612906d302b133b32127-151982069",
 });
 
 const createPreference = async (req, res) => {
-  // Agrega credenciales
-  // //Capturo el nombre del curso a pagar
-  // const cursoNombre = req.query.nombre;
-  // console.log(cursoNombre);
-  // //Obtengo todos los cursos
-  // const allCursos = await cursoService.obtenerCursos();
-  // //Busca el curso encontrado por el nombre
-  // const cursoEncontrado = allCursos.find((curso) => curso.nombre === cursoNombre);
-  // console.log(cursoEncontrado);
+ 
   try {
     const body = {
       items: [
