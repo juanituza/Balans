@@ -3,9 +3,13 @@
 // import MercadoPago from "mercadopago";
 
 // Inizializo mercado pago
-const mp = new MercadoPago("APP_USR-a87739ae-90c2-425e-b66f-3f92b7e6fc0c", {
-  locale: "es-AR",
-});
+const mp = new MercadoPago(
+  // config.mercado_pago.CREDENCIALES,
+  "APP_USR-48c73f3c-f546-4eab-b3da-c0fdcfa9770a",
+  {
+    locale: "es-AR",
+  }
+);
 // Inicializa window.checkoutButton
 window.checkoutButton = null;
 const form = document.getElementById("mpForm");
@@ -54,7 +58,7 @@ const createCheckoutButton = (preferenceId) => {
 
   const renderComponent = async () => {
     try {
-      console.log("Valor de window.checkoutButton:", window.checkoutButton);
+      // console.log("Valor de window.checkoutButton:", window.checkoutButton);
       if (window.checkoutButton) {
         // // Si el botón ya existe, no hacemos nada
         // console.log("El botón de pago ya existe.");

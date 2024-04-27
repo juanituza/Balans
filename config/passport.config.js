@@ -31,6 +31,7 @@ const initializePassportStrategies = () => {
             cp,
             nacimiento,
             telefono,
+            cursos = [],
             role,
           } = req.body;
           const exist = await usuarioService.obtenerUsuarioPor({ email });
@@ -61,7 +62,7 @@ const initializePassportStrategies = () => {
             localidad,
             pais,
             cp,
-            curso: cursoEncontrado ? cursoEncontrado._id : null, // Asigna el _id del curso encontrado o null si no se encontró ningún curso
+            cursos, // Asigna el _id del curso encontrado o null si no se encontró ningún curso
             email,
             nacimiento,
             role,
@@ -116,6 +117,7 @@ const initializePassportStrategies = () => {
           nacimiento: usuario.nacimiento,
           telefono: usuario.telefono,
           role: usuario.role,
+          cursos: usuario.cursos,
         };
         
      

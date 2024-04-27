@@ -38,26 +38,14 @@ const usuarioSchema = new mongoose.Schema(
       },
     ],
 
-    curso: {
+    cursos:[
+      { 
+        curso:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cursos",
     },
-    // status: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-
-    // documents: [
-    //   {
-    //     image: {
-    //       type: String,
-    //     },
-    //     reference: {
-    //       type: String,
-    //       enum: ["identification", "address", "count"],
-    //     },
-    //   },
-    // ],
+    },
+  ],
   },
   {
     timestamps: {

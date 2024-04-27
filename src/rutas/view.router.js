@@ -19,6 +19,7 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.nosotrosView
     );
+ 
     this.get(
       "/pilates",
       ["PUBLIC"],

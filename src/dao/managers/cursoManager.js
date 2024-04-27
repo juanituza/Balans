@@ -18,10 +18,13 @@ export default class CursosManager {
   };
   actualizarCursoPorId = async (cursoId, data) => {
     return await cursoModel.findByIdAndUpdate(
-    cursoId,
+      cursoId,
       { $set: data },
       { new: true }
     );
+  };
+  obtenerCursoPorNombre = async (cursoNombre) => {
+    return await cursoModel.findOne({ nombre: cursoNombre });
   };
 
   eliminarCurso = async (id) => {

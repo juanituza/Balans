@@ -6,7 +6,7 @@ import {passportCall} from "../utils.js";
 import uploadImage from "../middlewares/uploaderImage.js";
 
 
-export default class ConsultaRouter extends BaseRouter {
+export default class UsuarioRouter extends BaseRouter {
   init() {
     this.post(
       "/createPreference",
@@ -14,6 +14,8 @@ export default class ConsultaRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       usuarioController.createPreference
     );
+        
+    this.post("/webhook", ["PUBLIC"], usuarioController.webhook);
 
     this.get(
       "/admin",

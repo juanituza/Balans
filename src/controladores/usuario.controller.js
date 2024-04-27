@@ -6,17 +6,19 @@ import {
 import __dirname from "../utils.js";
 import usuariosDTO from "../dto/usuarioDTO.js";
 import config from "../config.js";
-import { MercadoPagoConfig, Preference } from "mercadopago";
-
+import { MercadoPagoConfig, Preference, Payment, MerchantOrder } from "mercadopago";
 
 const client = new MercadoPagoConfig({
+  // accessToken: config.mercado_pago.TOKEN,
   accessToken:
-    "APP_USR-4658053348299931-041908-117d311a4989612906d302b133b32127-151982069",
+    "APP_USR-2015520622823350-041413-f72d45a88c013437c6673c14c6cf8fdd-1771312530",
 });
 
 const createPreference = async (req, res) => {
- 
   try {
+    //  const cursoNombre = req.body.title;
+    // console.log(cursoNombre);
+    const userId = req.user._id; // ID del usuario en tu base de datos
     const body = {
       items: [
         {
@@ -25,22 +27,130 @@ const createPreference = async (req, res) => {
           unit_price: Number(req.body.price),
           currency_id: "ARS",
         },
-        
       ],
       back_urls: {
-        success: "https://www.institutobalans.com.ar/",
+        // success: "https://www.institutobalans.com.ar/success",
+        success: "http://localhost:3000/quiromasaje",
         failure: "https://www.institutobalans.com.ar/",
         pending: "https://www.institutobalans.com.ar/",
       },
       auto_return: "approved",
+      notification_url:
+        "https://33ee-200-114-201-139.ngrok-free.app/api/usuarios/webhook",
+      metadata: {
+        userId: userId, // Incluir el ID del usuario en la metadata
+      },
     };
-    const preference = new Preference(client);    
+    const preference = new Preference(client);
     const result = await preference.create({ body });
-    res.json({ id: result.id });
+    // console.log(result);
+
+    res.status(200).json({ id: result.id });
   } catch (error) {
     res.sendInternalError("Internal error");
   }
 };
+const webhook = async (req, res) => {
+  const paymentId = req.body.data.id;
+
+  // console.log(dataId);
+//   try {
+//     const { query } = req;
+//     const topic = query.topic || query.type;
+//     // console.log(topic);
+    
+//     switch(topic) {
+//       case "payment":
+//         const paymentId = query.id || query['data.id'];
+//         // console.log(topic, 'getting payment', paymentId);
+//         // Aquí es donde usarías findById para obtener la orden del comerciante asociada al pago
+//         // const Payment = await Payment.findById(paymentId);
+//         // console.log("MerchantOrder:", Payment);
+//         res.sendStatus(200); // Respuesta OK enviada después de procesar el evento
+//         break;
+//       // Otros casos para manejar otros tipos de eventos si es necesario
+//       default:
+//         // console.log('Unhandled topic:', topic);
+//         res.sendStatus(200); // Respuesta OK para otros tipos de eventos
+//         break;
+//     }
+//   } catch (error) {
+//     console.error('Error in webhook:', error);
+//     res.sendStatus(500); // Enviar estado 500 en caso de error
+//   }
+// };
+
+
+  try {
+    const response = await fetch(
+      `https://api.mercadopago.com/v1/payments/${paymentId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${client.accessToken}`,
+        },
+      }
+    );
+    // console.log(client);
+
+    if (response.ok) {
+      //paso la data a json
+      const data = await response.json();
+      // console.log(data);
+      // console.log(data.description);
+      // si el pago tiene como status aproved y accredited
+      if (data.status === "approved" && data.status_detail === "accredited") {
+        //Obtengo el curso que el usuario pago
+        const cursoNombre = data.description;
+        // console.log(data.id);
+        //Obtengo el id del usuario
+        const userId = data.metadata.user_id;
+        //Obtengo el usuario con el userId
+        const usuarioActual = await usuarioService.obtenerUsuarioPorId(userId);
+        if (!usuarioActual) {
+          return res.sendNotFound("Curso no encontrado");
+        }
+        // Buscar el curso por su nombre
+        const cursoEncontrado = await cursoService.obtenerCursoPorNombre(
+          cursoNombre
+        );
+        // Verificar si el curso existe
+        if (!cursoEncontrado) {
+          return res.sendNotFound("Curso no encontrado");
+        }
+
+        // Verificar si el curso ya está presente en el array de cursos del usuario
+        const cursoExistente = usuarioActual.cursos.find(
+          (curso) => curso._id.toString() === cursoEncontrado._id.toString()
+        );
+
+        // Si el curso no está presente, agregarlo al array de cursos del usuario
+        if (!cursoExistente) {
+          usuarioActual.cursos.push(cursoEncontrado);
+          await usuarioService.actualizarUsuarioPorId(
+            { _id: userId },
+            { cursos: usuarioActual.cursos }
+          );
+        }
+
+        // // Agregar el ID del curso al array cursos del usuario
+        // usuarioActual.cursos.push(cursoEncontrado);
+        // // console.log(req.user.cursos);
+        // await usuarioService.actualizarUsuarioPorId(
+        //   { _id: userId },
+        //   { cursos: usuarioActual.cursos }
+        // );
+      } else {
+        console.log("hubo un error");
+      }
+    }
+
+    res.sendSuccess("ok");
+      } catch (error) {
+        res.sendInternalError(error);
+      }
+};
+
 
 const obtenerUsuarios = async (req, res) => {
   const users = await usuarioService.obtenerUsuarios();
@@ -85,8 +195,7 @@ const guardarUsuario = async (req, res) => {
 
 const editarImagen = async (req, res) => {
   const userId = req.user._id;
-  // console.log(req.file);
-  // const {imagen} = req.body;
+  
   const imagePath = req.files.map((file) => `/uploads/perfil/${file.filename}`);
 
   try {
@@ -189,7 +298,6 @@ const editarUsuario = async (req, res) => {
   }
 };
 
-
 const adminEditarUsuario = async (req, res) => {
   try {
     const userId = req.params.uid;
@@ -273,6 +381,7 @@ const eliminarUsuario = async (req, res) => {
 
 export default {
   createPreference,
+  webhook,
   obtenerUsuarios,
   guardarUsuario,
   editarUsuario,

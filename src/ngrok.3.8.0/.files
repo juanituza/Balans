@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\ngrok\ngrok-v3-3.8.0-windows-amd64.zip.txt" checksum="2C72434C9E4AF5009F27AD618AED3FD4" />
+    <file path="C:\ProgramData\chocolatey\lib\ngrok\ngrok.nupkg" checksum="082BE0E92FC48D0EB789FA48D1A3ADDB" />
+    <file path="C:\ProgramData\chocolatey\lib\ngrok\ngrok.nuspec" checksum="477AE78B2DE288028756734A19F4E6E0" />
+    <file path="C:\ProgramData\chocolatey\lib\ngrok\tools\chocolateyinstall.ps1" checksum="9653DB0F4B013B6BF59DA9E0CD57963F" />
+    <file path="C:\ProgramData\chocolatey\lib\ngrok\tools\ngrok.exe" checksum="7A3C5B70FFDB7399DC9386EA6511C0A9" />
+  </files>
+</fileSnapshot>

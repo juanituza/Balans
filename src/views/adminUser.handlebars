@@ -20,7 +20,13 @@
                     <td>{{this.email}}</td>
                     <td>{{this.telefono}}</td>
                     <td>{{this.role}}</td>
-                    <td>{{this.curso}}</td>
+                    <td>{{#each this.cursos}}
+                    <ul>
+                        <li>{{this.nombre}}</li>
+                    </ul>
+                    {{/each}}
+                                       
+                    </td> 
                     <td>
                         <a href="/admin/alumnos/{{this._id}}">
                             <button type="submit" class="col-lg-12 btn btn-outline-primary center my-2 changeEstado"
