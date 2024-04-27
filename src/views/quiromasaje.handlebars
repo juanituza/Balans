@@ -42,14 +42,20 @@
             <div id="wallet_container" class="col-4"></div>
             {{/if}}
             {{#unless user}}
-            <div class="col-md-12 my-2">
-                <span class="text">Para inscribirte en un curso debes</span>
-                <a class="info-text " href="/registro"> registrarte </a>
-                <span class="informacion">o</span>
-                <a class="info-text " href="/login">iniciar sesión</a>
+            <div class="row">
+
+                <div class="col-md-6 col-12 my-2  imagenQR">
+                    <span class="text">Para inscribirte en un curso debes</span>
+                    <a class="info-text " href="/registro"> registrarte </a>
+                    <span class="text">o</span>
+                    <a class="info-text " href="/login">iniciar sesión</a>
+                </div>
             </div>
-            <div class="col-md-6 my-2">
-                <a href="/contacto" class="informacion col-md-12">solicitar información</a>
+            <div class="row">
+
+                <div class="col-md-6 col-12 my-2">
+                    <a href="/contacto" class="informacion col-md-12">solicitar información</a>
+                </div>
             </div>
             {{/unless}}
 
