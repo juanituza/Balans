@@ -241,7 +241,7 @@ h6,
 }
 .text{
     color:rgba(75, 0, 130, 1);
-    font-size:medium ;
+    font-size:larger ;
 }
 .btn-login-gradient {
     background: linear-gradient(to bottom right, var(--loginPrimary), var(--primary));
@@ -426,6 +426,7 @@ h6,
 }
 .info-text {
  color: red;
+ font-size: larger;
 }
 
 .image-label {
