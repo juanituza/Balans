@@ -7,7 +7,13 @@ import {
 } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
 
-
+// const pagoExitoso = async (req,res) => {
+//   try {
+    
+//   } catch (error) {
+    
+//   }
+// }
 
 const registroView = async (req,res) => {
   try {
@@ -321,24 +327,56 @@ const detalleCurso = async (req, res) => {
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
   const cursos = await cursoService.obtenerCursos();
-  console.log(cursos);
+  
   const userData = req.user;
 
   res.render("layouts/admin", { Usuarios: usuarios, imagen: userData.imagen });
 };
 
-const adminUserView = async (req, res) => {
-  const usuarios = await usuarioService.obtenerUsuarios();
-  const userData = req.user;
-  const consultData = await consultaService.obtenerConsultas();
 
-  res.render("adminUser", {
-    Usuarios: usuarios,
-    imagen: userData.imagen,
-    consulta: consultData,
-    user: userData,
-  });
+
+const adminUserView = async (req, res) => {
+  try {
+    const usuarios = await usuarioService.obtenerUsuarios();
+    // console.log(usuarios);
+    const userData = req.user;
+
+    // Filtrar usuarios que tengan un array en cursos
+    const usuariosConCursos = usuarios.filter(
+      (usuario) => usuario.cursos && Array.isArray(usuario.cursos)
+    );
+    const consultData = await consultaService.obtenerConsultas();
+    // Iterar sobre cada usuario y obtener los cursos de cada uno
+    for (const usuario of usuariosConCursos) {
+      const cursosUsuario = [];
+      for (const curso of usuario.cursos) {
+        const cursoId = curso._id;
+        const cursoComprado = await cursoService.obtenerCursoPor({
+          _id: cursoId,
+        });
+        cursosUsuario.push(cursoComprado);
+      }
+      usuario.cursos = cursosUsuario; // Actualizar el array de cursos del usuario
+    }
+
+    // const listadoCursos = cursoComprado.nombre;
+    res.render("adminUser", {
+      Usuarios: usuarios,
+      imagen: userData.imagen,
+      consulta: consultData,
+      user: userData,
+      // Curso: listadoCursos,
+      // cursoAlumno: cursoAlumno,
+    });
+  } catch (error) {
+     console.error("Error en adminUserView:", error);
+    res.sendInternalError("error:",error);
+  }
+  
 };
+
+
+
 
 const adminAlumnos = async (req, res) => {
   const { aid } = req.params;

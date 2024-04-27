@@ -18,8 +18,11 @@ export default class CursoRepositorio {
   actualizarCurso = (id, consulta) => {
     return this.dao.actualizarCurso(id, consulta);
   };
-  actualizarCursoPorId = (id,data) => {
-    return this.dao.actualizarCursoPorId(id,data);
+  actualizarCursoPorId = (id, data) => {
+    return this.dao.actualizarCursoPorId(id, data);
+  };
+  obtenerCursoPorNombre = (cursoNombre) =>{
+    return this.dao.obtenerCursoPorNombre(cursoNombre);
   }
   eliminarCurso = (id) => {
     return this.dao.eliminarCurso(id);
