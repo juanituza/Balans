@@ -5,15 +5,28 @@ import {
 } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
 import usuariosDTO from "../dto/usuarioDTO.js";
-import config from "../config.js";
-import { MercadoPagoConfig, Preference, Payment, MerchantOrder } from "mercadopago";
+import config from "../../config.js";
+import {
+  MercadoPagoConfig,
+  Preference,
+} from "mercadopago";
 
 const client = new MercadoPagoConfig({
-  // accessToken: config.mercado_pago.TOKEN,
-  accessToken:
-    "APP_USR-2015520622823350-041413-f72d45a88c013437c6673c14c6cf8fdd-1771312530",
+  accessToken: config.mercado_pago.TOKEN,
+  // accessToken:
+  //   "APP_USR-2015520622823350-041413-f72d45a88c013437c6673c14c6cf8fdd-1771312530",
 });
 
+  const getConfig = async (req, res) => {
+    try {
+    // Envía la configuración como respuesta JSON
+    res.json(config);
+  } catch (error) {
+    // Maneja cualquier error que pueda ocurrir
+    console.error("Error al obtener la configuración:", error);
+    res.status(500).json({ message: "Error al obtener la configuración" });
+  }
+};
 const createPreference = async (req, res) => {
   try {
     //  const cursoNombre = req.body.title;
@@ -36,7 +49,7 @@ const createPreference = async (req, res) => {
       },
       auto_return: "approved",
       notification_url:
-        "https://33ee-200-114-201-139.ngrok-free.app/api/usuarios/webhook",
+        "https://3944-200-114-201-139.ngrok-free.app/api/usuarios/webhook",
       metadata: {
         userId: userId, // Incluir el ID del usuario en la metadata
       },
@@ -52,35 +65,6 @@ const createPreference = async (req, res) => {
 };
 const webhook = async (req, res) => {
   const paymentId = req.body.data.id;
-
-  // console.log(dataId);
-//   try {
-//     const { query } = req;
-//     const topic = query.topic || query.type;
-//     // console.log(topic);
-    
-//     switch(topic) {
-//       case "payment":
-//         const paymentId = query.id || query['data.id'];
-//         // console.log(topic, 'getting payment', paymentId);
-//         // Aquí es donde usarías findById para obtener la orden del comerciante asociada al pago
-//         // const Payment = await Payment.findById(paymentId);
-//         // console.log("MerchantOrder:", Payment);
-//         res.sendStatus(200); // Respuesta OK enviada después de procesar el evento
-//         break;
-//       // Otros casos para manejar otros tipos de eventos si es necesario
-//       default:
-//         // console.log('Unhandled topic:', topic);
-//         res.sendStatus(200); // Respuesta OK para otros tipos de eventos
-//         break;
-//     }
-//   } catch (error) {
-//     console.error('Error in webhook:', error);
-//     res.sendStatus(500); // Enviar estado 500 en caso de error
-//   }
-// };
-
-
   try {
     const response = await fetch(
       `https://api.mercadopago.com/v1/payments/${paymentId}`,
@@ -132,25 +116,16 @@ const webhook = async (req, res) => {
             { cursos: usuarioActual.cursos }
           );
         }
-
-        // // Agregar el ID del curso al array cursos del usuario
-        // usuarioActual.cursos.push(cursoEncontrado);
-        // // console.log(req.user.cursos);
-        // await usuarioService.actualizarUsuarioPorId(
-        //   { _id: userId },
-        //   { cursos: usuarioActual.cursos }
-        // );
       } else {
         console.log("hubo un error");
       }
     }
 
     res.sendSuccess("ok");
-      } catch (error) {
-        res.sendInternalError(error);
-      }
+  } catch (error) {
+    res.sendInternalError(error);
+  }
 };
-
 
 const obtenerUsuarios = async (req, res) => {
   const users = await usuarioService.obtenerUsuarios();
@@ -195,7 +170,7 @@ const guardarUsuario = async (req, res) => {
 
 const editarImagen = async (req, res) => {
   const userId = req.user._id;
-  
+
   const imagePath = req.files.map((file) => `/uploads/perfil/${file.filename}`);
 
   try {
@@ -380,6 +355,7 @@ const eliminarUsuario = async (req, res) => {
 };
 
 export default {
+  getConfig,
   createPreference,
   webhook,
   obtenerUsuarios,

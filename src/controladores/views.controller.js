@@ -1,4 +1,4 @@
-import config from "../config.js";
+import config from "../../config.js";
 import {
   usuarioService,
   consultaService,
@@ -9,17 +9,16 @@ import __dirname from "../utils.js";
 
 // const pagoExitoso = async (req,res) => {
 //   try {
-    
+
 //   } catch (error) {
-    
+
 //   }
 // }
 
-const registroView = async (req,res) => {
+const registroView = async (req, res) => {
   try {
     const allCursos = await cursoService.obtenerCursos();
 
-   
     // Filtrar cuando el nombre sea distinto a "Inicio"
     const cursosFiltrados1 = allCursos.filter(
       (curso) =>
@@ -31,7 +30,7 @@ const registroView = async (req,res) => {
   } catch (error) {
     res.sendInternalError("Internal error");
   }
-}
+};
 
 const contactoView = async (req, res) => {
   try {
@@ -136,7 +135,7 @@ const quiromasajeView = async (req, res) => {
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
       const cursos = await cursoService.obtenerCursos();
       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
-      
+
       res.render("quiromasaje", {
         user: userData,
         imagen: usuario.imagen,
@@ -157,7 +156,7 @@ const quiromasajeView = async (req, res) => {
     } else {
       const cursos = await cursoService.obtenerCursos();
       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
-     
+
       res.render("quiromasaje", {
         quiromasaje: curso,
         escapeHtml: false,
@@ -327,13 +326,11 @@ const detalleCurso = async (req, res) => {
 const adminView = async (req, res) => {
   const usuarios = await usuarioService.obtenerUsuarios();
   const cursos = await cursoService.obtenerCursos();
-  
+
   const userData = req.user;
 
   res.render("layouts/admin", { Usuarios: usuarios, imagen: userData.imagen });
 };
-
-
 
 const adminUserView = async (req, res) => {
   try {
@@ -369,14 +366,10 @@ const adminUserView = async (req, res) => {
       // cursoAlumno: cursoAlumno,
     });
   } catch (error) {
-     console.error("Error en adminUserView:", error);
-    res.sendInternalError("error:",error);
+    console.error("Error en adminUserView:", error);
+    res.sendInternalError("error:", error);
   }
-  
 };
-
-
-
 
 const adminAlumnos = async (req, res) => {
   const { aid } = req.params;
@@ -516,9 +509,6 @@ const restorePassword = async (req, res) => {
   const userData = req.user;
   res.render("restorePassword", { user: userData });
 };
-
-
-
 
 export default {
   registroView,

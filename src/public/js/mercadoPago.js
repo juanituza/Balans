@@ -1,22 +1,36 @@
 // import {cursoService} from "../../../src/services/repositorios/index.js";
-// import config from "../../config.js";
+// import config from "../../../config.js";
 // import MercadoPago from "mercadopago";
 
 // Inizializo mercado pago
-const mp = new MercadoPago(
-  // config.mercado_pago.CREDENCIALES,
-  "APP_USR-48c73f3c-f546-4eab-b3da-c0fdcfa9770a",
-  {
-    locale: "es-AR",
-  }
-);
+// const mp = new MercadoPago(
+//   // config.mercado_pago.CREDENCIALES,
+//   "APP_USR-48c73f3c-f546-4eab-b3da-c0fdcfa9770a",
+//   {
+
+//     locale: "es-AR",
+//   }
+// );
+let mp;
 // Inicializa window.checkoutButton
 window.checkoutButton = null;
 const form = document.getElementById("mpForm");
 form.addEventListener("submit", async (event) => {
   event.preventDefault(); // Evitar la acción de envío predeterminada
-
   try {
+    const responseConfig = await fetch("/api/usuarios/config", {
+      method: "GET",
+    });
+    // console.log(responseConfig);
+    const config = await responseConfig.json();
+    mp = new MercadoPago(
+      config.mercado_pago.CREDENCIALES,
+      // "APP_USR-48c73f3c-f546-4eab-b3da-c0fdcfa9770a",
+      {
+        locale: "es-AR",
+      }
+    );
+
     // const precioInput = document.querySelector("input[name='precio']");
     const precioInput = document.querySelector("input[name='precio']");
 
@@ -24,7 +38,7 @@ form.addEventListener("submit", async (event) => {
     let precioValue = parseFloat(
       precioInput.dataset.precio.replace("$", "").replace(".", "")
     );
-    
+
     const data = {
       title: document.querySelector("input[name='nombre']").value,
       quantity: 1,
@@ -33,7 +47,6 @@ form.addEventListener("submit", async (event) => {
 
       price: precioValue,
     };
-   
 
     const response = await fetch("/api/usuarios/createPreference", {
       method: "POST",
@@ -44,7 +57,6 @@ form.addEventListener("submit", async (event) => {
     });
 
     const preference = await response.json();
-  
 
     createCheckoutButton(preference.id);
   } catch (error) {
@@ -85,5 +97,3 @@ const createCheckoutButton = (preferenceId) => {
 
   renderComponent();
 };
-
-
