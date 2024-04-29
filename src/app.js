@@ -6,7 +6,7 @@ import handlebars from "express-handlebars";
 import path from "path";
 
 import __dirname from "./utils.js";
-import config from "./config.js";
+import config from "../config.js";
 import MongoSingleton from "./mongoSingleton.js";
 import initializePassportStrategies from "../config/passport.config.js";
 

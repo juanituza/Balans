@@ -1,5 +1,5 @@
 import passport from "passport";
-import config from "../src/config.js";
+import config from "../config.js";
 import local from "passport-local";
 import mongoose from "mongoose";
 

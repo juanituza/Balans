@@ -8,12 +8,18 @@ import uploadImage from "../middlewares/uploaderImage.js";
 
 export default class UsuarioRouter extends BaseRouter {
   init() {
-    this.post(
-      "/createPreference",
-      ["ALUMNO", "ADMIN"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      usuarioController.createPreference
+    this.get('/config',
+      ["PUBLIC"], 
+      
+      usuarioController.getConfig
     );
+
+     this.post(
+       "/createPreference",
+       ["ALUMNO", "ADMIN"],
+       passportCall("jwt", { strategyType: "jwt" }),
+       usuarioController.createPreference
+     );
         
     this.post("/webhook", ["PUBLIC"], usuarioController.webhook);
 
