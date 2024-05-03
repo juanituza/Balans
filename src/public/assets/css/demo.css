@@ -338,17 +338,24 @@ aside {
   transform: rotate(-90deg);
   /* Rotar en sentido opuesto cuando el menú está abierto */
 }
+.centered{
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+.mdc-layout-grid__inner .dt-table .mdc-data-table {
+  overflow-x: auto;
+}
 
 @media (min-width: 992px) {
   .menu-toggle-btn {
     display: none;
   }
+  
 }
 
 @media (max-width: 1200px) {
   
-    
-    
+
     /* Establece la anchura del aside para que pueda expandirse y contraerse */
     .layout-menu {
       width: 200px;

@@ -16,7 +16,7 @@ form.addEventListener('submit',async (event)=>{
             "Content-Type":"application/json"
         }
     })
-
+    console.log(response);
     const responseData = await response.json()
     if (responseData.status === "success") {
       Swal.fire({

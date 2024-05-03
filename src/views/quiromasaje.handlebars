@@ -15,28 +15,27 @@
                 <div class="row">
                     {{#each quiromasaje}}
 
-                    <div class="col-md-2 mb-4">
-                        <div class="">
+                    <div class="col-md-4 col-12 mb-4">
+                        <div class="form-outline ">
                             <label class="form-label" for="nombre">Curso:</label>
-                            <input type="text" name="nombre"
-                                class="form-control precio btn btn-outline-primary  py-3 px-3"
+                            <input type="text" name="nombre" class="form-control precio btn btn-outline-primary   py-3 px-3"
                                 value="{{this.nombre}}" />
-
+                    
                         </div>
                     </div>
-                    <div class="col-md-2 mb-4">
-                        <div>
-                            <label class="form-label ms-1" for="precio">Precio:</label>
-                            <input type="text" name="precio"
-                                class="form-control precio btn btn-outline-primary  py-3 px-3" value="{{this.precio}}"
-                                data-precio="{{this.precio}}" />
+                    <div class="col-md-4 mb-4">
+                        <div class="form-outline">
+                            <label class="form-label" for="precio">Precio:</label>
+                    
+                            <input type="text" name="precio" class="form-control precio btn btn-outline-primary  py-3 px-3"
+                                value="${{this.precio}}" data-precio="{{this.precio}}" />
                         </div>
                     </div>
                     {{/each}}
-                </div>
-                <div class="col-12 ">
-                    <button class="col-4 btn btn-grad rounded-pill py-3 px-5" type="submit"
-                        id="checkout-btn">Inscribirme</button>
+                    <div class="col-12 ">
+                        <button class="col-md-8 col-12 btn btn-grad rounded-pill py-3 px-5" type="submit"
+                            id="checkout-btn">Inscribirme</button>
+                    </div>
                 </div>
             </form>
             <div id="wallet_container" class="col-4"></div>

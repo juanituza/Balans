@@ -248,8 +248,28 @@ const cursosAlumnos = async (req, res) => {
     const comisiones = await comisionService.obtenerComision();
     const alumnoBuscado = await req.user;
     const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+    const cursos = usuario.cursos;
 
-    const documentId = req.params.documentId;
+    let nombresCursos = []; // Declaración de nombresCursos
+
+    if (usuario.cursos.length > 0) {
+      const cursosIdsString = usuario.cursos
+        .map((curso) => curso._id)
+        .join(",");
+      // console.log(cursosIds);
+      const cursosIdsArray = cursosIdsString.split(",");
+
+      const cursosEncontrados = await Promise.all(
+        cursosIdsArray.map(async (cursoId) => {
+          const cursoEncontrado = await cursoService.obtenerCursoPorId(cursoId);
+          return cursoEncontrado;
+        })
+      );
+
+      nombresCursos = cursosEncontrados.map((curso) => curso.nombre);
+    }
+
+    // const documentId = req.params.documentId;
 
     // Filtra las comisiones que contienen al alumno buscado
     const comisionesConAlumno = comisiones.filter((comision) => {
@@ -262,6 +282,7 @@ const cursosAlumnos = async (req, res) => {
       comision: comisionesConAlumno,
       user: alumnoBuscado,
       imagen: usuario.imagen,
+      cursos: nombresCursos,
     });
   } catch (error) {
     res.status(500).send({ status: "error", error });
