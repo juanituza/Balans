@@ -1,7 +1,10 @@
-<div class="m-5">
+<div class="m-5" id="page">
     <h3>Comisión:</h3>
 
-    <table id="miTablaC" class="display " style="width:100% ">
+    <button class="menu-toggle-btn flecha my-5">
+        <i class="fa-solid fa-circle-chevron-down rotate-arrow iconoFlecha"></i>
+    </button>
+    <table id="miTabla" class="table table-striped " style="width:100% ">
         <thead>
             <tr>
                 <th>Número</th>
@@ -54,9 +57,9 @@
         </tbody>
         <tfoot>
         </tfoot>
-        <div>
+        {{!-- <div>
             <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="fa-solid fa-plus"></i></a>
-        </div>
+        </div> --}}
     </table>
     {{!-- {{#each comisionParticular}} --}}
 
@@ -115,12 +118,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            {{!-- <th>ID</th> --}}
+                           
                             <th>Nombre</th>
                             <th>Apellido</th>
-
                             <th>Eliminar</th>
-                            <!-- Agrega más columnas según sea necesario -->
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -147,7 +149,7 @@
 </div>
 
 <!-- Modal de Búsqueda -->
-<div class="modal" id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
+<div class="modal " id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -169,6 +171,11 @@
         </div>
     </div>
 </div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+{{!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
 <script>
     $(document).ready(function () {
         // Evento al hacer clic en el botón "Agregar alumno"
@@ -194,29 +201,8 @@
     });
 </script>
 
-{{!--
-<script>
-    $(document).ready(function () {
-        // Inicialización del modal
-        $("#listadoUsuariosModal").modal({
-            show: false
-        });
-
-        // Agregar evento de clic a las filas de la tabla
-        $("#listadoUsuariosModal table tbody tr").click(function () {
-            // Obtener el ID del alumno seleccionado
-            const alumnoId = $(this).data("alumno-id");
-
-            // Puedes realizar acciones adicionales aquí, como marcar el alumno como seleccionado
-            // o cerrar el modal después de seleccionar
-
-            // Ejemplo: Log al ID del alumno seleccionado
-            console.log("Alumno seleccionado:", alumnoId);
-        });
-    });
 
 
-</script> --}}
 
 <script src="/js/agregarAlumno.js"></script>
 <script src="/js/eliminarAlumno.js"></script>

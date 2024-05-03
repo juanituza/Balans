@@ -1,12 +1,15 @@
-<div class="m-5">
+<div class="m-5" id="page">
     <h3>Comisiones:</h3>
+    <button class="menu-toggle-btn flecha my-5">
+        <i class="fa-solid fa-circle-chevron-down rotate-arrow iconoFlecha"></i>
+    </button>
     <div class="m-4">
         <a href="/admin/CrearComision">
             <button class=" btn btn-primary center my-2"><i class="fa-solid fa-plus"></i> Crear comision</button>
         </a>
 
     </div>
-    <table id="miTabla" class="display " style="width:100% ">
+    <table id="miTabla" class="table table-striped" style="width:100% ">
         <thead>
             <tr>
                 <th>Número de comisión</th>
@@ -72,6 +75,6 @@
     </div>
 </div>
 
-<script src="/js/dataTable.js"></script>
+<script src="/js/dataTableCursos.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
 <script src="js/eliminarComision.js"></script>

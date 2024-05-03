@@ -43,13 +43,13 @@ const createPreference = async (req, res) => {
       ],
       back_urls: {
         // success: "https://www.institutobalans.com.ar/success",
-        success: "http://localhost:3000/quiromasaje",
+        success: "https://www.institutobalans.com.ar/",
         failure: "https://www.institutobalans.com.ar/",
         pending: "https://www.institutobalans.com.ar/",
       },
       auto_return: "approved",
       notification_url:
-        "https://3944-200-114-201-139.ngrok-free.app/api/usuarios/webhook",
+        "https://www.institutobalans.com.ar/api/usuarios/webhook",
       metadata: {
         userId: userId, // Incluir el ID del usuario en la metadata
       },
@@ -80,8 +80,6 @@ const webhook = async (req, res) => {
     if (response.ok) {
       //paso la data a json
       const data = await response.json();
-      // console.log(data);
-      // console.log(data.description);
       // si el pago tiene como status aproved y accredited
       if (data.status === "approved" && data.status_detail === "accredited") {
         //Obtengo el curso que el usuario pago
@@ -92,7 +90,7 @@ const webhook = async (req, res) => {
         //Obtengo el usuario con el userId
         const usuarioActual = await usuarioService.obtenerUsuarioPorId(userId);
         if (!usuarioActual) {
-          return res.sendNotFound("Curso no encontrado");
+          return res.sendNotFound("usuario no encontrado");
         }
         // Buscar el curso por su nombre
         const cursoEncontrado = await cursoService.obtenerCursoPorNombre(
@@ -107,7 +105,6 @@ const webhook = async (req, res) => {
         const cursoExistente = usuarioActual.cursos.find(
           (curso) => curso._id.toString() === cursoEncontrado._id.toString()
         );
-
         // Si el curso no está presente, agregarlo al array de cursos del usuario
         if (!cursoExistente) {
           usuarioActual.cursos.push(cursoEncontrado);

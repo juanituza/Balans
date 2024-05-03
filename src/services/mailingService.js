@@ -44,7 +44,7 @@ export default class MailingService {
   const processedHtml = this.processEmailTemplate(html, payload);
 
   // Cambia la dirección de destino al correo del dueño de la API.
-  const to = "juanituza85@gmail.com"; // Cambia "dueno@api.com" a la dirección de correo del dueño.
+  const to = "institutobalans@gmail.com"; // Cambia "dueno@api.com" a la dirección de correo del dueño.
 
   const result = await this.mailer.sendMail({
     from: "Your App - <noreply@api.com>", // Cambia el remitente según tus necesidades.

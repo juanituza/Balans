@@ -1,49 +1,59 @@
 <div class="container-xxl py-5" id="page">
-    <h3>Comisiones:</h3>
+    <div class="row">
+        <div>
+            <h3>Cursos inscriptos:</h3>
+            <ul>
+                {{#each cursos}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div>
 
-    <table id="miTabla" class="display " style="width:50% ">
-        <thead>
-            <tr>
-                <th>Número de comisión</th>
-                <th>Curso</th>
 
-                <th>Estado</th>
-                <th>Modificar</th>
+            <h3>Comisiones:</h3>
+
+            <table id="miTablaC" class="display " style="width:50% ">
+                <thead>
+                    <tr>
+                        <th>Número de comisión</th>
+                        <th>Curso</th>
+
+                        <th>Estado</th>
+                        <th>Modificar</th>
 
 
-            </tr>
-        </thead>
-        <tbody>
-            {{#each comision}}
-            <tr>
-                <td>{{this.numero}} </td>
-                <td>{{this.curso}}</td>
-                <td>
-                    {{#each comision.documents}}
-                    <ul>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each comision}}
+                    <tr>
+                        <td>{{this.numero}} </td>
+                        <td>{{this.curso}}</td>
+                        <td>
+                            hola
+                        </td>
+                        <td>
+                            <!-- Agregar el botón de actualización dentro del formulario -->
+                            <a href="/particular/{{this._id}}">
+                                <button class="col-lg-12 btn btn-outline-primary center my-2">
+                                    <i class="fa-regular fa-circle-up"></i> Ingreso
+                                </button>
+                            </a>
+                        </td>
 
-                        <li>{{documents.name}}</li>
 
-                    </ul>
+                    </tr>
                     {{/each}}
-                </td>
-                <td>
-                    <!-- Agregar el botón de actualización dentro del formulario -->
-                    <a href="/particular/{{this._id}}">
-                        <button class="col-lg-12 btn btn-outline-primary center my-2">
-                            <i class="fa-regular fa-circle-up"></i> Ingreso
-                        </button>
-                    </a>
-                </td>
 
-
-            </tr>
-            {{/each}}
-
-        </tbody>
-        <tfoot>
-        </tfoot>
-    </table>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- Modal de Búsqueda -->
@@ -70,6 +80,6 @@
     </div>
 </div>
 
-<script src="/js/dataTable.js"></script>
+<script src="/js/dataTableAlumnos.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
 <script src="js/eliminarComision.js"></script>

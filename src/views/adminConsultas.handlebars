@@ -1,7 +1,7 @@
 <div class=" m-5" id="page">
     <h3>Consultas:</h3>
 
-    <table id="miTabla" class="display ">
+    <table id="miTabla" class="table table-striped">
         <thead>
             <tr>
                 <th>Nombre y apellido</th>
@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <!-- Agregar el botón de actualización dentro del formulario -->
-                    <button type="submit" class="col-lg-12 btn btn-info center my-2 changeEstado"
+                    <button type="submit" class="col-lg-12 btn btn-primary center my-2 changeEstado"
                         data-consulta-id="{{this._id}}">
                         <i class="fa-regular fa-circle-up"></i> Modificar
                     </button>
@@ -85,6 +85,6 @@
     </div>
 </div>
 
-<script src="/js/dataTable.js"></script>
+<script src="/js/dataTableUser.js"></script>
 <script src="/js/cambiarEstadoConsulta.js"></script>
 <script src="js/eliminarConsulta.js"></script>
