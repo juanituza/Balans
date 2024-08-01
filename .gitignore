@@ -2,3 +2,5 @@ node_modules
 .env.dev
 package-lock.json
 .vscode
+.env
+TurnosGimnasio.rar
