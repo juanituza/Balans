@@ -6,12 +6,13 @@ const cursosSchema = new mongoose.Schema(
   {
     nombre: {
       type: String,
-      // enum: ["Pilates", "Quiromasaje", "Nutrición","Inicio","Prueba"],
+      // enum: ["Pilates", "Quiromasaje", "Nutrición","Inicio","Prueba","Prueba"],
     },
     texto: {
       type: mongoose.Schema.Types.Mixed,
     },
     precio: Number,
+    
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

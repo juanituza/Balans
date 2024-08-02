@@ -7,8 +7,6 @@ const crearCurso = async (req, res) => {
     const precioNumero = parseFloat(precio);
 
     const curso = { nombre, texto, precio: precioNumero };
- 
-    
 
     const result = await cursoService.crearCurso(curso);
     res.sendSuccessWithPayload({ result });
