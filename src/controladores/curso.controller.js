@@ -1,15 +1,18 @@
 import { cursoService } from "../services/repositorios/index.js";
 import __dirname from "../utils.js";
 
-const crarCurso = async (req, res) => {
+const crearCurso = async (req, res) => {
   try {
     const { nombre, texto, precio } = req.body;
+    const precioNumero = parseFloat(precio);
 
-    const curso = { nombre, texto, precio };
+    const curso = { nombre, texto, precio: precioNumero };
+ 
+    
 
     const result = await cursoService.crearCurso(curso);
     res.sendSuccessWithPayload({ result });
-  } catch (error) {
+  } catch (error) {   
     res.sendInternalError("Internal error");
   }
 };
@@ -33,6 +36,6 @@ res.sendSuccessWithPayload("curso editado con éxito");
 
 
 export default {
-  crarCurso,
+  crearCurso,
   editarCurso,
 };

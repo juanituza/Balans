@@ -1,0 +1,50 @@
+<div class="m-5" id="page">
+    <h3>{{curso.nombre}}</h3>
+
+    <form id="crearCurso">
+
+        <div class="col-md-2 mb-4">
+            <div class="">
+                <label class="form-label" for="nombre">Curso:</label>
+                <input type="text" name="nombre" class="form-control precio  py-3 px-3" />
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-2 mb-4">
+            <div>
+                <label class="form-label ms-1" for="precio">Precio:</label>
+                <input type="Number" name="precio" class="form-control precio   py-3 px-3" />
+            </div>
+        </div>
+
+        <div class="col-12">
+
+            <textarea id="editor" name="texto" cols="150" rows="10"></textarea>
+        </div>
+        <button type="submit" class="col-lg-3 btn btn-primary center my-2 changeRol" id="modifyButton">
+            <i class="fa-regular fa-circle-up"></i> Crear
+        </button>
+</div>
+
+<!-- Script de inicialización de TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/pavfnnm998uhl6dq8ipavtprb8qsxwy40pj31xx9ulyytf58/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        menubar: false,
+        branding: false,
+        statusbar: false,
+        height: 550 // Altura opcional del editor
+    });
+</script>
+
+
+
+<script src="/js/dataTable.js"></script>
+<script src="/js/crearCurso.js"></script>

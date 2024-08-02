@@ -521,6 +521,13 @@ const crearComisionView = async (req, res) => {
     user: userData,
   });
 };
+const crearCurso = async (req, res) => {
+  const userData = req.user;
+
+  res.render("adminCrearCurso", {
+    // user: userData,
+  });
+};
 
 const restoreRequest = async (req, res) => {
   res.render("restoreRequest");
@@ -553,6 +560,7 @@ export default {
   crearComisionView,
   cursosAlumnos,
   cursoVista,
+  crearCurso,
   restoreRequest,
   restorePassword,
 };

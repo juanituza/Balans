@@ -150,6 +150,12 @@ export default class ViewsRouter extends BaseRouter {
       viewController.crearComisionView
     );
     this.get(
+      "/admin/CrearCurso",
+      ["ADMIN"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.crearCurso
+    );
+    this.get(
       "/admin/detalleComision/:id",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),

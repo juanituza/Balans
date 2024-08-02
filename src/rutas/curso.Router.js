@@ -6,10 +6,10 @@ import cursoController from "../controladores/curso.controller.js";
 export default class CursoRouter extends BaseRouter {
     init() {
         this.post(
-          "/",
+          "/CrearCurso",
           ["ADMIN"],
           passportCall("jwt", { strategyType: "locals" }),
-        cursoController.crarCurso);
+        cursoController.crearCurso);
         this.put(
           "/editarCurso/:cursoId",
           ["ADMIN"],
