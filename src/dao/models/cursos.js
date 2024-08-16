@@ -12,7 +12,7 @@ const cursosSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.Mixed,
     },
     precio: Number,
-    
+    imagen: String,
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

@@ -79,7 +79,10 @@ h6,
 .btn {
     transition: .5s;
 }
+/* .img-curso{
+    width: fit-content;    
 
+} */
 .btn.btn-primary-gradient,
 .btn-login-gradient,
 .btn.btn-secondary-gradient {

@@ -110,9 +110,12 @@
                   Formación
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/pilates">Pilates</a></li>
-                  <li><a class="dropdown-item" href="/quiromasaje">Quiromasaje</a></li>
-                  <li><a class="dropdown-item" href="/nutricion">Nutricion y gimnasia</a></li>
+                  {{#each cursos}}
+                  <li><a class="dropdown-item" href="/curso/{{this.nombre}}">{{this.nombre}}</a></li>
+                  {{/each}}
+                  {{!-- <li><a class="dropdown-item" href="/curso/pilates">Pilates</a></li>
+                  <li><a class="dropdown-item" href="/curso/quiromasaje">Quiromasaje</a></li>
+                  <li><a class="dropdown-item" href="/curso/nutrición">Nutricion y gimnasia</a></li> --}}
                 </ul>
               </li>
              {{!--  <li class="nav-item">
@@ -160,9 +163,12 @@
                   Formación
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/pilates">Pilates</a></li>
-                  <li><a class="dropdown-item" href="/quiromasaje">Quiromasaje</a></li>
-                  <li><a class="dropdown-item" href="/nutricion">Nutricion y gimnasia</a></li>
+                  {{#each cursos}}
+                  <li><a class="dropdown-item" href="/curso/{{this.nombre}}">{{this.nombre}}</a></li>
+                  {{/each}}
+                  {{!-- <li><a class="dropdown-item" href="/curso/pilates">Pilates</a></li> --}}
+                  {{!-- <li><a class="dropdown-item" href="/curso/quiromasaje">Quiromasaje</a></li>
+                  <li><a class="dropdown-item" href="/curso/nutrición">Nutricion y gimnasia</a></li> --}}
                 </ul>
               </li>
               {{!-- <li class="nav-item">

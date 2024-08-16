@@ -1,0 +1,72 @@
+<div class="container py-5 px-lg-5">
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+
+            {{#each curso}}
+            {{{ this.texto }}}
+            
+{{/each}}   
+        </div>
+        <div class="col-lg-6">
+            {{#each curso}}
+            <img class="img-fluid wow fadeInUp img-curso" data-wow-delay="0.5s" src="{{this.imagen}}" alt="imagen curso">
+            {{!-- <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="imagenes/pilates3.jpg"> --}}
+            {{/each}}
+        </div>
+       
+        {{#if user}}
+        <form id="mpForm" enctype="multipart/form-data">
+            <div class="row">
+                {{#each curso}}
+
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="form-outline ">
+                        <label class="form-label" for="nombre">Curso:</label>
+                        <input type="text" name="nombre" class="form-control precio btn btn-outline-primary   py-3 px-3"
+                            value="{{this.nombre}}" />
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="precio">Precio:</label>
+
+                        <input type="text" name="precio" class="form-control precio btn btn-outline-primary  py-3 px-3"
+                            value="${{this.precio}}" data-precio="{{this.precio}}" />
+                    </div>
+                </div>
+                {{/each}}
+                <div class="col-12 ">
+                    <button class="col-md-8 col-12 btn btn-grad rounded-pill py-3 px-5" type="submit"
+                        id="checkout-btn">Inscribirme</button>
+                </div>
+            </div>
+        </form>
+        <div id="wallet_container" class="col-3"></div>
+        {{/if}}
+
+        {{#unless user}}
+        <div class="row">
+
+            <div class="col-md-6 col-12 my-2  imagenQR">
+                <span class="text">Para inscribirte en un curso debes</span>
+                <a class="info-text " href="/registro"> registrarte </a>
+                <span class="text">o</span>
+                <a class="info-text " href="/login">iniciar sesión</a>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 col-12 my-2">
+                <a href="/contacto" class="informacion col-md-12">solicitar información</a>
+            </div>
+        </div>
+        {{/unless}}
+        
+    </div>
+</div>
+
+
+<!-- About End -->
+<script src="/js/mercadoPago.js"></script>
+<script src="/js/formateoPrecio.js"></script>

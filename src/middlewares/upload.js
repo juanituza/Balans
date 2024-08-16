@@ -6,6 +6,8 @@ const determineFolder = (fieldname) => {
   switch (fieldname) {
     case "archivos":
       return "archivos";
+    case "imagen":
+      return "cursos";
     default:
       return "others"; // Carpeta por defecto si no coincide con ninguno de los casos
   }

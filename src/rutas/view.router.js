@@ -14,30 +14,36 @@ export default class ViewsRouter extends BaseRouter {
       viewController.contactoView
     );
     this.get(
+      "/curso/:curso",
+      ["PUBLIC"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      viewController.renderCursoView
+    );
+    this.get(
       "/",
       ["PUBLIC"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.nosotrosView
     );
  
-    this.get(
-      "/pilates",
-      ["PUBLIC"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.pilatesView
-    );
-    this.get(
-      "/quiromasaje",
-      ["PUBLIC"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.quiromasajeView
-    );
-    this.get(
-      "/nutricion",
-      ["PUBLIC"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.nutricionView
-    );
+    // this.get(
+    //   "/pilates",
+    //   ["PUBLIC"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.pilatesView
+    // );
+    // this.get(
+    //   "/quiromasaje",
+    //   ["PUBLIC"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.quiromasajeView
+    // );
+    // this.get(
+    //   "/nutricion",
+    //   ["PUBLIC"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.nutricionView
+    // );
     this.get(
       "/perfil",
       ["ALUMNO", "ADMIN"],
@@ -150,7 +156,7 @@ export default class ViewsRouter extends BaseRouter {
       viewController.crearComisionView
     );
     this.get(
-      "/admin/CrearCurso",
+      "/admin/crearCurso",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.crearCurso

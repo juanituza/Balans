@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { join } from "path";
-import handlebars from "express-handlebars";
+
 import path from "path";
 
 import __dirname from "./utils.js";
@@ -45,6 +45,8 @@ const hbs = exphbs.create({
   partialsDir: `${__dirname}/views/partials`, // Ruta absoluta
   extname: "handlebars",
 });
+
+
 // Configura la ruta estática para servir los archivos de TinyMCE
 app.use(
   "/tinymce",

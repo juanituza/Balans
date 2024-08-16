@@ -58,148 +58,206 @@ const contactoView = async (req, res) => {
 
 const nosotrosView = async (req, res) => {
   try {
+    
+
+
+    let userData = req.user;    
+    let cursos = await cursoService.obtenerCursos();
+    let curso = cursos.filter((item) => item.nombre === "Inicio");
+    let cursoLista = cursos.filter((item) => item.nombre.toLowerCase() !== "inicio");
+    
+    
     if (req.user && req.user.nombre !== "ADMIN") {
-      const userData = req.user;
-      console.log();
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Inicio");
       const userRole = {
         role: "profesor", // Debes obtener el rol del usuario desde tus datos
       };
-
       res.render("nosotros", {
         user: userData,
         imagen: usuario.imagen,
         userRole,
         inicio: curso,
+        cursos: cursoLista,
       });
+      
     } else if (req.user && req.user.nombre === "ADMIN") {
-      const userData = req.user;
+      // const userData = req.user;
       const userRole = "profesor";
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Inicio");
-
+      // const cursos = await cursoService.obtenerCursos();
+      // const curso = cursos.filter((item) => item.nombre === "Inicio");
+      
       res.render("nosotros", {
         user: userData,
         userRole,
         inicio: curso,
+        cursos: cursoLista,
       });
     } else {
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Inicio");
+      // const cursos = await cursoService.obtenerCursos();
+      // const curso = cursos.filter((item) => item.nombre === "Inicio");
       res.render("nosotros", {
         inicio: curso,
+        cursos: cursoLista,
       });
     }
   } catch (error) {
+    console.log(error);
+    
     res.sendInternalError({ status: "error", error });
   }
 };
-const pilatesView = async (req, res) => {
+
+const renderCursoView = async (req, res) => {
   try {
+    const cursoNombre = req.params.curso;
+    const userData = req.user;
+    let imagen;
+
     if (req.user && req.user.nombre !== "ADMIN") {
-      const userData = req.user;
       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Pilates");
-      res.render("pilates", {
-        user: userData,
-        imagen: usuario.imagen,
-        pilates: curso,
-      });
-    } else if (req.user && req.user.nombre === "ADMIN") {
-      const userData = req.user;
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Pilates");
-      res.render("pilates", {
-        user: userData,
-        pilates: curso,
-      });
-    } else {
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Pilates");
-      res.render("pilates", {
-        pilates: curso,
-      });
+      imagen = usuario.imagen;
     }
+
+    const cursos = await cursoService.obtenerCursos();
+    const curso = cursos.filter(
+      (item) => item.nombre.toLowerCase() === cursoNombre.toLowerCase()
+    );
+
+    // // Filtrar el curso actual de la lista de cursos para la vista
+    // const cursoLista = cursos.filter(
+    //   (item) => item.nombre.toLowerCase() !== cursoNombre.toLowerCase()
+    // );
+    // Filtrar el curso actual y el curso con nombre "Inicio" de la lista de cursos para la vista
+    const cursoLista = cursos.filter(
+      (item) =>
+        item.nombre.toLowerCase() !== cursoNombre.toLowerCase() &&
+        item.nombre.toLowerCase() !== "inicio"
+    );
+    if (curso.length === 0) {
+      return res
+        .status(404)
+        .send({ status: "error", error: "Curso no encontrado" });
+    }
+
+    res.render("curso", {
+      user: userData,
+      curso: curso,
+      imagen: imagen,
+      cursos: cursoLista,
+    });
   } catch (error) {
+    console.log(error);
+    
     res.sendInternalError({ status: "error", error });
   }
 };
 
-const quiromasajeView = async (req, res) => {
-  try {
-    if (req.user && req.user.nombre !== "ADMIN") {
-      const userData = req.user;
-      const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
 
-      res.render("quiromasaje", {
-        user: userData,
-        imagen: usuario.imagen,
-        quiromasaje: curso,
-        escapeHtml: false,
-      });
-    } else if (req.user && req.user.nombre === "ADMIN") {
-      const userData = req.user;
-      const cursos = await cursoService.obtenerCursos();
 
-      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
+// const pilatesView = async (req, res) => {
+//   try {
+//     if (req.user && req.user.nombre !== "ADMIN") {
+//       const userData = req.user;
+//       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Pilates");
+//       res.render("pilates", {
+//         user: userData,
+//         imagen: usuario.imagen,
+//         pilates: curso,
+//       });
+//     } else if (req.user && req.user.nombre === "ADMIN") {
+//       const userData = req.user;
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Pilates");
+//       res.render("pilates", {
+//         user: userData,
+//         pilates: curso,
+//       });
+//     } else {
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Pilates");
+//       res.render("pilates", {
+//         pilates: curso,
+//       });
+//     }
+//   } catch (error) {
+//     res.sendInternalError({ status: "error", error });
+//   }
+// };
 
-      res.render("quiromasaje", {
-        user: userData,
-        quiromasaje: curso,
-        escapeHtml: false,
-      });
-    } else {
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
+// const quiromasajeView = async (req, res) => {
+//   try {
+//     if (req.user && req.user.nombre !== "ADMIN") {
+//       const userData = req.user;
+//       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
 
-      res.render("quiromasaje", {
-        quiromasaje: curso,
-        escapeHtml: false,
-      });
-    }
-  } catch (error) {
-    res.sendInternalError({ status: "error", error });
-  }
-};
+//       res.render("quiromasaje", {
+//         user: userData,
+//         imagen: usuario.imagen,
+//         quiromasaje: curso,
+//         escapeHtml: false,
+//       });
+//     } else if (req.user && req.user.nombre === "ADMIN") {
+//       const userData = req.user;
+//       const cursos = await cursoService.obtenerCursos();
 
-const nutricionView = async (req, res) => {
-  try {
-    if (req.user && req.user.nombre !== "ADMIN") {
-      const userData = req.user;
-      const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Nutrición");
-      res.render("nutricion", {
-        user: userData,
-        imagen: usuario.imagen,
-        nutricion: curso,
-      });
-    } else if (req.user && req.user.nombre === "ADMIN") {
-      const userData = req.user;
-      const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
 
-      const curso = cursos.filter((item) => item.nombre === "Nutrición");
+//       res.render("quiromasaje", {
+//         user: userData,
+//         quiromasaje: curso,
+//         escapeHtml: false,
+//       });
+//     } else {
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Quiromasaje");
 
-      res.render("nutricion", {
-        user: userData,
-        nutricion: curso,
-      });
-    } else {
-      const cursos = await cursoService.obtenerCursos();
-      const curso = cursos.filter((item) => item.nombre === "Nutrición");
-      res.render("nutricion", {
-        nutricion: curso,
-      });
-    }
-  } catch (error) {
-    res.sendInternalError({ status: "error", error });
-  }
-};
+//       res.render("quiromasaje", {
+//         quiromasaje: curso,
+//         escapeHtml: false,
+//       });
+//     }
+//   } catch (error) {
+//     res.sendInternalError({ status: "error", error });
+//   }
+// };
+
+// const nutricionView = async (req, res) => {
+//   try {
+//     if (req.user && req.user.nombre !== "ADMIN") {
+//       const userData = req.user;
+//       const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Nutrición");
+//       res.render("nutricion", {
+//         user: userData,
+//         imagen: usuario.imagen,
+//         nutricion: curso,
+//       });
+//     } else if (req.user && req.user.nombre === "ADMIN") {
+//       const userData = req.user;
+//       const cursos = await cursoService.obtenerCursos();
+
+//       const curso = cursos.filter((item) => item.nombre === "Nutrición");
+
+//       res.render("nutricion", {
+//         user: userData,
+//         nutricion: curso,
+//       });
+//     } else {
+//       const cursos = await cursoService.obtenerCursos();
+//       const curso = cursos.filter((item) => item.nombre === "Nutrición");
+//       res.render("nutricion", {
+//         nutricion: curso,
+//       });
+//     }
+//   } catch (error) {
+//     res.sendInternalError({ status: "error", error });
+//   }
+// };
 
 const perfilView = async (req, res) => {
   try {
@@ -543,9 +601,9 @@ export default {
   contactoView,
   nosotrosView,
   perfilView,
-  pilatesView,
-  quiromasajeView,
-  nutricionView,
+  // pilatesView,
+  // quiromasajeView,
+  // nutricionView,
   adminCursosView,
   detalleCurso,
   adminView,
@@ -563,4 +621,5 @@ export default {
   crearCurso,
   restoreRequest,
   restorePassword,
+  renderCursoView,
 };
