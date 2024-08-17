@@ -23,23 +23,21 @@
                                 <div class="col-md-6 mb-4">
 
                                     <select name="curso" class="form-control custom-select">
-                                        <option value="pilates">Pilates</option>
-                                        <option value="quiromasaje">Quiromasaje</option>
-                                        <option value="nutricion">Nutrición y gimnasia</option>
+                                        {{#each cursosLista}}
+                                        <option value="{{this.nombre}}">{{this.nombre}}</option>
+                                        {{/each}}
                                     </select>
                                     <label for="curso"><i class="fa-solid fa-arrow-pointer"></i> Seleccionar un
                                         curso</label>
                                 </div>
-                                <!-- Password input -->
+
 
                                 <!-- Submit button -->
                                 <div class="col-12 ">
                                     <button class="btn btn-primary " type="submit">Crear</button>
                                 </div>
                             </div>
-                            {{!-- <p class="small fw-bold mt-2 pt-1 mb-0">¿Ya tienes cuenta?
-                                <a href="/login" class="link-danger">¡Logueate!</a>
-                            </p> --}}
+
                         </form>
                     </div>
                 </div>

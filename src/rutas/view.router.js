@@ -25,25 +25,6 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.nosotrosView
     );
- 
-    // this.get(
-    //   "/pilates",
-    //   ["PUBLIC"],
-    //   passportCall("jwt", { strategyType: "jwt" }),
-    //   viewController.pilatesView
-    // );
-    // this.get(
-    //   "/quiromasaje",
-    //   ["PUBLIC"],
-    //   passportCall("jwt", { strategyType: "jwt" }),
-    //   viewController.quiromasajeView
-    // );
-    // this.get(
-    //   "/nutricion",
-    //   ["PUBLIC"],
-    //   passportCall("jwt", { strategyType: "jwt" }),
-    //   viewController.nutricionView
-    // );
     this.get(
       "/perfil",
       ["ALUMNO", "ADMIN"],
@@ -54,7 +35,6 @@ export default class ViewsRouter extends BaseRouter {
       "/comisionPanel",
       ["ALUMNO", "ADMIN"],
       passportCall("jwt", { strategyType: "jwt" }),
-      // download("documentos", 5),
       viewController.cursosAlumnos
     );
     this.get(
@@ -125,24 +105,24 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.detalleCurso
     );
-    this.get(
-      "/admin/pilates",
-      ["ADMIN"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.adminPilatesView
-    );
-    this.get(
-      "/admin/quiromasaje",
-      ["ADMIN"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.adminQuiromasajeView
-    );
-    this.get(
-      "/admin/nutricion",
-      ["ADMIN"],
-      passportCall("jwt", { strategyType: "jwt" }),
-      viewController.adminNutricionView
-    );
+    // this.get(
+    //   "/admin/pilates",
+    //   ["ADMIN"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.adminPilatesView
+    // );
+    // this.get(
+    //   "/admin/quiromasaje",
+    //   ["ADMIN"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.adminQuiromasajeView
+    // );
+    // this.get(
+    //   "/admin/nutricion",
+    //   ["ADMIN"],
+    //   passportCall("jwt", { strategyType: "jwt" }),
+    //   viewController.adminNutricionView
+    // );
     this.get(
       "/admin/comisiones",
       ["ADMIN"],

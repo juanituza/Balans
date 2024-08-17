@@ -12,8 +12,8 @@ export default class ComisionRepositorio {
   obtenerComisionPor = (params) => {
     return this.dao.obtenerComisionPor(params);
   };
-  crearComision = (user) => {
-    return this.dao.crearComision(user);
+  crearComision = (comision) => {
+    return this.dao.crearComision(comision);
   };
   actualizarComision = (id, consulta) => {
     return this.dao.actualizarComision(id, consulta);

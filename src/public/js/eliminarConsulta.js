@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   Array.from(deleteUser).forEach((button) => {
     button.addEventListener("click", async (event) => {
       const consultaId = event.target.id;
-      console.log(consultaId);
 
-      const data = { consultaId: consultaId };
-      console.log(data);
+      const data = { consultaId: consultaId };   
 
       const response = await fetch("/api/consulta/" + consultaId, {
         method: "DELETE",

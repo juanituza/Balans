@@ -22,12 +22,10 @@ const obtenerComisiones = async (req, res) => {
 const crearComision = async (req, res) => {
   try {
     const { numero, curso } = req.body;
-
     const comision = {
       numero,
       curso,
     };
-
     const result = await comisionService.crearComision(comision);
     res.sendSuccessWithPayload({ result });
   } catch (error) {
@@ -76,14 +74,12 @@ const agregarAlumno = async (req, res) => {
   }
 };
 
-
-
 const eliminarAlumno = async (req, res) => {
   try {
     const { aid, cid } = req.params;
     //obtengo el alumno completo
     const alumnoTotal = await usuarioService.obtenerUsuarioPorId(aid);
-    
+
     //obtengo la comisión
     const comision = await comisionService.obtenerComisionPor(cid);
 
@@ -99,7 +95,7 @@ const eliminarAlumno = async (req, res) => {
     const alumnoIndex = comision.alumnos.findIndex(
       (p) => p.alumno._id.toString() === aid
     );
-     //Busco el índice del la comisión a eliminar 
+    //Busco el índice del la comisión a eliminar
     const indiceComisionEliminar = alumnoTotal.comisiones.findIndex(
       (comision) => comision._id.toString() === cid
     );

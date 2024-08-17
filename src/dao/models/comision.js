@@ -8,7 +8,6 @@ const comisionSchema = new mongoose.Schema(
     numero: Number,
     curso: {
       type: String,
-      enum: ["pilates", "quiromasaje", "nutricion"],
     },
     alumnos: [
       {
@@ -23,10 +22,6 @@ const comisionSchema = new mongoose.Schema(
         name: {
           type: String,
         },
-        // reference: {
-        //   type: String,
-        //   enum: "archivo",
-        // },
       },
     ],
   },

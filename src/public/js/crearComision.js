@@ -6,15 +6,16 @@ form.addEventListener("submit", async (event) => {
   const obj = {};
   data.forEach((value, key) => (obj[key] = value));
   console.log(obj);
-  const response = await fetch("/api/comision/", {
+  const response = await fetch("/api/comision", {
     method: "POST",
     body: JSON.stringify(obj),
     headers: {
       "Content-Type": "application/json",
     },
   });
- 
+  
   const responseData = await response.json();
+  console.log(responseData);
   if (responseData.status === "success") {
     Swal.fire({
       position: "top-end",
