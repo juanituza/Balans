@@ -147,24 +147,16 @@ export default class ViewsRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "jwt" }),
       viewController.comisionDetalles
     );
-    this.get("/login", ["NO_AUTH"], (req, res) => {
-      res.render("login");
-    });
-
-    // this.get("/nosotros", ["USER"], (req, res) => {
-    //   res.render("nosotros");
-    // });
+    this.get("/login", ["NO_AUTH"],
+      passportCall("jwt", { strategyType: "jwt" }),
+      // res.render("login");
+      
+      viewController.login
+   );
     this.get("/registro", 
     ["NO_AUTH"], 
     passportCall("jwt", { strategyType: "jwt" }),
     viewController.registroView
     );
-
-    // this.get(
-    //   "/products",
-    //   ["PUBLIC"],
-    //   passportCall("jwt", { strategyType: "jwt" }, { redirect: "/login" }),
-    //   viewController.productsView
-    // );
   }
 }

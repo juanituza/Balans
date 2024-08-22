@@ -9,16 +9,42 @@ import __dirname from "../utils.js";
 
 const registroView = async (req, res) => {
   try {
-    const allCursos = await cursoService.obtenerCursos();
+    // const allCursos = await cursoService.obtenerCursos();
 
-    // Filtrar cuando el nombre sea distinto a "Inicio"
-    const cursosFiltrados1 = allCursos.filter(
-      (curso) =>
-        curso.nombre !== "Inicio" &&
-        curso.nombre !== "Prueba Mercado Pago NO TOCAR!!"
+    // // Filtrar cuando el nombre sea distinto a "Inicio"
+    // const cursosFiltrados1 = allCursos.filter(
+    //   (curso) =>
+    //     curso.nombre !== "Inicio" &&
+    //     curso.nombre !== "Prueba Mercado Pago NO TOCAR!!"
+    // );
+    let cursos = await cursoService.obtenerCursos();
+    let curso = cursos.filter((item) => item.nombre === "Inicio");
+    let cursoLista = cursos.filter(
+      (item) => item.nombre.toLowerCase() !== "inicio"
     );
+    // res.render("registro", { cursos: cursosFiltrados1 });
+    res.render("registro", { inicio: curso, cursos: cursoLista });
+  } catch (error) {
+    res.sendInternalError("Internal error");
+  }
+};
+const login = async (req, res) => {
+  try {
+    // const allCursos = await cursoService.obtenerCursos();
 
-    res.render("registro", { cursos: cursosFiltrados1 });
+    // // Filtrar cuando el nombre sea distinto a "Inicio"
+    // const cursosFiltrados1 = allCursos.filter(
+    //   (curso) =>
+    //     curso.nombre !== "Inicio" &&
+    //     curso.nombre !== "Prueba Mercado Pago NO TOCAR!!"
+    // );
+    let cursos = await cursoService.obtenerCursos();
+    let curso = cursos.filter((item) => item.nombre === "Inicio");
+    let cursoLista = cursos.filter(
+      (item) => item.nombre.toLowerCase() !== "inicio"
+    );
+    // res.render("registro", { cursos: cursosFiltrados1 });
+    res.render("login", { inicio: curso, cursos: cursoLista });
   } catch (error) {
     res.sendInternalError("Internal error");
   }
@@ -187,28 +213,39 @@ const perfilView = async (req, res) => {
 const cursosAlumnos = async (req, res) => {
   try {
     const comisiones = await comisionService.obtenerComision();
+    // console.log(comisiones);
+
     const alumnoBuscado = await req.user;
+    // console.log(alumnoBuscado);
+
     const usuario = await usuarioService.obtenerUsuarioPorId(req.user._id);
+    // console.log(usuario);
+
     const cursos = usuario.cursos;
 
     let nombresCursos = []; // Declaración de nombresCursos
 
-    if (usuario.cursos.length > 0) {
-      const cursosIdsString = usuario.cursos
-        .map((curso) => curso._id)
-        .join(",");
-      // console.log(cursosIds);
-      const cursosIdsArray = cursosIdsString.split(",");
+    // if (usuario.cursos.length > 0) {
+    //   const cursosIdsString = usuario.cursos
+    //     .map((curso) => curso._id)
+    //     .join(",");
+      
+    //   // console.log(cursosIdsString);
+      
 
-      const cursosEncontrados = await Promise.all(
-        cursosIdsArray.map(async (cursoId) => {
-          const cursoEncontrado = await cursoService.obtenerCursoPorId(cursoId);
-          return cursoEncontrado;
-        })
-      );
+    //   const cursosIdsArray = cursosIdsString.split(",");
 
-      nombresCursos = cursosEncontrados.map((curso) => curso.nombre);
-    }
+    //   const cursosEncontrados = await Promise.all(
+    //     cursosIdsArray.map(async (cursoId) => {
+    //       const cursoEncontrado = await cursoService.obtenerCursoPorId(cursoId);
+    //       console.log(cursoEncontrado);
+    //       return cursoEncontrado;
+    //     })
+    //   );
+    //   // console.log(cursosEncontrados);
+
+    //   nombresCursos = cursosEncontrados.map((curso) => curso.nombre);
+    // }
 
     // const documentId = req.params.documentId;
 
@@ -223,9 +260,10 @@ const cursosAlumnos = async (req, res) => {
       comision: comisionesConAlumno,
       user: alumnoBuscado,
       imagen: usuario.imagen,
-      cursos: nombresCursos,
+      // cursos: nombresCursos,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).send({ status: "error", error });
   }
 };
@@ -486,6 +524,7 @@ const restorePassword = async (req, res) => {
 
 export default {
   registroView,
+  login,
   contactoView,
   nosotrosView,
   perfilView,
