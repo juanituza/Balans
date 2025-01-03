@@ -1,6 +1,5 @@
 node_modules
 .env.dev
-package-lock.json
 .vscode
 TurnosGimnasio.rar
 ngrok.3.8.0
