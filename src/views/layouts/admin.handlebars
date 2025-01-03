@@ -1,284 +1,202 @@
 <!-- beautify ignore:start -->
+<!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  
     <title>{{title}}</title>
-
+  
     <meta name="description" content="" />
-
+  
+    
+   
+    
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="imagenes/BalansIMG.png" />
-
+    <link rel="icon" type="image/x-icon" href="/imagenes/BalansIMG.png" />
+  
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-
-
+      rel="stylesheet" />
     <!-- Sweet Alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-
+  
     <!-- Core CSS -->
     <link rel="stylesheet" href="/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="/assets/css/demo.css" />
-
+  
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
+  
     <link rel="stylesheet" href="/assets/vendor/libs/apex-charts/apex-charts.css" />
-
+  
     <!--fontawesome Files -->
-
-  <link href="/styles/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css" />
-  <link href="/styles/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
-
+  
+    <link href="/styles/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
+  
     <!-- Font Antura -->
     <link href="https://fonts.cdnfonts.com/css/antura-script" rel="stylesheet">
-
-    <!-- Page CSS -->
-
+  
+    <!-- Bootstrap -->
+    {{!--
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> --}}
+    <script src="https://cdn.tiny.cloud/1/pavfnnm998uhl6dq8ipavtprb8qsxwy40pj31xx9ulyytf58/tinymce/7/tinymce.min.js"
+      referrerpolicy="origin"></script>
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  
     <script src="/assets/js/config.js"></script>
-
+  
+  
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
    
+    
+    <!-- Quill editor -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.snow.css" rel="stylesheet" />
+    <!-- Include the Quill library -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.3/dist/quill.js"></script>
   </head>
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-  
-        <aside  class="layout-menu menu-vertical menu bg-menu-theme">
-            <a href="/nosotros" class="navbar-brand p-0">
-              <img class="logo-img" src="imagenes/BalansIMG.png" alt="">
-            <p class="pt-1 balans">
-              Balans
-            </p>
-            </a>
-          
-          {{!-- <div class="app-brand demo">
-            <a href="/admin/user" class="app-brand-link">
-             Alumnos
-            </a>
-  
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div> --}}
-  
-          <div class="app-brand demo">
-            <a href="/admin/consultas" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Consultas</span>
-            </a>
-  
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div>
-          {{!-- <div class="app-brand demo">
-            <a href="/admin/cursos" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Pilates</span>
-            </a>
-  
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div> --}}
-  
-          <div class="menu-inner-shadow">
-            <span>user</span>
-          </div>
+        <aside  class="layout-menu menu-vertical menu bg-menu-theme mb-5">
+            <button class="menu-toggle-btn flecha my-5">
+              <i class="fa-solid fa-circle-chevron-down rotate-arrow iconoFlecha"></i>
+            </button>
+          <div>
 
-         
+          </div>
+          <div class="menu-content my-0">
+
+          
+          <a href="/" class="navbar-brand m-5 p-4 imgAdmin">
+            <img class="logo-img" src="/imagenes/BalansNav2.png" alt="">
+            <p class="pt-1 balans"> Balans</p>
+          </a>
+          {{#if user}}
+          <ul class="dropdown btn btn-light  boton rounded-pill py-2 px-4 m-3 d-lg-block" style="list-style-type: none;">
+            <li>
+              <i class="fa-solid fa-user boton"></i>
+              <a class="dropdown-toggle justify-content-between boton" data-bs-toggle="dropdown">
+                {{!-- <i class="fa-solid fa-user"></i> --}}
+                {{user.nombre}}
+                {{user.apellido}}
+              </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item" href="/">Inicio</a></li>         
+                <li><a class="dropdown-item" href="/admin/user">Panel de administrador</a>
+                <li id="loguotButton"><a class="dropdown-item" href="#">Cerrar sesión</a></li>         
+                </li>
+          
+              </ul>
+            </li>
+          </ul>
+          {{/if}}
+          <ul class="menuUl">
+            <li class="app-brand demo">            
+              <a href="/admin/user" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Alumnos</span> 
+              </a>
+            </li>    
+            <li class="app-brand demo">
+              <a href="/admin/consultas" class="app-brand-link">                
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Consultas</span>
+              </a>
+            </li>
+            <li class="app-brand demo">
+              <a class="app-brand-link"  href="/admin/cursos">
+                <!-- Contenido del logo si es necesario -->
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Cursos</span>
+              </a>
+            </li>
+            <li class="app-brand demo">
+              <a href="/admin/comisiones" class="app-brand-link">
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">Comisiones</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         </aside>
         <!-- / Menu -->
   
         <!-- Layout container -->
-        <div class="layout-page">
-          <!-- Navbar -->
-  
-          {{!-- <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar-admin">
-            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
-              </a>
-            </div>
-  
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                    aria-label="Search..." />
-                </div>
-              </div>
-              <!-- /Search -->
-  
-              <ul class="navbar-nav flex-row align-items-center ms-auto">  
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                            </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
-          </nav> --}}
-  
-          <!-- / Navbar -->
-  
+        <div class="layout-page main-content">
           <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-  
-            {{!-- <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
-                <div class="col-lg-12 mb-4 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-end row">
-                      <div class="col-sm-12">
-                        <div class="card-body">
-                       
-                              <div class="col-lg-12  d-flex justify-content-center buy-now">
-                          
-                                <a href="/" type="button" class=" col-lg-2  btn btn-danger btn-buy-now mt-4 ">
-                                  HOME
-                                </a>
-                              </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-             --}}
-          {{{body}}}
-          </div>
-           </body>
-  
-           
-          
+          <div class="content-wrapper ">
+            
+           {{{body}}}
+          </div>  
         </div>
        
       </div>
   
-     
-   
+    </div>
+
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+  <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="../assets/vendor/libs/popper/popper.js"></script>
+  <script src="../assets/vendor/js/bootstrap.js"></script>
+  <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
   
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="../assets/vendor/js/menu.js"></script>
+  <!-- endbuild -->
   
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+  <!-- Vendors JS -->
+  <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
   
-    <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+  <!-- Main JS -->
+  <script src="../assets/js/main.js"></script>
   
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+  <!-- Page JS -->
+  <script src="../assets/js/dashboards-analytics.js"></script>
+
+
   
-    <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   
-  <!-- Incluye jQuery -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Incluye DataTables principal -->
-  {{!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> --}}
-  <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/sp-2.2.0/datatables.min.js"></script>
-  <!-- Incluye el script adicional para la funcionalidad de búsqueda -->
-  {{!-- <script src="https://cdn.datatables.net/search/1.0.0/js/dataTables.search.min.js"></script> --}}
+
+  <!-- Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- DataTable -->
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+
+
+  <script src="/js/cerrarSesion.js"></script>
+  <script src="/js/botonAside.js"></script>
+  
+</body>
+
   
 
    

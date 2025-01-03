@@ -5,41 +5,21 @@ const collection = "Cursos";
 const cursosSchema = new mongoose.Schema(
   {
     nombre: {
-      type: String,      
-      enum: ["pilates", "quiromasaje", "nutricion"],
+      type: String,
+      
     },
-    
-    Alumnos: [
-      {
-        quantity: {
-          type: Number,
-          default: 0,
-          max: 3,
-        },
-
-        alumno: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Usuario",
-        },
-        turnos: [
-          {
-            dia: {
-              type: String,
-            },
-            horario: {
-              type: String,
-            },
-          },
-        ],
-      },
-    ],
+    texto: {
+      type: mongoose.Schema.Types.Mixed,
+    },
+    precio: Number,
+    imagen: String,
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-cursosSchema.pre(/^find/, function () {
-  this.populate("Usuarios.usuario");
-});
+// cursosSchema.pre(/^find/, function () {
+//   this.populate("Usuarios.usuario");
+// });
 
 const cursosModel = mongoose.model(collection, cursosSchema);
 

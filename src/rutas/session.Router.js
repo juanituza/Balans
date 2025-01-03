@@ -9,7 +9,8 @@ export default class SessionRouter extends BaseRouter {
       "/registro",
       ["PUBLIC"],
       passportCall("register", { strategyType: "locals" }),
-      
+    
+
       sessionsController.registro
     );
 
@@ -26,5 +27,17 @@ export default class SessionRouter extends BaseRouter {
       passportCall("jwt", { strategyType: "locals" }),
       sessionsController.cerrarSesion
     );
+    this.post(
+      "/restoreRequest",
+      ["NO_AUTH"],
+      
+      sessionsController.restoreRequest
+    );
+
+     this.post(
+       "/restorePassword",
+       ["PUBLIC"],
+       sessionsController.restorePassword
+     );
   }
 }

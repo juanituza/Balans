@@ -11,11 +11,11 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    domicilio:String,
-    localidad:String,
-    cp:String,
-    provincia:String,
-    pais:String,
+    domicilio: String,
+    localidad: String,
+    cp: String,
+    provincia: String,
+    pais: String,
     telefono: String,
     email: {
       type: String,
@@ -23,34 +23,29 @@ const usuarioSchema = new mongoose.Schema(
     },
     password: String,
     imagen: [],
-    formacion: String,
     nacimiento: Date,
     role: {
       type: String,
       default: "alumno",
       enum: ["alumno", "profesor", "admin"],
     },
-    curso: {
-      type: String,
-      ref: "Cursos",
-      required: true,
-    },
-    // status: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    comisiones: [
+      {
+        comision: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Comision",
+        },
+      },
+    ],
 
-    // documents: [
-    //   {
-    //     image: {
-    //       type: String,
-    //     },
-    //     reference: {
-    //       type: String,
-    //       enum: ["identification", "address", "count"],
-    //     },
-    //   },
-    // ],
+    cursos:[
+      { 
+        curso:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cursos",
+    },
+    },
+  ],
   },
   {
     timestamps: {
@@ -83,15 +78,15 @@ usuarioSchema.virtual("CursosCreate", {
 });
 
 // Define un setter para "nacimiento" para convertir la fecha al formato deseado
-usuarioSchema.path("nacimiento").set(function(value) {
-  // Aquí puedes realizar la conversión de la fecha, asumiendo que "value" está en formato "DD-MM-AAAA"
-  const parts = value.split("-");
-  if (parts.length === 3) {
-    const [day, month, year] = parts;
-    return `${day}-${month}-${year}`;
-  }
-  return value;
-});
+// usuarioSchema.path("nacimiento").set(function(value) {
+//   // Aquí puedes realizar la conversión de la fecha, asumiendo que "value" está en formato "DD-MM-AAAA"
+//   const parts = value.split("-");
+//   if (parts.length === 3) {
+//     const [day, month, year] = parts;
+//     return `${day}-${month}-${year}`;
+//   }
+//   return value;
+// });
 
 const usuarioModel = mongoose.model(collection, usuarioSchema);
 

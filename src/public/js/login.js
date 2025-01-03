@@ -27,14 +27,14 @@ form.addEventListener('submit', async (event) => {
             confirmButtonText: 'OK',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.replace('/admin/consultas');
+                window.location.replace('/');
             }
         });
     }else{
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: responseData.error,
+          title: "Error al iniciar sesión",
+          text: "Credenciales incorrectas",
         })
     }
     

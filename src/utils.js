@@ -1,6 +1,6 @@
-import fs from 'fs';
-import config from './config.js';
-import Handlebars from 'handlebars';
+import fs from "fs";
+import config from "../config.js";
+import Handlebars from "handlebars";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import passport from "passport";
@@ -48,7 +48,6 @@ export const passportCall = (strategy, options = {}) => {
   };
 };
 
-
 export const cookieExtractor = (req) => {
   let token = null;
   if (req && req.cookies) {
@@ -69,12 +68,14 @@ export const validatePassword = (password, hashedPassword) =>
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export const generateMailTemplate= async (template,payload) => {
-  const content = await fs.promises.readFile(`${__dirname}/templates/${template}.handlebars`,'utf-8')
+export const generateMailTemplate = async (template, payload) => {
+  const content = await fs.promises.readFile(
+    `${__dirname}/templates/${template}.handlebars`,
+    "utf-8"
+  );
   const precompiledContent = Handlebars.compile(content);
-  const compileContent = precompiledContent({...payload});
+  const compileContent = precompiledContent({ ...payload });
   return compileContent;
-} 
+};
 
 export default __dirname;
-

@@ -6,7 +6,7 @@ const guardarConsulta = async (req, res) => {
   const mailingService = new MailingService();
   try {
     const { nombre, apellido, telefono, email, curso, mensaje } = req.body;
-    
+
     const user = { nombre, apellido, telefono, email, curso, mensaje };
     console.log(user);
     await mailingService.sendMail(DTemplates.CONSULTA);
@@ -18,21 +18,17 @@ const guardarConsulta = async (req, res) => {
     res.sendInternalError("Internal error");
   }
 };
-
 const actualizarConsulta = async (req, res) => {
   try {
     const { cid } = req.params;
+    const editarConsulta = req.body;
 
-    const editarConsutla = req.body;
+    const resultado = await consultaService.actualizarConsulta(cid,editarConsulta);
 
-    const resultado = await consultaService.actualizarConsulta(
-      cid,
-      editarConsutla
-    );
-    console.log(resultado);
     res.sendSuccessWithPayload("Consulta editada con éxito", resultado);
   } catch (error) {
     res.sendInternalError(error);
+    console.log(error);
   }
 };
 

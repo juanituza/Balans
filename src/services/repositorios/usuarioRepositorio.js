@@ -18,6 +18,13 @@ export default class UsuarioRepositorio {
   actualizarUsuario = (email, password) => {
     return this.dao.actualizarUsuario(email, password);
   };
+  actualizarUsuarioPorId = (id, data) => {
+    return this.dao.actualizarUsuarioPorId(id, data);
+  };
+  obtenerUsuariosPorComision = (comisionId) => {
+    return this.dao.obtenerUsuariosPorComision(comisionId);
+  };
+
   eliminarUsuario = (id) => {
     return this.dao.eliminarUsuario(id);
   };

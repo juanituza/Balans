@@ -1,0 +1,185 @@
+<div class="container-xxl py-5" id="contact">
+    <div class="container py-5 px-lg-5">
+
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="text-primary-gradient fw-medium m-3 p-3">Perfil</h5>
+
+            {{!-- <img class="foto-de-perfil" src="/imagenes/testimonial-3.jpg" alt="Mi Foto de Perfil"> --}}
+
+        </div>
+        <div class="row justify-content-center m-3">
+            <div class="col-lg-9">
+                <div class="wow fadeInUp" data-wow-delay="0.3s">
+
+                    <form id="imagenForm" enctype="multipart/form-data">
+
+                        {{#unless imagen}}
+                        <div class="form-outline  col-12 text-center mb-4">
+                            <div class="image-upload">
+                                <label for="fileInput" class="image-label">
+                                    <img class="foto-de-perfil" id="imagePreview" src="{{imagen}}"
+                                        alt="Mi Foto de Perfil">
+                                    <i class="fa-solid fa-user updateImage" id="iconPreview"></i>
+
+                                </label>
+                                <input type="file" id="fileInput" name="imagen" class="file-input" multiple
+                                    onchange="previewImage();" />
+                            </div>
+                        </div>
+                        {{/unless}}
+                        {{#if imagen}}
+
+                        <div class="form-outline  col-12 text-center mb-4">
+                            <div class="image-upload">
+                                <label for="fileInput" class="image-label">
+                                    <img class="foto-de-perfil" id="NuevaImagen" src="{{imagen}}"
+                                        alt="Mi Foto de Perfil">
+                                    {{!-- <i class="fa-solid fa-user updateImage" id="iconPreview"></i> --}}
+
+                                </label>
+                                <input type="file" id="fileInput" name="imagen" class="file-input" multiple
+                                    onchange="previewImage();" />
+
+                            </div>
+                        </div>
+                        {{/if}}
+                        <div class="col-12 text-center my-3">
+                            <button type="submit" class="btn btn-outline-info" data-id="{{alumno._id}}">
+                                Cambiar imagen
+                            </button>
+                        </div>
+                        <div class="col-12 text-center my-3">
+                            <h3 class="my-3"
+                                style="background-clip: text; -webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, rgba(75,0,130,1) 11%, rgba(91,91,238,1) 100%)">
+                                Información del usuario
+                            </h3>
+                        </div>
+
+                    </form>
+                    <form id="inputForm" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <div class="">
+                                    <input type="text" class="form-control" name="nombre" id="name"
+                                        value="{{alumno.nombre}}">
+                                    <label for="nombre" id="labelNombre">Nombre</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <input type="text" class="form-control" id="apellido" name="apellido"
+                                        value="{{alumno.apellido}}">
+                                    <label for="apellido" id="apellidoLabel">Apellido</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <input type="text" class="form-control" id="telefono" name="telefono"
+                                        value="{{alumno.telefono}}" />
+                                    <label for="telefono" id="telefonoLabel">Teléfono</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <input type="text" class="form-control" id="dni" name="dni"
+                                        value="{{alumno.dni}}" />
+                                    <label for="dni" id="dniLabel">dni</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value={{alumno.email}} />
+                                    <label for="email">Email</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <input type="text" class="form-control" id="role" name="role" value={{alumno.role}}
+                                        {{alumno.role}}>
+                                    <label for="role">Role</label>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <input type="date" id="nacimiento" class="form-control" name="nacimiento"
+                                    value="{{nacimiento}}" />
+
+                                <label class="form-label" for="nacimiento" id="nacimientoLabel">Fecha de
+                                    nacimiento</label>
+
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <select name="pais" class="form-control custom-select" id="countrySelect"
+                                    value="{{alumno.pais}}">
+                                    <option value="{{alumno.pais}}">{{alumno.pais}}</option>
+                                    <!-- Opciones de países se cargarán aquí -->
+                                </select>
+                                <label for="countrySelect"> <i class="fa-solid fa-earth-americas"></i> Seleccionar
+                                    el
+                                    país</label>
+                            </div>
+                            <div class="col-md-6 mb-4">
+
+                                <select name="provincia" class="form-control custom-select"
+                                    id="item-details-stateValue">
+                                    <option value="{{alumno.provincia}}">{{alumno.provincia}}</option>
+                                </select>
+                                <label for="stateSelect"><i class="fa-solid fa-location-dot"></i> Seleccionar la
+                                    provincia</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="domicilio" class="form-control" name="domicilio"
+                                    value="{{alumno.domicilio}}" placeholder={{alumno.domicilio}} />
+
+                                <label class="form-label" for="domicilio" id="domicilioLabel">Domicilio</label>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="cp" class="form-control" name="cp" value="{{alumno.cp}}"
+                                    placeholder={{alumno.cp}} />
+
+                                <label class="form-label" for="cp" id="cpLabel">Código postal</label>
+
+                            </div>
+                            <h3>Comisiones:</h3>
+                            {{#each comision}}
+                            <div class="col-md-6">
+                                <input type="text" id="comisiones" class="form-control" name="comision"
+                                    placeholder=" Número : {{this.numero}} - Curso: {{this.curso}}" readonly />
+
+                                <label class="form-label" for="cp" id="cpLabel">Comisión</label>
+
+                            </div>
+                            {{/each}}
+
+                            <div class="col-12 text-center">
+                                <button type="button" class="btn btn btn-primary " onclick="enviarInputFormulario()">
+                                    Enviar
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/imagePreview.js"></script>
+<script src="/js/habilitarEdicion.js"></script>
+<script src="/js/mostrarBoton.js"></script>
+<script src="/js/adminModificarPerfil.js"></script>
+<script src="/js/adminCambiarImagen.js"></script>
+<script src="/js/formatearFecha.js"></script>
+<script src="/js/geonames.js"></script>

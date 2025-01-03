@@ -6,8 +6,23 @@ import {passportCall} from "../utils.js";
 import uploadImage from "../middlewares/uploaderImage.js";
 
 
-export default class ConsultaRouter extends BaseRouter {
+export default class UsuarioRouter extends BaseRouter {
   init() {
+    this.get('/config',
+      ["PUBLIC"], 
+      
+      usuarioController.getConfig
+    );
+
+     this.post(
+       "/createPreference",
+       ["ALUMNO", "ADMIN"],
+       passportCall("jwt", { strategyType: "jwt" }),
+       usuarioController.createPreference
+     );
+        
+    this.post("/webhook", ["PUBLIC"], usuarioController.webhook);
+
     this.get(
       "/admin",
       ["ADMIN"],
@@ -28,8 +43,22 @@ export default class ConsultaRouter extends BaseRouter {
       uploadImage.array("imagen", 3),
       usuarioController.editarImagen
     );
-    this.post(
-      "/",
+    this.put(
+      "/adminEditarImagen/:uid",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "locals" }),
+      uploadImage.array("imagen", 3),
+      usuarioController.adminEditarImagen
+    );
+    this.put(
+      "/adminEditarUsuario/:uid",
+      ["ALUMNO", "ADMIN"],
+      passportCall("jwt", { strategyType: "locals" }),
+      uploadImage.array("imagen", 3),
+      usuarioController.adminEditarUsuario
+    );
+    this.delete(
+      "/:uid",
       ["ADMIN"],
       passportCall("jwt", { strategyType: "locals" }),
       usuarioController.eliminarUsuario
