@@ -1,11 +1,20 @@
 const form = document.getElementById("consultaForm");
 
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const data = new FormData(form);
+ 
+  const obj = {};
+  data.forEach((value, key) => (obj[key] = value));
+ 
 
-form.addEventListener('submit',async (event)=>{
-    event.preventDefault();
-    const data = new FormData(form);
-    const obj={};
-    data.forEach((value,key)=>obj[key] = value);
+  const response = await fetch("/api/consulta", {
+    method: "POST",
+    body: JSON.stringify(obj),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
     
 

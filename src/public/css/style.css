@@ -620,6 +620,13 @@ h6,
         background: #FFFFFF;
     }
 
+    #home {
+         
+         background:
+                linear-gradient(to right, #673AB7 0%, #512DA8 51%, #673AB7 100%);
+
+    }
+
     .navbar-light .navbar-collapse {
         margin-top: 15px;
         border-top: 1px solid #DDDDDD;
@@ -629,7 +636,7 @@ h6,
     .sticky-top.navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
         margin-left: 0;
-        color: var(--dark) !important;
+        color: #DDDDDD !important;
     }
 
     .navbar-light .navbar-nav .nav-link::before {
@@ -739,6 +746,18 @@ h6,
         center bottom;
     background-repeat: no-repeat;
 }
+/* @media (max-width: 991.98px) { */
+    /* .hero-header { */
+        /* margin-bottom: 0rem; */
+        /* padding: 6rem 0 9rem 0; */
+
+        /* background-position:
+                left 0px top 0px,
+                right 10px top 40%,
+                center bottom;
+            background-repeat: no-repeat;
+    } */
+/* } */
 
 /* @media (max-width: 991.98px) {
      .hero-header {

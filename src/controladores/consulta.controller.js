@@ -8,8 +8,10 @@ const guardarConsulta = async (req, res) => {
     const { nombre, apellido, telefono, email, curso, mensaje } = req.body;
 
     const user = { nombre, apellido, telefono, email, curso, mensaje };
+    console.log(user);
     await mailingService.sendMail(DTemplates.CONSULTA);
     const result = await consultaService.crearConsulta(user);
+    console.log(result);
     res.sendSuccessWithPayload({ result });
   } catch (error) {
     console.log(error);

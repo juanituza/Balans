@@ -109,7 +109,7 @@ aside {
 .btnDrop {
   padding: 0px !important;
 }
-/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
+
 /* Detached navbar */
 .layout-navbar-fixed
   .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu)
