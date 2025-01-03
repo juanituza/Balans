@@ -1,0 +1,68 @@
+<div class="m-5" id="page">
+    <h3>{{curso.nombre}}</h3>
+
+    <form >
+       
+            <div class="col-md-2 mb-4">
+                <div class="">
+                    <label class="form-label" for="nombre">Curso:</label>
+                    <input type="text" name="nombre" class="form-control precio  py-3 px-3"
+                        value="{{curso.nombre}}" />
+            
+                </div>
+            </div>
+            
+            
+            
+            <div class="col-md-2 mb-4">
+                <div>
+                    <label class="form-label ms-1" for="precio">Precio:</label>
+                    <input type="Number" name="precio" class="form-control precio   py-3 px-3"
+                        value="{{curso.precio}}" data-precio="{{curso.precio}}" />
+                </div>
+            </div>
+       
+
+    {{!-- <div class="col-12" id="editor">
+        <p name="pilates" cols="150" rows="10">
+            {{curso.texto}}
+        </p>
+    </div> --}}
+    <div class="col-12">
+
+        <textarea id="editor" name="pilates" cols="150" rows="10">{{curso.texto}}</textarea>
+    </div>
+    <div class="my-3">
+        <label class="form-label" for="imagen">Imagen:</label>
+        <input type="file" name="imagen" class="form-control" accept="image/*">
+    </div>
+    <button type="button" class="col-lg-4 btn btn-primary center me-2 my-3 changeRol" id="modifyButton"
+        data-curso-id="{{curso._id}}">
+        <i class="fa-regular fa-circle-up"></i> Modificar
+    </button>
+    <button type="button" class="col-lg-4 btn btn-danger center mx-5 changeRol" id="eliminarButton"
+        data-curso-id="{{curso._id}}">
+        <i class="fa-solid fa-trash-can"></i> Eliminar
+    </button>
+</div>
+
+<!-- Script de inicialización de TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/pavfnnm998uhl6dq8ipavtprb8qsxwy40pj31xx9ulyytf58/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        menubar: false,
+        branding: false,
+        statusbar: false,
+        height: 550 // Altura opcional del editor
+    });
+</script>
+
+
+
+<script src="/js/dataTable.js"></script>
+<script src="/js/modificarTextoCurso.js"></script>
+<script src="/js/eliminarCurso.js"></script>

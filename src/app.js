@@ -1,21 +1,34 @@
 import express from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import { join } from "path";
+<<<<<<< HEAD
 import handlebars from "express-handlebars";
 
+=======
+
+import path from "path";
+
+>>>>>>> 59f6ff81885b59567077a535129750c87957458f
 import __dirname from "./utils.js";
-import config from "./config.js";
+import config from "../config.js";
 import MongoSingleton from "./mongoSingleton.js";
 import initializePassportStrategies from "../config/passport.config.js";
 
 import exphbs from "express-handlebars";
+<<<<<<< HEAD
 import { ifRoleAdmin } from "./middlewares/handlebars-helpers.js";
+=======
+import { ifRoleAdmin, ifRoleIsUser } from "./middlewares/handlebars-helpers.js";
+>>>>>>> 59f6ff81885b59567077a535129750c87957458f
 
 import ViewsRouter from "./rutas/view.router.js";
 import UsuarioRouter from "./rutas/usuario.router.js";
 import ConsultaRouter from "./rutas/consulta.Router.js";
 import SessionRouter from "./rutas/session.Router.js";
 import LoggerService from "./dao/managers/LoggerManager.js";
+import ComisionRouter from "./rutas/comision.Router.js";
+import CursoRouter from "./rutas/curso.Router.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
@@ -34,12 +47,21 @@ initializePassportStrategies();
 const hbs = exphbs.create({
   helpers: {
     ifRoleAdmin,
+    ifRoleIsUser,
   },
   layoutsDir: `${__dirname}/views/layouts`, // Ruta absoluta
   defaultLayout: "main",
   partialsDir: `${__dirname}/views/partials`, // Ruta absoluta
   extname: "handlebars",
 });
+
+
+// Configura la ruta estática para servir los archivos de TinyMCE
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
+
 
 // Asigna el layout principal para las rutas que no sean de administrador
 app.use((req, res, next) => {
@@ -52,6 +74,7 @@ app.use("/admin", (req, res, next) => {
   next();
 });
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -70,8 +93,37 @@ const usuarioRouter = new UsuarioRouter();
 const consultaRouter = new ConsultaRouter();
 const viewsRouter = new ViewsRouter();
 const sessionRouter = new SessionRouter();
+<<<<<<< HEAD
+=======
+const comisionRouter = new ComisionRouter();
+const cursoRouter = new CursoRouter();
+>>>>>>> 59f6ff81885b59567077a535129750c87957458f
 
 app.use("/", viewsRouter.getRouter());
 app.use("/api/usuarios", usuarioRouter.getRouter());
 app.use("/api/consulta", consultaRouter.getRouter());
 app.use("/api/session", sessionRouter.getRouter());
+<<<<<<< HEAD
+=======
+app.use("/api/comision", comisionRouter.getRouter());
+app.use("/api/curso", cursoRouter.getRouter());
+
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+  // Verifica si el error es "Unauthorized"
+  if (err && err.message === "Unauthorized") {
+    // Redirige al usuario a una imagen específica
+    return res.redirect("/imagenes/balansIMG.png");
+  }
+
+  // Si no es un error "Unauthorized", pasa al siguiente middleware de manejo de errores
+  next(err);
+});
+
+// Ruta de ejemplo que lanza un error "Unauthorized"
+app.get("/ruta-protegida", (req, res, next) => {
+  const error = new Error("Unauthorized");
+  error.status = 401;
+  next(error);
+});
+>>>>>>> 59f6ff81885b59567077a535129750c87957458f

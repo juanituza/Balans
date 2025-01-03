@@ -1,6 +1,13 @@
 node_modules
 .env.dev
+<<<<<<< HEAD
 package-lock.json
 .vscode
 .env
 TurnosGimnasio.rar
+=======
+.vscode
+TurnosGimnasio.rar
+ngrok.3.8.0
+.env
+>>>>>>> 59f6ff81885b59567077a535129750c87957458f

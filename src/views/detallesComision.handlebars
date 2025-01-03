@@ -1,0 +1,212 @@
+<div class="m-5" id="page">
+    <h3>Comisión:</h3>
+
+    <button class="menu-toggle-btn flecha my-5">
+        <i class="fa-solid fa-circle-chevron-down rotate-arrow iconoFlecha"></i>
+    </button>
+    <table id="miTabla" class="table table-striped " style="width:100% ">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Curso</th>
+                <th>Alumnos</th>
+                <th>Documentos</th>
+                <th>Acciones</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {{!-- {{#each comisionParticular}} --}}
+            <tr>
+                <td>{{comisionParticular.numero}} </td>
+                <td>{{comisionParticular.curso}}</td>
+                <td>
+                    <ul>
+                        {{#each comisionParticular.alumnos}}
+                        <li>{{this.alumno.nombre}} {{this.alumno.apellido}}</li>
+                        {{/each}}
+                    </ul>
+                </td>
+                <td class="no-wrap">
+                    <ul>
+                        {{#each comisionParticular.documents}}
+                        <li>{{this.name}}
+                            <button class="btn btn-danger trashDocumento">
+                                <i class="fa-solid fa-trash-can" data-document-id="{{this._id}}"
+                                    data-cid="{{../comisionParticular._id}}" id="trash"></i>
+                            </button>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </td>
+
+                <td class="no-wrap">
+                    <button id="btnAgregarAlumno" class="col-lg-12 btn btn-primary center my-2 ">
+                        <i class="fa-solid fa-plus"></i> Agregar alumno
+                    </button>
+                    <button id="btnEliminarAlumno" class="col-lg-12 btn btn-danger center my-2 ">
+                        <i class="fa-solid fa-x"></i> eliminar alumno
+                    </button>
+                    <button id="btnSubirArchivo" class="col-lg-12 btn btn-dark center my-2 ">
+                        <i class="fa-solid fa-plus"></i> Subir Archivo
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+        </tfoot>
+        {{!-- <div>
+            <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="fa-solid fa-plus"></i></a>
+        </div> --}}
+    </table>
+    {{!-- {{#each comisionParticular}} --}}
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="listadoUsuariosModal" tabindex="-1" aria-labelledby="listadoUsuariosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="listadoUsuariosModalLabel">Listado de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {{!-- <th>ID</th> --}}
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Agregar</th>
+
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each alumnosDisp}}
+                        <tr data-alumno-id="{{this._id}}">
+                            {{!-- <td>{{this._id}}</td> --}}
+                            <td>{{this.nombre}}</td>
+                            <td>{{this.apellido}}</td>
+                            <td class="agregar-alumno-column"><a href="#"><i class="fa-solid fa-plus"></i></a></td>
+
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ComisionUsuariosModal" tabindex="-1" aria-labelledby="listadoUsuariosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="listadoUsuariosModalLabel">Listado de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                           
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Eliminar</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each comisionParticular.alumnos}}
+                        <tr data-alumno-id="{{this.alumno._id}}">
+                            {{!-- <td>{{this._id}}</td> --}}
+                            <td>{{this.alumno.nombre}}</td>
+                            <td>{{this.alumno.apellido}}</td>
+
+                            <td class="agregar-alumno-column"><a href="#" style="color:red"><i
+                                        class="fa-solid fa-x"></i></a></td>
+                            <!-- Agrega más columnas según sea necesario -->
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Búsqueda -->
+<div class="modal " id="busquedaModal" tabindex="-1" role="dialog" aria-labelledby="busquedaModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="busquedaModalLabel">Buscar en la columna</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="cerrarModalBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="filtroInput">Valor de filtro:</label>
+                <input type="text" class="form-control" id="filtroInput">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="buscarBtn">Buscar</button>
+                {{!-- <button type="button" class="btn btn-secondary" id="cerrarModalBtn">Cerrar</button> --}}
+                <button type="button" class="btn btn-danger" id="limpiarBtn">Limpiar Filtro</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+{{!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
+<script>
+    $(document).ready(function () {
+        // Evento al hacer clic en el botón "Agregar alumno"
+        $("#btnAgregarAlumno").click(function () {
+            // Lógica para abrir el modal aquí, si es necesario
+
+            // Abre el modal
+            $("#listadoUsuariosModal").modal("show").focus();
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Evento al hacer clic en el botón "Agregar alumno"
+        $("#btnEliminarAlumno").click(function () {
+            // Lógica para abrir el modal aquí, si es necesario
+
+            // Abre el modal
+            $("#ComisionUsuariosModal").modal("show").focus();
+        });
+
+    });
+</script>
+
+
+
+
+<script src="/js/agregarAlumno.js"></script>
+<script src="/js/eliminarAlumno.js"></script>
+<script src="/js/subirArchivo.js"></script>
+<script src="/js/eliminarDocumento.js"></script>
+<script src="/js/dataTableComision.js"></script>
+<script src="/js/cambiarEstadoConsulta.js"></script>

@@ -16,5 +16,15 @@ export default {
       },
     ],
   },
+  restore: {
+    subject: "Reestablecer contraseña!",
+    attachments: [
+      {
+        filename: "BalansIMG.png",
+        path: `${__dirname}/public/imagenes/BalansIMG.png`,
+        cid: "BalansIMG",
+      },
+    ],
+  },
 };
    

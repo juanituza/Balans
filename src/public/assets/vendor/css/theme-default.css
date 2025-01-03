@@ -138,7 +138,13 @@ a.bg-primary:hover, a.bg-primary:focus {
   border-color: #696cff;
   background-color: #696cff;
   color: #fff;
-  box-shadow: 0 0.125rem 0.25rem rgba(105, 108, 255, 0.4);
+  /* box-shadow: 0 0.125rem 0.25rem rgba(105, 108, 255, 0.4); */
+}
+
+ .dataTables_wrapper:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  border-color: inherit !important;
 }
 
 .progress-bar {

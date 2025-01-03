@@ -16,6 +16,16 @@ export default class UsersManager {
   actualizarUsuario = async (email, password) => {
     return await usuarioModel.updateOne(email, { $set: password });
   };
+  actualizarUsuarioPorId = async (userId, data) => {
+    return await usuarioModel.findByIdAndUpdate(
+      userId,
+      { $set: data },
+      { new: true }
+    );
+  };
+  obtenerUsuariosPorComision = async (comisionId) => {
+    return await usuarioModel.find({ 'comisiones.comision':comisionId}).lean();
+  };
 
   eliminarUsuario = async (id) => {
     return await usuarioModel.findByIdAndDelete(id);

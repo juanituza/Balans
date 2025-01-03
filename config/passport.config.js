@@ -1,9 +1,10 @@
 import passport from "passport";
-import config from "../src/config.js";
+import config from "../config.js";
 import local from "passport-local";
+import mongoose from "mongoose";
 
-import GithubStrategy from "passport-github2";
-import { usuarioService} from "../src/services/repositorios/index.js";
+
+import { usuarioService , cursoService} from "../src/services/repositorios/index.js";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { cookieExtractor, createHash, validatePassword } from "../src/utils.js";
 
@@ -20,7 +21,19 @@ const initializePassportStrategies = () => {
       { passReqToCallback: true, usernameField: "email" },
       async (req, email, password, done) => {
         try {
-          const { nombre, apellido, nacimiento, telefono, role } = req.body;
+          let {
+            nombre,
+            apellido,
+            dni,
+            domicilio,
+            localidad,
+            pais,
+            cp,
+            nacimiento,
+            telefono,
+            cursos = [],
+            role,
+          } = req.body;
           const exist = await usuarioService.obtenerUsuarioPor({ email });
           if (exist)
             return done(
@@ -30,25 +43,37 @@ const initializePassportStrategies = () => {
               LoggerService.error("Usuario existente")
             );
 
+          // Busca el curso por nombre
+          const cursoNombre = req.body.curso;
+          
+          //Busca todos los cursos  
+          const allCursos = await cursoService.obtenerCursos();
+          //Busca el curso encontrado por el nombre
+          const cursoEncontrado = allCursos.find(
+            (curso) => curso.nombre === cursoNombre
+          );       
           // Accede a la información del archivo cargado
-         
           const hashedPassword = await createHash(password);
           const usuario = {
             nombre,
             apellido,
+            dni,
+            domicilio,
+            localidad,
+            pais,
+            cp,
+            cursos, // Asigna el _id del curso encontrado o null si no se encontró ningún curso
             email,
             nacimiento,
             role,
             telefono,
             password: hashedPassword,
-          
           };
-
-          // const result = await usuarioModel.create(usuario);
           const result = await usuarioService.crearUsuario(usuario);
           done(null, result);
         } catch (error) {
           done(error);
+          
         }
       }
     )
@@ -92,6 +117,7 @@ const initializePassportStrategies = () => {
           nacimiento: usuario.nacimiento,
           telefono: usuario.telefono,
           role: usuario.role,
+          cursos: usuario.cursos,
         };
         
      
@@ -101,40 +127,7 @@ const initializePassportStrategies = () => {
     )
   );
 
-  passport.use(
-    "github",
-    new GithubStrategy(
-      {
-        clientID: "Iv1.fd6853e95ce4c8a5",
-        clientSecret: "aff259b7114a590e0c5c51ffb71f7ac4f868bbb2",
-        callbackURL:"https://backend-project-q2nk.onrender.com/api/sessions/githubcallback",
-      },
-      async (accessToken, refreshToken, profile, done) => {
-        try {
-          //tomo los datos del profile que me sirvan.
-          const { name, email } = profile._json;
-          const usuario = await usuarioService.obtenerUsuarioPor({ email });
-          // const cart = await cartService.createCart();
-          //Gestiono ambas logicas
-          if (!usuario) {
-            //si no existe usuario lo creo
-            const nuevoUsuario = {
-              nombre: name,
-              email,
-              // cart: cart._id,
-              password: "",
-            };
-            const result = await usuarioService.crearUsuario(nuevoUsuario);
-            done(null, result);
-          }
-          // si ya existe el usuario
-          done(null, usuario);
-        } catch (error) {
-          done(error);
-        }
-      }
-    )
-  );
+  
 
   //passport se encarga de la verificacion del token
   passport.use(

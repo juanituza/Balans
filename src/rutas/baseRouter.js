@@ -69,19 +69,52 @@ export default class BaseRouter {
     next();
   };
 
+  // handlePolicies = (policies) => {
+  //   return (req, res, next) => {
+  //     if (policies[0] === "PUBLIC") return next();
+  //     //Usuario parseado desde jwt
+  //     const user = req.user;
+  //     if (policies[0] === "NO_AUTH" && user)
+  //       return res.status(401).send({ status: "error", error: "Unauthorized" });
+  //     if (policies[0] === "NO_AUTH" && !user) return next();
+  //     //Si existe un usuario.
+  //     if (!user)
+  //       return res.status(401).send({ status: "error", error: req.error });
+  //     if (!policies.includes(user.role.toUpperCase()))
+  //       return res.status(401).send({ status: "error", error: "Unauthorized" });
+  //     next();
+  //   };
+  // };
+
   handlePolicies = (policies) => {
     return (req, res, next) => {
-      if (policies[0] === "PUBLIC") return next();
-      //Usuario parseado desde jwt
-      const user = req.user;  
-      if (policies[0] === "NO_AUTH" && user)
-        return res.status(401).send({ status: "error", error: "Unauthorized" });
-      if (policies[0] === "NO_AUTH" && !user) return next();
-      //Si existe un usuario.
-      if (!user)
-        return res.status(401).send({ status: "error", error: req.error });
-      if (!policies.includes(user.role.toUpperCase()))
-        return res.status(401).send({ status: "error", error: "Unauthorized" });
+      const user = req.user;
+
+      // Caso: Política Pública
+      if (policies.includes("PUBLIC")) {
+        return next();
+      }
+
+      // Caso: Sin Autenticación Permitida
+      if (policies.includes("NO_AUTH")) {
+        if (user) {
+          return res.render("unauthorized", { error: "Unauthorized" });
+        } else {
+          return next();
+        }
+      }
+
+      // Caso: Usuario No Autenticado
+      if (!user) {
+        return res.render("unauthorized", { error: req.error });
+      }
+
+      // Caso: Política de Rol Específico
+      if (!policies.includes(user.role.toUpperCase())) {
+        return res.render("unauthorized", { error: "Unauthorized" });
+      }
+
+      // Caso: Acceso Permitido
       next();
     };
   };

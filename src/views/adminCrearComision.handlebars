@@ -1,0 +1,52 @@
+<section class="text-center text-lg-start" id="page">
+    <!-- Jumbotron -->
+    <div class="container py-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-12 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <h2 class="fw-bold mb-5">Comisión</h2>
+                        <form id="crearForm" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="number" id="form3Example1" name="numero" class="form-control" />
+
+                                        <label class="form-label" for="numero"><i
+                                                class="fa-solid fa-id-card-clip me-3"></i></i>Número de comisión</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <select name="curso" class="form-control custom-select">
+                                        {{#each cursosLista}}
+                                        <option value="{{this.nombre}}">{{this.nombre}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <label for="curso"><i class="fa-solid fa-arrow-pointer"></i> Seleccionar un
+                                        curso</label>
+                                </div>
+
+
+                                <!-- Submit button -->
+                                <div class="col-12 ">
+                                    <button class="btn btn-primary " type="submit">Crear</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>
+
+<script src="js/crearComision.js"></script>
